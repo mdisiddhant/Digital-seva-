@@ -1011,7 +1011,11 @@
         locationText = `\n⚠️ ${translations[currentLanguage].hi === 'hi' ? 'ग्राहक ने लोकेशन शेयर नहीं की' : 'Customer did not share location'}`;
       }
 
-      const message = `🛒 *${translations[currentLanguage].hi === 'hi' ? 'VIP किराना ऑर्डर' : 'VIP Grocery Order'}*
+      </button>
+<p id="status"></p>
+
+<script>
+const message = `🛒 *${translations[currentLanguage].hi === 'hi' ? 'VIP किराना ऑर्डर' : 'VIP Grocery Order'}*
 👤 ${translations[currentLanguage].hi === 'hi' ? 'नाम' : 'Name'}: ${name}
 📱 ${translations[currentLanguage].hi === 'hi' ? 'मोबाइल' : 'Mobile'}: ${mobile}
 🏠 ${translations[currentLanguage].hi === 'hi' ? 'पता' : 'Address'}: ${address}
@@ -1023,16 +1027,20 @@ ${itemsText}
 
 🕒 ${new Date().toLocaleString()}`;
 
-      const whatsappNumber = "916351598832";
-      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
+// ✅ Area के हिसाब से नंबर select करें
+let whatsappNumber = "916351598832"; // 👉 आपका default नंबर
+if (area === "Civil Lines") {
+  whatsappNumber = "917389912240"; // 👉 Civil Lines का नया नंबर
+}
 
-      sendToTelegram(message);
-      sendToSheet(name, mobile, address, area, itemsText);
-      
-      // Show success notification
-      showNotification(translations[currentLanguage].notificationWhatsapp);
-    }
-  </script>
+const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+window.open(url, "_blank");
+
+sendToTelegram(message);
+sendToSheet(name, mobile, address, area, itemsText);
+
+// Show success notification
+showNotification(translations[currentLanguage].notificationWhatsapp);
+</script>
 </body>
 </html>
