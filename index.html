@@ -3,544 +3,681 @@
 <head>
   <meta charset="UTF-8">
   <title>🔥 Special Surprise for My 🌟</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background: #000;
-      font-family: 'Courier New', monospace;
+      box-sizing: border-box;
     }
 
-    /* Background with multiple scrolling columns */
-    .background {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+    body {
+      background: #1e1e1e;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
       overflow: hidden;
+      color: #d4d4d4;
+    }
+
+    /* IDE Layout */
+    .ide-container {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: 40px 1fr 200px 30px;
+      grid-template-areas:
+        "header header"
+        "sidebar editor"
+        "sidebar terminal"
+        "status status";
+      height: 100vh;
+    }
+
+    /* Header */
+    .ide-header {
+      grid-area: header;
+      background: #3c3c3c;
       display: flex;
-      justify-content: space-around;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid #2d2d2d;
+      font-size: 14px;
     }
 
-    .code-column {
-      width: 15%;
-      height: 100%;
-      position: relative;
+    .menu-item {
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    .menu-item:hover {
+      color: #fff;
+    }
+
+    /* Sidebar */
+    .ide-sidebar {
+      grid-area: sidebar;
+      background: #252526;
+      border-right: 1px solid #2d2d2d;
+      overflow-y: auto;
+      padding: 10px 0;
+    }
+
+    .explorer-title {
+      padding: 10px 20px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bbbbbb;
+      display: flex;
+      align-items: center;
+    }
+
+    .explorer-title i {
+      margin-right: 8px;
+    }
+
+    .file-tree {
+      padding: 5px 0;
+    }
+
+    .folder {
+      padding: 5px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .folder:hover {
+      background: #2a2d2e;
+    }
+
+    .folder i {
+      margin-right: 8px;
+      color: #e2c08d;
+    }
+
+    .file {
+      padding: 5px 20px 5px 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .file:hover {
+      background: #2a2d2e;
+    }
+
+    .file i {
+      margin-right: 8px;
+      color: #569cd6;
+    }
+
+    /* Editor */
+    .ide-editor {
+      grid-area: editor;
+      background: #1e1e1e;
+      display: flex;
       overflow: hidden;
+      position: relative;
     }
 
-    .code-scroll {
-      color: #00ffcc;
-      font-size: 16px;
-      white-space: pre;
-      line-height: 1.5;
-      animation: scroll 15s linear infinite;
-      text-shadow: 0 0 8px #00ffcc;
-      padding: 40px;
+    .editor-tabs {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      background: #252526;
+      display: flex;
+      border-bottom: 1px solid #2d2d2d;
+      z-index: 10;
     }
 
-    .code-column:nth-child(2) .code-scroll {
-      animation-duration: 20s;
-      color: #ff66cc;
-      text-shadow: 0 0 8px #ff66cc;
+    .editor-tab {
+      padding: 10px 20px;
+      font-size: 13px;
+      cursor: pointer;
+      border-right: 1px solid #2d2d2d;
+      display: flex;
+      align-items: center;
     }
 
-    .code-column:nth-child(3) .code-scroll {
-      animation-duration: 25s;
-      color: #66ccff;
-      text-shadow: 0 0 8px #66ccff;
+    .editor-tab.active {
+      background: #1e1e1e;
+      color: #fff;
     }
 
-    @keyframes scroll {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
+    .editor-tab i {
+      margin-right: 8px;
     }
 
-    /* Foreground content */
-    .container {
-      position: absolute;
-      z-index: 2;
+    .editor-content {
+      padding: 40px 20px 20px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre;
+      color: #d4d4d4;
+      flex-grow: 1;
+      overflow: auto;
+    }
+
+    .code-keyword {
+      color: #569cd6;
+    }
+
+    .code-function {
+      color: #dcdcaa;
+    }
+
+    .code-string {
+      color: #ce9178;
+    }
+
+    .code-comment {
+      color: #6a9955;
+    }
+
+    .code-operator {
+      color: #d4d4d4;
+    }
+
+    .code-number {
+      color: #b5cea8;
+    }
+
+    /* Terminal */
+    .ide-terminal {
+      grid-area: terminal;
+      background: #0c0c0c;
+      border-top: 1px solid #2d2d2d;
+      padding: 10px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 14px;
+      overflow: auto;
+    }
+
+    .terminal-line {
+      margin-bottom: 5px;
+      display: flex;
+    }
+
+    .terminal-prompt {
+      color: #0dbc79;
+      margin-right: 10px;
+    }
+
+    .terminal-output {
+      color: #cccccc;
+    }
+
+    .terminal-command {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    /* Status Bar */
+    .ide-statusbar {
+      grid-area: status;
+      background: #0078d4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 12px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .status-item i {
+      margin-right: 8px;
+    }
+
+    .status-running {
+      display: flex;
+      align-items: center;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    .status-running::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #0dbc79;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Surprise Container */
+    .surprise-container {
+      position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      z-index: 100;
+      background: rgba(30, 30, 30, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(0, 120, 212, 0.7);
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #0f0;
+      border: 1px solid #0078d4;
       backdrop-filter: blur(5px);
-      border: 1px solid rgba(0, 255, 170, 0.3);
-      animation: container-float 8s ease-in-out infinite;
     }
 
-    @keyframes container-float {
-      0% { transform: translate(-50%, -50%) rotate(0.5deg); }
-      50% { transform: translate(-50%, -50%) rotate(-0.5deg); }
-      100% { transform: translate(-50%, -50%) rotate(0.5deg); }
+    .surprise-header {
+      margin-bottom: 25px;
+      color: #569cd6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .surprise-header i {
+      margin: 0 15px;
+      color: #ce9178;
     }
 
     .photo-container {
-      position: relative;
-      width: 250px;
-      height: 250px;
-      margin: 0 auto 20px;
-      perspective: 1000px;
-      transition: transform 0.5s;
-    }
-
-    .photo-frame {
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin: 0 auto 25px;
       overflow: hidden;
-      box-shadow: 0 0 20px #fff, 0 0 30px #0ff;
-      border: 3px solid rgba(255, 255, 255, 0.5);
-      position: relative;
-      animation: photo-glow 3s infinite alternate;
+      border: 3px solid #0078d4;
+      box-shadow: 0 0 20px rgba(0, 120, 212, 0.5);
     }
 
-    @keyframes photo-glow {
-      0% { box-shadow: 0 0 10px #fff, 0 0 20px #0ff; }
-      100% { box-shadow: 0 0 20px #fff, 0 0 40px #0ff, 0 0 60px #0ff; }
-    }
-
-    .photo-frame img {
+    .photo-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s;
-      animation: float 3s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
+    .name {
+      font-size: 36px;
+      color: #dcdcaa;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(220, 220, 170, 0.5);
     }
 
-    .photo-controls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .photo-btn {
-      background: rgba(0, 255, 200, 0.3);
-      border: 1px solid #0ff;
-      color: white;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      transition: all 0.3s;
-    }
-
-    .photo-btn:hover {
-      background: rgba(0, 255, 200, 0.7);
-      transform: scale(1.1);
-    }
-
-    #name {
-      font-size: 42px;
-      color: #00ffee;
-      font-weight: bold;
-      text-shadow: 0 0 15px #0ff;
-      margin: 10px 0;
-      background: linear-gradient(to right, #ff00cc, #00ffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: name-shine 3s infinite alternate;
-    }
-
-    @keyframes name-shine {
-      0% { text-shadow: 0 0 10px #0ff; }
-      100% { text-shadow: 0 0 20px #0ff, 0 0 30px #0ff; }
-    }
-
-    #message {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ffd700;
-      margin-top: 15px;
+    .message {
+      font-size: 22px;
       line-height: 1.6;
-      text-shadow: 0 0 4px #000;
-      position: relative;
-    }
-
-    .message-line {
-      overflow: hidden;
-      white-space: nowrap;
-      margin: 10px auto;
-      width: 0;
-      animation: typing 3s steps(40, end) forwards;
-    }
-
-    .message-line:nth-child(1) { animation-delay: 0.5s; }
-    .message-line:nth-child(2) { animation-delay: 2s; }
-    .message-line:nth-child(3) { animation-delay: 3.5s; }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    .heart-container {
-      margin-top: 20px;
+      color: #ce9178;
+      margin-bottom: 25px;
+      font-weight: bold;
     }
 
     .heart {
       font-size: 50px;
-      animation: pulse 1s infinite, rotate 4s linear infinite;
-      margin-top: 15px;
-      color: red;
-      text-shadow: 0 0 10px red;
-      display: inline-block;
+      color: #f48787;
       cursor: pointer;
+      display: inline-block;
+      margin-top: 15px;
       transition: transform 0.3s;
     }
 
     .heart:hover {
       transform: scale(1.2);
+      color: #ff4d4d;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .firework {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .special-text {
+    /* Floating Elements */
+    .floating-heart {
       position: absolute;
       font-size: 24px;
-      font-weight: bold;
-      color: #ff00ff;
-      text-shadow: 0 0 10px #ff00ff;
-      opacity: 0;
+      color: #ff4d4d;
+      z-index: 50;
       pointer-events: none;
-      z-index: 10;
+      animation: float-up 5s ease-in forwards;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(20px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .status-notification {
+      position: absolute;
+      background: rgba(9, 71, 113, 0.8);
+      border: 1px solid #0078d4;
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-size: 13px;
+      z-index: 90;
+      animation: slide-in 0.5s ease-out, fade-out 0.5s ease-out 2.5s forwards;
+    }
+
+    @keyframes slide-in {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fade-out {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .progress-ring {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      z-index: 80;
+      pointer-events: none;
+      opacity: 0.2;
+    }
+
+    .progress-ring__circle {
+      stroke: #0078d4;
+      stroke-width: 4;
+      fill: transparent;
+      stroke-dasharray: 942;
+      stroke-dashoffset: 942;
+      animation: progress 3s linear infinite;
+    }
+
+    @keyframes progress {
+      0% { stroke-dashoffset: 942; }
+      100% { stroke-dashoffset: 0; }
     }
   </style>
 </head>
 <body>
+  <!-- IDE Background -->
+  <div class="ide-container">
+    <div class="ide-header">
+      <div class="menu-item"><i class="fas fa-file"></i> File</div>
+      <div class="menu-item"><i class="fas fa-edit"></i> Edit</div>
+      <div class="menu-item"><i class="fas fa-eye"></i> View</div>
+      <div class="menu-item"><i class="fas fa-cog"></i> Settings</div>
+    </div>
 
-  <!-- Background code animation with multiple columns -->
-  <div class="background">
-    <div class="code-column">
-      <div class="code-scroll">
-function neverGiveUp() {
-  while(true) {
-    console.log("मैंने कभी हार नहीं मानी");
-    console.log("क्योंकि मुझे पता है");
-    console.log("मैं कुछ भी कर सकता हूँ");
-  }
-}
-neverGiveUp();
-🔥💻🚀💡❤️✨🌟💪🎯👨‍💻👩‍💻📱📈💥💫🔥💪✨
+    <div class="ide-sidebar">
+      <div class="explorer-title">
+        <i class="fas fa-folder-open"></i> EXPLORER
+      </div>
+      <div class="file-tree">
+        <div class="folder"><i class="fas fa-folder"></i> src</div>
+        <div class="file"><i class="fas fa-file-code"></i> index.html</div>
+        <div class="file"><i class="fas fa-file-code"></i> styles.css</div>
+        <div class="file"><i class="fas fa-file-code"></i> script.js</div>
+        <div class="folder"><i class="fas fa-folder"></i> assets</div>
+        <div class="file"><i class="fas fa-file-image"></i> photo.jpg</div>
+        <div class="folder"><i class="fas fa-folder"></i> config</div>
+        <div class="file"><i class="fas fa-file-code"></i> settings.json</div>
       </div>
     </div>
-    <div class="code-column">
-      <div class="code-scroll">
-const success = () => {
-  let efforts = 100;
-  while(efforts > 0) {
-    efforts--;
-    if (successAchieved) break;
-  }
-  if (!successAchieved) success();
-}
-success();
-💯🔥🚀💪🌟✨💡❤️🎯👨‍💻👩‍💻📱📈💥💫
+
+    <div class="ide-editor">
+      <div class="editor-tabs">
+        <div class="editor-tab active"><i class="fas fa-code"></i> surprise.html</div>
+        <div class="editor-tab"><i class="fas fa-code"></i> script.js</div>
+        <div class="editor-tab"><i class="fas fa-code"></i> styles.css</div>
+      </div>
+      <div class="editor-content">
+<span class="code-keyword">const</span> <span class="code-function">createSurprise</span> = () => {
+  <span class="code-keyword">const</span> name = <span class="code-string">"My"</span>;
+  
+  <span class="code-comment">// Special message for My</span>
+  <span class="code-keyword">const</span> message = <span class="code-string">`मैंने कभी हार नहीं मानी ✊
+क्योंकि मुझे पता है 💡
+मैं कुछ भी कर सकता हूँ 🔥`</span>;
+  
+  <span class="code-comment">// Create the surprise container</span>
+  <span class="code-keyword">const</span> container = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+  container.<span class="code-function">classList</span>.<span class="code-function">add</span>(<span class="code-string">'surprise-container'</span>);
+  
+  <span class="code-comment">// Add photo</span>
+  <span class="code-keyword">const</span> photoContainer = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+  photoContainer.<span class="code-function">classList</span>.<span class="code-function">add</span>(<span class="code-string">'photo-container'</span>);
+  
+  <span class="code-keyword">const</span> img = document.<span class="code-function">createElement</span>(<span class="code-string">'img'</span>);
+  img.<span class="code-function">src</span> = <span class="code-string">'photo.jpg'</span>;
+  img.<span class="code-function">alt</span> = <span class="code-string">'Special Photo'</span>;
+  
+  photoContainer.<span class="code-function">appendChild</span>(img);
+  container.<span class="code-function">appendChild</span>(photoContainer);
+  
+  <span class="code-comment">// Add name</span>
+  <span class="code-keyword">const</span> nameEl = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+  nameEl.<span class="code-function">classList</span>.<span class="code-function">add</span>(<span class="code-string">'name'</span>);
+  nameEl.<span class="code-function">textContent</span> = <span class="code-string">`🌟 </span>${name}<span class="code-string"> 🌟`</span>;
+  container.<span class="code-function">appendChild</span>(nameEl);
+  
+  <span class="code-comment">// Add message</span>
+  <span class="code-keyword">const</span> messageEl = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+  messageEl.<span class="code-function">classList</span>.<span class="code-function">add</span>(<span class="code-string">'message'</span>);
+  messageEl.<span class="code-function">textContent</span> = message;
+  container.<span class="code-function">appendChild</span>(messageEl);
+  
+  <span class="code-comment">// Add heart</span>
+  <span class="code-keyword">const</span> heart = document.<span class="code-function">createElement</span>(<span class="code-string">'div'</span>);
+  heart.<span class="code-function">classList</span>.<span class="code-function">add</span>(<span class="code-string">'heart'</span>);
+  heart.<span class="code-function">innerHTML</span> = <span class="code-string">'❤️'</span>;
+  heart.<span class="code-function">onclick</span> = <span class="code-function">()</span> => {
+    <span class="code-function">createHearts</span>();
+    confetti({ particleCount: 150, spread: 70 });
+  };
+  container.<span class="code-function">appendChild</span>(heart);
+  
+  document.body.<span class="code-function">appendChild</span>(container);
+};
+
+<span class="code-comment">// Run the surprise</span>
+<span class="code-function">createSurprise</span>();
       </div>
     </div>
-    <div class="code-column">
-      <div class="code-scroll">
-# जीवन का कोड
-def life():
-  challenges = infinite
-  while challenges:
-    face_challenge()
-    learn()
-    grow()
-    if stronger(): continue
-life()
-🌟💪✨🚀💡❤️🎯👨‍💻👩‍💻📱📈💥💫🔥
+
+    <div class="ide-terminal">
+      <div class="terminal-line">
+        <span class="terminal-prompt">user@developer:~$</span>
+        <span class="terminal-command">npm run surprise</span>
+      </div>
+      <div class="terminal-line terminal-output">> surprise@1.0.0 start</div>
+      <div class="terminal-line terminal-output">> node surprise.js</div>
+      <div class="terminal-line terminal-output"></div>
+      <div class="terminal-line terminal-output">Initializing surprise sequence...</div>
+      <div class="terminal-line terminal-output">Loading special message...</div>
+      <div class="terminal-line terminal-output">Rendering personalized content...</div>
+      <div class="terminal-line terminal-output">Adding love and appreciation...</div>
+      <div class="terminal-line terminal-output">Surprise ready!</div>
+      <div class="terminal-line terminal-output">Status: <span style="color:#0dbc79">Running</span></div>
+      <div class="terminal-line">
+        <span class="terminal-prompt">user@developer:~$</span>
+        <span class="terminal-command" style="color:#cccccc">_</span>
+      </div>
+    </div>
+
+    <div class="ide-statusbar">
+      <div class="status-item">
+        <i class="fas fa-branch"></i> main*
+      </div>
+      <div class="status-item">
+        <i class="fas fa-check-circle"></i> Prettier
+      </div>
+      <div class="status-item">
+        <i class="fas fa-bug"></i> 0 Errors
+      </div>
+      <div class="status-item">
+        <i class="fas fa-globe"></i> UTF-8
+      </div>
+      <div class="status-item">
+        <i class="fab fa-js"></i> JavaScript
+      </div>
+      <div class="status-item status-running">
+        Running: surprise.js
       </div>
     </div>
   </div>
 
-  <!-- Foreground box with photo and message -->
-  <div class="container">
+  <!-- Surprise Container -->
+  <div class="surprise-container">
+    <div class="surprise-header">
+      <i class="fas fa-star"></i> SPECIAL SURPRISE <i class="fas fa-star"></i>
+    </div>
+    
     <div class="photo-container">
-      <div class="photo-frame">
-        <img id="photo" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=500" alt="My Photo">
-      </div>
+      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=500" alt="My Photo">
     </div>
     
-    <div class="photo-controls">
-      <div class="photo-btn" id="prev-btn">❮</div>
-      <div class="photo-btn" id="next-btn">❯</div>
+    <div class="name">🌟 My 🌟</div>
+    
+    <div class="message">
+      मैंने कभी हार नहीं मानी ✊<br>
+      क्योंकि मुझे पता है 💡<br>
+      मैं कुछ भी कर सकता हूँ 🔥
     </div>
     
-    <div id="name">🌟 My 🌟</div>
-    <div id="message">
-      <div class="message-line">मैंने कभी हार नहीं मानी ✊</div>
-      <div class="message-line">क्योंकि मुझे पता है 💡</div>
-      <div class="message-line">मैं कुछ भी कर सकता हूँ 🔥</div>
-    </div>
-    
-    <div class="heart-container">
-      <div class="heart" id="heart">❤️</div>
-    </div>
+    <div class="heart" id="heart">❤️</div>
   </div>
+
+  <!-- Progress Ring -->
+  <svg class="progress-ring" viewBox="0 0 100 100">
+    <circle class="progress-ring__circle" cx="50" cy="50" r="45" />
+  </svg>
 
   <script>
-    // Photo gallery functionality
-    const photos = [
-      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=500",
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=500",
-      "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?q=80&w=500",
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=500"
-    ];
-    
-    let currentPhotoIndex = 0;
-    const photoElement = document.getElementById('photo');
-    
-    document.getElementById('next-btn').addEventListener('click', () => {
-      currentPhotoIndex = (currentPhotoIndex + 1) % photos.length;
-      updatePhoto();
-      createFireworks(5);
-    });
-    
-    document.getElementById('prev-btn').addEventListener('click', () => {
-      currentPhotoIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
-      updatePhoto();
-      createFireworks(5);
-    });
-    
-    function updatePhoto() {
-      photoElement.style.opacity = 0;
+    // Create floating hearts
+    function createFloatingHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 30 + 20) + 'px';
+      document.body.appendChild(heart);
+      
+      // Remove element after animation completes
       setTimeout(() => {
-        photoElement.src = photos[currentPhotoIndex];
-        photoElement.style.opacity = 1;
-      }, 300);
+        heart.remove();
+      }, 5000);
     }
     
-    // Tilt effect for photo on mouse move
-    const photoContainer = document.querySelector('.photo-container');
-    
-    photoContainer.addEventListener('mousemove', (e) => {
-      const rect = photoContainer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateY = (x - centerX) / 20;
-      const rotateX = (centerY - y) / 20;
-      
-      photoContainer.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    
-    photoContainer.addEventListener('mouseleave', () => {
-      photoContainer.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-    });
-    
-    // Heart click effect
-    const heart = document.getElementById('heart');
-    
-    heart.addEventListener('click', function() {
-      // Create a burst of hearts
+    // Create multiple hearts
+    function createHearts() {
       for (let i = 0; i < 20; i++) {
-        createFloatingHeart();
+        setTimeout(createFloatingHeart, i * 100);
       }
+    }
+    
+    // Create status notifications
+    function createStatusNotification() {
+      const messages = [
+        "Building surprise...",
+        "Adding special effects...",
+        "Loading appreciation...",
+        "Rendering heartfelt message...",
+        "Compiling love...",
+        "Optimizing for My..."
+      ];
       
-      // Confetti effect
+      const notification = document.createElement('div');
+      notification.className = 'status-notification';
+      notification.textContent = messages[Math.floor(Math.random() * messages.length)];
+      notification.style.top = Math.random() * 80 + 10 + 'vh';
+      notification.style.left = Math.random() * 80 + 10 + 'vw';
+      document.body.appendChild(notification);
+      
+      // Remove after animation
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+    
+    // Heart click event
+    document.getElementById('heart').addEventListener('click', function() {
+      createHearts();
       confetti({
         particleCount: 150,
         spread: 70,
         origin: { y: 0.6 }
       });
       
-      // Create fireworks
-      createFireworks(10);
-    });
-    
-    // Create floating hearts animation
-    function createFloatingHeart() {
-      const heart = document.createElement('div');
-      heart.innerHTML = '❤️';
-      heart.style.position = 'absolute';
-      heart.style.fontSize = Math.random() * 30 + 20 + 'px';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.top = '100vh';
-      heart.style.opacity = '0.8';
-      heart.style.zIndex = '5';
-      heart.style.pointerEvents = 'none';
-      document.body.appendChild(heart);
-      
-      const animation = heart.animate([
-        { transform: 'translateY(0)', opacity: 0.8 },
-        { transform: `translateY(-${Math.random() * 100 + 100}vh) translateX(${Math.random() * 100 - 50}px)`, opacity: 0 }
-      ], {
-        duration: Math.random() * 3000 + 2000,
-        easing: 'cubic-bezier(0.3, 0, 0.7, 1)'
-      });
-      
-      animation.onfinish = () => heart.remove();
-    }
-    
-    // Create fireworks effect
-    function createFireworks(count) {
-      for (let i = 0; i < count; i++) {
-        setTimeout(() => {
-          const x = Math.random() * window.innerWidth;
-          const y = Math.random() * window.innerHeight / 2;
-          
-          // Firework explosion
-          const firework = document.createElement('div');
-          firework.className = 'firework';
-          firework.style.left = x + 'px';
-          firework.style.top = y + 'px';
-          firework.style.backgroundColor = getRandomColor();
-          document.body.appendChild(firework);
-          
-          // Expand and create particles
-          setTimeout(() => {
-            firework.style.transition = 'all 0.5s ease-out';
-            firework.style.transform = 'scale(20)';
-            firework.style.opacity = '0';
-            
-            // Create particles
-            for (let j = 0; j < 50; j++) {
-              createParticle(x, y, firework.style.backgroundColor);
-            }
-            
-            // Remove firework
-            setTimeout(() => {
-              firework.remove();
-            }, 500);
-          }, 100);
-        }, i * 200);
-      }
-    }
-    
-    // Create particles for fireworks
-    function createParticle(x, y, color) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = x + 'px';
-      particle.style.top = y + 'px';
-      particle.style.backgroundColor = color;
-      document.body.appendChild(particle);
-      
-      const angle = Math.random() * Math.PI * 2;
-      const distance = Math.random() * 100 + 50;
-      const duration = Math.random() * 1000 + 500;
-      
-      particle.animate([
-        { transform: 'translate(0, 0)', opacity: 1 },
-        { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`, opacity: 0 }
-      ], {
-        duration: duration,
-        easing: 'ease-out'
-      });
+      // Show special notification
+      const notification = document.createElement('div');
+      notification.className = 'status-notification';
+      notification.textContent = "❤️ Heartfelt appreciation sent! ❤️";
+      notification.style.top = '50vh';
+      notification.style.left = '50vw';
+      notification.style.transform = 'translate(-50%, -50%)';
+      notification.style.color = '#ff4d4d';
+      notification.style.fontWeight = 'bold';
+      document.body.appendChild(notification);
       
       setTimeout(() => {
-        particle.remove();
-      }, duration);
-    }
-    
-    // Generate random bright color
-    function getRandomColor() {
-      const colors = [
-        '#ff0000', '#00ff00', '#0000ff', '#ffff00', 
-        '#ff00ff', '#00ffff', '#ff6600', '#ff0099'
-      ];
-      return colors[Math.floor(Math.random() * colors.length)];
-    }
-    
-    // Create floating special messages
-    function createSpecialMessage() {
-      const messages = [
-        "तुम अद्भुत हो!", "मुझ पर गर्व है!", "तुम सब कुछ कर सकते हो!", 
-        "सपने बड़े देखो!", "कभी हार मत मानो!", "तुम्हारी मेहनत रंग लाएगी!"
-      ];
-      
-      const message = messages[Math.floor(Math.random() * messages.length)];
-      const element = document.createElement('div');
-      element.className = 'special-text';
-      element.textContent = message;
-      element.style.left = Math.random() * 80 + 10 + '%';
-      element.style.top = Math.random() * 80 + 10 + '%';
-      document.body.appendChild(element);
-      
-      element.animate([
-        { opacity: 0, transform: 'translateY(0)' },
-        { opacity: 1, transform: 'translateY(-20px)' },
-        { opacity: 0, transform: 'translateY(-40px)' }
-      ], {
-        duration: 3000,
-        easing: 'ease-out'
-      });
-      
-      setTimeout(() => {
-        element.remove();
+        notification.remove();
       }, 3000);
-    }
-    
-    // Initial effects
-    setTimeout(() => {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-      
-      createFireworks(5);
-    }, 1000);
-    
-    // Create special messages periodically
-    setInterval(createSpecialMessage, 5000);
+    });
     
     // Create initial floating hearts
     for (let i = 0; i < 10; i++) {
-      setTimeout(createFloatingHeart, i * 300);
+      setTimeout(createFloatingHeart, i * 500);
     }
+    
+    // Create periodic notifications
+    setInterval(createStatusNotification, 3000);
+    
+    // Terminal animation
+    const terminal = document.querySelector('.ide-terminal');
+    setTimeout(() => {
+      const cursor = document.querySelector('.terminal-command');
+      cursor.innerHTML = '';
+      
+      const commands = [
+        "git commit -m 'Special surprise for My'",
+        "git push origin main",
+        "deploy --production",
+        "start celebration"
+      ];
+      
+      let commandIndex = 0;
+      let charIndex = 0;
+      
+      function typeCommand() {
+        if (commandIndex < commands.length) {
+          if (charIndex < commands[commandIndex].length) {
+            cursor.textContent += commands[commandIndex].charAt(charIndex);
+            charIndex++;
+            terminal.scrollTop = terminal.scrollHeight;
+            setTimeout(typeCommand, 50);
+          } else {
+            cursor.textContent = '';
+            charIndex = 0;
+            commandIndex++;
+            setTimeout(typeCommand, 1000);
+          }
+        } else {
+          // Restart animation
+          commandIndex = 0;
+          setTimeout(typeCommand, 2000);
+        }
+      }
+      
+      typeCommand();
+    }, 2000);
   </script>
 </body>
 </html>
