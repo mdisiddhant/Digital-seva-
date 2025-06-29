@@ -10,26 +10,29 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      color: #fff;
+      background: black;
+      color: white;
     }
 
-    /* Live code background */
+    /* Live coding effect full screen */
     .background {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: black;
       z-index: 0;
+      overflow: hidden;
     }
 
-    .code {
+    .code-scroll {
       color: #00ff99;
       font-family: monospace;
-      font-size: 12px;
+      font-size: 14px;
       white-space: pre;
+      line-height: 1.4;
       animation: scroll 20s linear infinite;
+      padding: 50px;
     }
 
     @keyframes scroll {
@@ -37,14 +40,14 @@
       100% { transform: translateY(-100%); }
     }
 
-    /* Foreground box */
+    /* Foreground surprise content */
     .container {
-      position: absolute;
+      position: relative;
       z-index: 1;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       padding: 30px;
       border-radius: 15px;
       text-align: center;
@@ -53,61 +56,67 @@
 
     #photo {
       width: 200px;
-      height: auto;
       border-radius: 15px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       box-shadow: 0 0 10px #fff;
     }
 
     #name {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: bold;
-      margin-bottom: 10px;
-      color: #00ffcc;
+      color: #00ffee;
       text-shadow: 1px 1px 4px #000;
     }
 
     #message {
       font-size: 20px;
-      font-weight: bold;
       color: #fcd303;
+      margin-top: 15px;
       line-height: 1.6;
+      font-weight: bold;
       text-shadow: 1px 1px 3px #000;
     }
 
     .heart {
       font-size: 40px;
       animation: pulse 1s infinite;
-      margin-top: 10px;
+      margin-top: 15px;
       color: red;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+      50% { transform: scale(1.3); }
       100% { transform: scale(1); }
     }
   </style>
 </head>
 <body>
-  <!-- Live code background -->
+
+  <!-- Fullscreen live code background -->
   <div class="background">
-    <div class="code">
-      console.log("Welcome My");<br>
-      let motivation = true;<br>
-      const power = "मेहनत + विश्वास";<br>
-      if (neverGiveUp) {<br>
-      &nbsp;&nbsp;success = 100%;<br>
-      }<br>
-      Dream();<br>
-      WorkHard();<br>
-      Repeat();<br>
+    <div class="code-scroll">
+let name = "My";<br>
+console.log("Hello " + name);<br>
+function neverGiveUp() {<br>
+&nbsp;&nbsp;while(true) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log("मैंने कभी हार नहीं मानी");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log("क्योंकि मुझे पता है");<br>
+&nbsp;&nbsp;&nbsp;&nbsp;console.log("मैं कुछ भी कर सकता हूँ");<br>
+&nbsp;&nbsp;}<br>
+}<br>
+neverGiveUp();<br>
+💻🔥❤️🚀<br>
+let goal = "Success";<br>
+reach(goal);<br>
+dreamBig();<br>
+workHard();<br>
     </div>
   </div>
 
-  <!-- Foreground content -->
+  <!-- Foreground message/photo box -->
   <div class="container">
-    <img id="photo" src="https://i.postimg.cc/GpxLh4cD/happy.png" alt="Photo">
+    <img id="photo" src="https://i.postimg.cc/SNXYsZxv/IMG-20240629-115442.jpg" alt="My Photo">
     <div id="name">🌟 My 🌟</div>
     <div id="message">
       मैंने कभी हार नहीं मानी ✊<br>
@@ -116,5 +125,6 @@
     </div>
     <div class="heart">❤️</div>
   </div>
+
 </body>
 </html>
