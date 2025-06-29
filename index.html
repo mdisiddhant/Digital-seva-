@@ -2,37 +2,39 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>🎁 Surprise for My</title>
+  <title>💻 Surprise for My</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      background: black;
-      color: white;
+      background: #000;
+      font-family: 'Courier New', monospace;
     }
 
-    /* Fullscreen fast coding background */
+    /* Background code */
     .background {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      pointer-events: none;
+      overflow: hidden;
+      background: black;
     }
 
     .code-scroll {
-      color: #00ff99;
-      font-family: monospace;
-      font-size: 14px;
+      color: #00ffcc;
+      font-size: 16px;
+      font-weight: bold;
       white-space: pre;
-      line-height: 1.6;
-      animation: scroll 8s linear infinite;
+      line-height: 1.5;
+      animation: scroll 10s linear infinite;
+      opacity: 0.15;
+      text-shadow: 0 0 8px #00ffcc;
       padding: 50px;
+      height: 200%;
     }
 
     @keyframes scroll {
@@ -40,48 +42,50 @@
       100% { transform: translateY(-100%); }
     }
 
-    /* Foreground container */
+    /* Foreground content */
     .container {
-      position: relative;
-      z-index: 1;
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.6);
-      padding: 30px;
-      border-radius: 15px;
+      z-index: 2;
       text-align: center;
-      box-shadow: 0 0 20px #0f0;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px #0f0;
     }
 
-    #photo {
+    .container img {
       width: 200px;
-      border-radius: 15px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px #fff;
       margin-bottom: 20px;
-      box-shadow: 0 0 10px #fff;
     }
 
-    #name {
-      font-size: 28px;
+    .container #name {
+      font-size: 32px;
       font-weight: bold;
       color: #00ffee;
-      text-shadow: 1px 1px 4px #000;
+      text-shadow: 0 0 10px #0ff;
     }
 
-    #message {
-      font-size: 20px;
-      color: #fcd303;
+    .container #message {
+      font-size: 22px;
+      color: #ffea00;
+      font-weight: bold;
       margin-top: 15px;
       line-height: 1.6;
-      font-weight: bold;
-      text-shadow: 1px 1px 3px #000;
+      text-shadow: 0 0 5px #000;
     }
 
     .heart {
       font-size: 40px;
+      margin-top: 20px;
       animation: pulse 1s infinite;
-      margin-top: 15px;
-      color: red;
+      color: #ff2a68;
+      text-shadow: 0 0 10px red;
     }
 
     @keyframes pulse {
@@ -93,7 +97,7 @@
 </head>
 <body>
 
-  <!-- Live fullscreen fast coding background -->
+  <!-- Fullscreen animated code background -->
   <div class="background">
     <div class="code-scroll">
 let name = "My";
@@ -106,24 +110,18 @@ function neverGiveUp() {
   }
 }
 neverGiveUp();
-💻🔥❤️🚀
-let goal = "Success";
-reach(goal);
+const goal = "Success";
 dreamBig();
 workHard();
-let dedication = true;
-while (dedication) {
-  code();
-  learn();
-  grow();
-}
-✨🚀🔥💪🎯❤️💻🧠⚡
+focus++;
+consistency++;
+🔥💻🚀💡❤️✨🌟💪🎯👨‍💻👩‍💻📱📈💥
     </div>
   </div>
 
-  <!-- Foreground message/photo -->
+  <!-- Foreground surprise message -->
   <div class="container">
-    <img id="photo" src="https://i.postimg.cc/nLQNYSWJ/IMG-20241222-WA0011.jpg" alt="My Photo">
+    <img src="https://i.postimg.cc/nLQNYSWJ/IMG-20241222-WA0011.jpg" alt="My Photo">
     <div id="name">🌟 My 🌟</div>
     <div id="message">
       मैंने कभी हार नहीं मानी ✊<br>
