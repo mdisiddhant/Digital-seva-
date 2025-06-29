@@ -14,7 +14,7 @@
       color: white;
     }
 
-    /* Live coding effect full screen */
+    /* Fullscreen fast coding background */
     .background {
       position: fixed;
       top: 0;
@@ -22,7 +22,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      overflow: hidden;
+      pointer-events: none;
     }
 
     .code-scroll {
@@ -30,8 +30,8 @@
       font-family: monospace;
       font-size: 14px;
       white-space: pre;
-      line-height: 1.4;
-      animation: scroll 20s linear infinite;
+      line-height: 1.6;
+      animation: scroll 8s linear infinite;
       padding: 50px;
     }
 
@@ -40,7 +40,7 @@
       100% { transform: translateY(-100%); }
     }
 
-    /* Foreground surprise content */
+    /* Foreground container */
     .container {
       position: relative;
       z-index: 1;
@@ -93,30 +93,37 @@
 </head>
 <body>
 
-  <!-- Fullscreen live code background -->
+  <!-- Live fullscreen fast coding background -->
   <div class="background">
     <div class="code-scroll">
-let name = "My";<br>
-console.log("Hello " + name);<br>
-function neverGiveUp() {<br>
-&nbsp;&nbsp;while(true) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;console.log("मैंने कभी हार नहीं मानी");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;console.log("क्योंकि मुझे पता है");<br>
-&nbsp;&nbsp;&nbsp;&nbsp;console.log("मैं कुछ भी कर सकता हूँ");<br>
-&nbsp;&nbsp;}<br>
-}<br>
-neverGiveUp();<br>
-💻🔥❤️🚀<br>
-let goal = "Success";<br>
-reach(goal);<br>
-dreamBig();<br>
-workHard();<br>
+let name = "My";
+console.log("Hello " + name);
+function neverGiveUp() {
+  while(true) {
+    console.log("मैंने कभी हार नहीं मानी");
+    console.log("क्योंकि मुझे पता है");
+    console.log("मैं कुछ भी कर सकता हूँ");
+  }
+}
+neverGiveUp();
+💻🔥❤️🚀
+let goal = "Success";
+reach(goal);
+dreamBig();
+workHard();
+let dedication = true;
+while (dedication) {
+  code();
+  learn();
+  grow();
+}
+✨🚀🔥💪🎯❤️💻🧠⚡
     </div>
   </div>
 
-  <!-- Foreground message/photo box -->
+  <!-- Foreground message/photo -->
   <div class="container">
-    <img id="photo" src="https://i.postimg.cc/SNXYsZxv/IMG-20240629-115442.jpg" alt="My Photo">
+    <img id="photo" src="https://i.postimg.cc/nLQNYSWJ/IMG-20241222-WA0011.jpg" alt="My Photo">
     <div id="name">🌟 My 🌟</div>
     <div id="message">
       मैंने कभी हार नहीं मानी ✊<br>
