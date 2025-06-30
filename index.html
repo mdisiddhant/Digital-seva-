@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Banda Ki Seva Mobile</title>
+  <title>Banda Ki Seva</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -21,9 +20,57 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Poppins', sans-serif;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 15px;
       touch-action: manipulation;
+      position: relative;
+    }
+    
+    .bg-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.5;
+      animation: float 15s infinite linear;
+    }
+    
+    .bg-circle:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 0, 0, 0.15);
+      top: 10%;
+      left: 10%;
+      animation-duration: 18s;
+    }
+    
+    .bg-circle:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      background: rgba(0, 255, 0, 0.1);
+      top: 60%;
+      left: 70%;
+      animation-duration: 22s;
+      animation-delay: -5s;
+    }
+    
+    .bg-circle:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      background: rgba(0, 0, 255, 0.15);
+      top: 30%;
+      left: 50%;
+      animation-duration: 25s;
+      animation-delay: -10s;
     }
     
     .container {
@@ -33,6 +80,8 @@
       position: relative;
       z-index: 10;
       padding: 20px 0;
+      opacity: 0;
+      animation: fade-in 1.5s ease 0.5s forwards;
     }
     
     .premiere-tag {
@@ -42,7 +91,8 @@
       letter-spacing: 3px;
       margin-bottom: 30px;
       text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-      animation: fade-in 1.5s ease;
+      opacity: 0;
+      animation: slide-down 0.8s ease 0.8s forwards;
     }
     
     .logo-container {
@@ -50,6 +100,8 @@
       height: 180px;
       margin: 0 auto 25px;
       position: relative;
+      opacity: 0;
+      animation: fade-in 0.8s ease 1.2s forwards;
     }
     
     .logo {
@@ -65,8 +117,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: gradient-shift 8s ease infinite;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
       border-radius: 50%;
+      transform: scale(0);
+      animation: logo-appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards, 
+                 gradient-shift 8s ease infinite 1.2s;
     }
     
     .logo::before {
@@ -78,13 +133,15 @@
       height: 100%;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%);
-      animation: pulse 4s infinite;
+      animation: pulse 4s infinite 1.5s;
       z-index: -1;
     }
     
     .title-container {
       position: relative;
       margin-bottom: 25px;
+      overflow: hidden;
+      height: 80px;
     }
     
     .title {
@@ -96,8 +153,12 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: gradient-shift 8s ease infinite;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
       margin: 15px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: title-appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.6s forwards, 
+                 gradient-shift 8s ease infinite 1.6s;
     }
     
     .tagline {
@@ -106,8 +167,10 @@
       font-weight: 600;
       line-height: 1.6;
       margin: 20px 0;
-      text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+      text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
       padding: 0 15px;
+      opacity: 0;
+      animation: fade-in 1s ease 2s forwards;
     }
     
     .services-grid {
@@ -115,6 +178,8 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 15px;
       margin-top: 20px;
+      opacity: 0;
+      animation: fade-in 1s ease 2.4s forwards;
     }
     
     .service-card {
@@ -127,13 +192,22 @@
       position: relative;
       overflow: hidden;
       text-align: center;
+      transform: translateY(20px);
+      opacity: 0;
     }
+    
+    .service-card:nth-child(1) { animation: card-appear 0.6s ease 2.6s forwards; }
+    .service-card:nth-child(2) { animation: card-appear 0.6s ease 2.8s forwards; }
+    .service-card:nth-child(3) { animation: card-appear 0.6s ease 3.0s forwards; }
+    .service-card:nth-child(4) { animation: card-appear 0.6s ease 3.2s forwards; }
+    .service-card:nth-child(5) { animation: card-appear 0.6s ease 3.4s forwards; }
+    .service-card:nth-child(6) { animation: card-appear 0.6s ease 3.6s forwards; }
     
     .service-icon {
       font-size: 1.8rem;
       color: #ffd700;
       margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
     }
     
     .service-title {
@@ -141,7 +215,7 @@
       font-weight: 700;
       color: white;
       margin-bottom: 5px;
-      text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+      text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
     }
     
     .service-desc {
@@ -154,15 +228,17 @@
       margin-top: 30px;
       color: rgba(255, 255, 255, 0.8);
       font-size: 1rem;
-      text-shadow: 0 0 8px rgba(0, 200, 255, 0.5);
+      text-shadow: 0 0 6px rgba(0, 200, 255, 0.4);
       padding: 0 15px;
+      opacity: 0;
+      animation: fade-in 1s ease 4s forwards;
     }
     
     .mobile-footer p {
       margin: 8px 0;
     }
     
-    /* Animations optimized for mobile */
+    /* Animations */
     @keyframes gradient-shift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -180,45 +256,33 @@
       100% { opacity: 1; }
     }
     
-    /* Performance optimizations */
-    .bg-elements {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(10px, 10px); }
+      50% { transform: translate(0, 20px); }
+      75% { transform: translate(-10px, 10px); }
+      100% { transform: translate(0, 0); }
     }
     
-    .bg-circle {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(40px);
+    @keyframes slide-down {
+      0% { transform: translateY(-30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
     
-    .bg-circle:nth-child(1) {
-      width: 300px;
-      height: 300px;
-      background: rgba(255, 0, 0, 0.15);
-      top: 10%;
-      left: 10%;
+    @keyframes logo-appear {
+      0% { transform: scale(0); opacity: 0; }
+      70% { opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
     }
     
-    .bg-circle:nth-child(2) {
-      width: 250px;
-      height: 250px;
-      background: rgba(0, 255, 0, 0.1);
-      top: 60%;
-      left: 70%;
+    @keyframes title-appear {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
     
-    .bg-circle:nth-child(3) {
-      width: 350px;
-      height: 350px;
-      background: rgba(0, 0, 255, 0.15);
-      top: 30%;
-      left: 50%;
+    @keyframes card-appear {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
     
     /* Mobile-specific adjustments */
@@ -270,11 +334,20 @@
     
     /* Disable animations for very low-end devices */
     @media (max-width: 360px) and (max-height: 640px) {
-      .logo::before, 
+      .bg-circle,
+      .logo::before,
       .premiere-tag,
       .title,
-      .tagline {
+      .tagline,
+      .service-card {
         animation: none !important;
+      }
+      
+      .container,
+      .logo,
+      .service-card {
+        opacity: 1 !important;
+        transform: none !important;
       }
     }
   </style>
@@ -355,38 +428,10 @@
     </div>
     
     <div class="mobile-footer">
-      <p><i class="fas fa-phone"></i> Contact: +91 1234567890</p>
-      <p><i class="fas fa-map-marker-alt"></i> Banda, Uttar Pradesh</p>
-      <p><i class="fas fa-clock"></i> Open: 8AM - 10PM</p>
+      <p><i class="fas fa-phone"></i> संपर्क: +91 1234567890</p>
+      <p><i class="fas fa-map-marker-alt"></i> बांदा, उत्तर प्रदेश</p>
+      <p><i class="fas fa-clock"></i> खुलने का समय: सुबह 8 बजे से रात 10 बजे तक</p>
     </div>
   </div>
-  
-  <script>
-    // Simple performance-friendly animations
-    document.addEventListener('DOMContentLoaded', function() {
-      // Add subtle hover effects for service cards
-      const serviceCards = document.querySelectorAll('.service-card');
-      serviceCards.forEach(card => {
-        card.addEventListener('touchstart', function() {
-          this.style.transform = 'scale(0.98)';
-          this.style.boxShadow = '0 0 10px rgba(0, 200, 255, 0.5)';
-        });
-        
-        card.addEventListener('touchend', function() {
-          this.style.transform = 'scale(1)';
-          this.style.boxShadow = '0 0 15px rgba(0, 150, 255, 0.3)';
-        });
-      });
-      
-      // Add a subtle pulse to the logo
-      setInterval(() => {
-        const logo = document.querySelector('.logo');
-        logo.style.transform = 'scale(1.05)';
-        setTimeout(() => {
-          logo.style.transform = 'scale(1)';
-        }, 500);
-      }, 3000);
-    });
-  </script>
 </body>
 </html>
