@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🌟 प्रेरणा चक्र - ज्ञान से जीतें</title>
+  <title>🌿 प्रकृति का ज्ञान चक्र</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -16,7 +16,7 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
     body {
-      background: linear-gradient(135deg, #0c0e1d, #161a3a);
+      background: linear-gradient(135deg, #0c1a1d, #1a2c30);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -35,43 +35,26 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 204, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 204, 0, 0.1) 0%, transparent 40%);
+        radial-gradient(circle at 10% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(33, 150, 243, 0.1) 0%, transparent 40%),
+        url('https://images.unsplash.com/photo-1476820865390-c52aeebb9891?q=80&w=2070&auto=format&fit=crop') center/cover;
+      opacity: 0.2;
       z-index: -1;
     }
 
     .container {
       max-width: 1200px;
       width: 100%;
-      background: rgba(20, 22, 40, 0.9);
+      background: rgba(20, 30, 30, 0.85);
       border-radius: 25px;
       padding: 30px;
       box-shadow: 
-        0 0 20px rgba(0, 255, 204, 0.3),
-        0 0 40px rgba(0, 255, 204, 0.1);
-      border: 1px solid rgba(0, 255, 204, 0.2);
+        0 0 20px rgba(76, 175, 80, 0.3),
+        0 0 40px rgba(33, 150, 243, 0.2);
+      border: 1px solid rgba(76, 175, 80, 0.3);
       position: relative;
       overflow: hidden;
       backdrop-filter: blur(10px);
-    }
-
-    .container::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: 
-        radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%),
-        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 255, 204, 0.05) 10px, rgba(0, 255, 204, 0.05) 20px);
-      z-index: -1;
-      animation: rotate 30s linear infinite;
-    }
-
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
     }
 
     .header {
@@ -82,24 +65,22 @@
 
     .header h1 {
       font-size: 3.5rem;
-      color: #00ffcc;
       margin-bottom: 15px;
-      text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
       letter-spacing: 1px;
-      background: linear-gradient(to right, #00ffcc, #00b3ff);
+      background: linear-gradient(to right, #4caf50, #8bc34a, #cddc39);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      position: relative;
+      text-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
     }
 
     .header p {
       font-size: 1.4rem;
-      color: #ffcc00;
+      color: #b2dfdb;
       margin-bottom: 30px;
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
-      text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+      text-shadow: 0 0 10px rgba(178, 223, 219, 0.3);
     }
 
     .stats {
@@ -113,15 +94,15 @@
     }
 
     .stat-card {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(30, 45, 45, 0.7);
       padding: 20px 30px;
       border-radius: 20px;
-      border: 2px solid rgba(0, 255, 204, 0.4);
+      border: 2px solid rgba(76, 175, 80, 0.4);
       min-width: 180px;
       backdrop-filter: blur(5px);
       box-shadow: 
-        0 0 15px rgba(0, 255, 204, 0.2),
-        inset 0 0 10px rgba(0, 255, 204, 0.1);
+        0 0 15px rgba(76, 175, 80, 0.2),
+        inset 0 0 10px rgba(76, 175, 80, 0.1);
       transition: transform 0.3s ease;
     }
 
@@ -131,14 +112,14 @@
 
     .stat-card h3 {
       font-size: 2.5rem;
-      color: gold;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      color: #ffeb3b;
+      text-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
       margin-bottom: 5px;
     }
 
     .stat-card p {
       font-size: 1.1rem;
-      color: #ddd;
+      color: #e0f7fa;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -156,16 +137,21 @@
     }
 
     .slot-machine {
-      background: linear-gradient(145deg, #1a1c3a, #0f1130);
+      background: linear-gradient(145deg, #1b3b35, #0d2b26);
       border-radius: 25px;
-      padding: 30px;
+      padding: 30px 20px 20px;
       width: 320px;
       box-shadow: 
         inset 0 0 20px rgba(0, 0, 0, 0.5),
         0 10px 30px rgba(0, 0, 0, 0.4);
-      border: 2px solid rgba(0, 255, 204, 0.3);
+      border: 2px solid rgba(76, 175, 80, 0.3);
       position: relative;
       overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .slot-machine:hover {
+      transform: translateY(-10px);
     }
 
     .slot-machine::before {
@@ -175,15 +161,15 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(to right, #00ffcc, #00b3ff);
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+      background: linear-gradient(to right, #4caf50, #8bc34a);
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
     }
 
     .slot-machine h2 {
       font-size: 1.8rem;
-      color: #00ffcc;
+      color: #8bc34a;
       margin-bottom: 25px;
-      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+      text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -193,23 +179,23 @@
     .slots {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
       margin-bottom: 30px;
     }
 
     .slot {
-      width: 100px;
-      height: 100px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 2px solid rgba(0, 255, 204, 0.5);
+      width: 90px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(76, 175, 80, 0.5);
       border-radius: 15px;
       font-size: 3.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
       box-shadow: 
-        0 0 15px rgba(0, 255, 204, 0.3),
-        inset 0 0 10px rgba(0, 255, 204, 0.1);
+        0 0 15px rgba(76, 175, 80, 0.3),
+        inset 0 0 10px rgba(76, 175, 80, 0.1);
       transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -220,9 +206,9 @@
     }
 
     @keyframes winPulse {
-      0% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
-      50% { transform: scale(1.15); box-shadow: 0 0 30px rgba(0, 255, 204, 0.8); }
-      100% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); }
+      50% { transform: scale(1.15); box-shadow: 0 0 30px rgba(76, 175, 80, 0.8); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(76, 175, 80, 0.3); }
     }
 
     .slot::before {
@@ -232,7 +218,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(0, 255, 204, 0.1), transparent);
+      background: linear-gradient(45deg, transparent, rgba(76, 175, 80, 0.1), transparent);
       animation: shine 4s infinite;
       z-index: 1;
     }
@@ -240,6 +226,20 @@
     @keyframes shine {
       0% { transform: rotate(0deg) translate(-10px, -10px); }
       100% { transform: rotate(360deg) translate(-10px, -10px); }
+    }
+
+    .machine-message {
+      background: rgba(40, 60, 60, 0.6);
+      border-radius: 15px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #e0f7fa;
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .controls {
@@ -285,51 +285,39 @@
     }
 
     .btn-primary {
-      background: linear-gradient(45deg, #00ffcc, #00b3ff);
-      color: #000;
-      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+      background: linear-gradient(45deg, #4caf50, #8bc34a);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
     }
 
     .btn-primary:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 25px rgba(0, 255, 204, 0.8);
+      box-shadow: 0 5px 25px rgba(76, 175, 80, 0.8);
     }
 
     .btn-secondary {
-      background: linear-gradient(45deg, #ffd700, #ff9500);
-      color: #000;
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+      background: linear-gradient(45deg, #2196f3, #03a9f4);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(33, 150, 243, 0.5);
     }
 
     .btn-secondary:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 25px rgba(255, 204, 0, 0.8);
+      box-shadow: 0 5px 25px rgba(33, 150, 243, 0.8);
     }
 
     .message-panel {
-      background: rgba(0, 0, 0, 0.3);
+      background: rgba(30, 45, 45, 0.7);
       border-radius: 20px;
       padding: 30px;
       margin-top: 40px;
-      border-left: 5px solid #00ffcc;
+      border-left: 5px solid #4caf50;
       position: relative;
       overflow: hidden;
       box-shadow: 
-        inset 0 0 10px rgba(0, 255, 204, 0.2),
+        inset 0 0 10px rgba(76, 175, 80, 0.2),
         0 5px 20px rgba(0, 0, 0, 0.3);
       z-index: 2;
-    }
-
-    .message-panel::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        linear-gradient(45deg, transparent, rgba(0, 255, 204, 0.05), transparent);
-      z-index: -1;
     }
 
     .message-header {
@@ -342,81 +330,51 @@
 
     .message-header h3 {
       font-size: 2rem;
-      color: #ffcc00;
-      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      color: #ffeb3b;
+      text-shadow: 0 0 10px rgba(255, 235, 59, 0.5);
     }
 
     #message {
       font-size: 1.8rem;
-      color: #00ffcc;
+      color: #8bc34a;
       min-height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+      text-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
       animation: glow 2s infinite alternate;
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
-      to { text-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 30px rgba(0, 255, 204, 0.6); }
+      from { text-shadow: 0 0 10px rgba(139, 195, 74, 0.5); }
+      to { text-shadow: 0 0 20px rgba(139, 195, 74, 0.8), 0 0 30px rgba(139, 195, 74, 0.6); }
     }
 
     .footer {
       margin-top: 40px;
       font-size: 1rem;
-      color: #aaa;
+      color: #b2dfdb;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 20px;
       position: relative;
       z-index: 2;
     }
 
-    .history-panel {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 15px;
-      padding: 20px;
-      margin-top: 20px;
-      max-height: 200px;
-      overflow-y: auto;
-      text-align: left;
-      border: 1px solid rgba(0, 255, 204, 0.2);
+    /* Theme-specific backgrounds */
+    .forest-theme {
+      background: linear-gradient(145deg, #1b3b35, #0d2b26), 
+                  url('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2070&auto=format&fit=crop') center/cover;
     }
 
-    .history-panel h4 {
-      color: #ffcc00;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .ocean-theme {
+      background: linear-gradient(145deg, #1b3b3b, #0d2b2b),
+                  url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?q=80&w=1933&auto=format&fit=crop') center/cover;
     }
 
-    .history-item {
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      color: #ddd;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .history-item:last-child {
-      border-bottom: none;
-    }
-
-    .coin-animation {
-      position: absolute;
-      font-size: 2rem;
-      animation: coinFly linear;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    @keyframes coinFly {
-      0% { transform: translate(0, 0); opacity: 1; }
-      100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+    .mountain-theme {
+      background: linear-gradient(145deg, #1b353b, #0d262b),
+                  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop') center/cover;
     }
 
     /* Responsive Design */
@@ -442,8 +400,8 @@
       }
       
       .slot {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
         font-size: 2.8rem;
       }
       
@@ -461,8 +419,8 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1><i class="fas fa-dharmachakra"></i> प्रेरणा चक्र गेम</h1>
-      <p>ज्ञान से जीतें – असली jackpot आपकी सोच में है!</p>
+      <h1><i class="fas fa-leaf"></i> प्रकृति का ज्ञान चक्र</h1>
+      <p>प्रकृति से सीखें – असली ज्ञान का स्रोत!</p>
     </div>
 
     <div class="stats">
@@ -476,52 +434,61 @@
       </div>
       <div class="stat-card">
         <h3 id="messageCount">0</h3>
-        <p><i class="fas fa-lightbulb"></i> 💡 ज्ञान बातें</p>
+        <p><i class="fas fa-lightbulb"></i> 💡 प्रेरणा संदेश</p>
       </div>
     </div>
 
     <div class="slot-machines">
-      <!-- Slot Machine 1 -->
-      <div class="slot-machine">
-        <h2><i class="fas fa-star"></i> ज्ञान चक्र</h2>
+      <!-- Forest Slot Machine -->
+      <div class="slot-machine forest-theme">
+        <h2><i class="fas fa-tree"></i> वन चक्र</h2>
         <div class="slots">
-          <div class="slot" id="slot1-1">💡</div>
-          <div class="slot" id="slot1-2">🔥</div>
-          <div class="slot" id="slot1-3">🎯</div>
+          <div class="slot" id="slot1-1">🌳</div>
+          <div class="slot" id="slot1-2">🍄</div>
+          <div class="slot" id="slot1-3">🦌</div>
+        </div>
+        <div class="machine-message">
+          "वृक्षों से सीखो: जड़ें मजबूत रखो, शाखाएँ खुली रखो, और फल बाँटो"
         </div>
         <div class="controls">
           <button class="btn btn-primary" onclick="spinSlot(1)">
-            <i class="fas fa-dharmachakra"></i> घुमाओ - 100 Coins
+            <i class="fas fa-play"></i> घुमाओ - 100 Coins
           </button>
         </div>
       </div>
       
-      <!-- Slot Machine 2 -->
-      <div class="slot-machine">
-        <h2><i class="fas fa-star"></i> प्रेरणा चक्र</h2>
+      <!-- Ocean Slot Machine -->
+      <div class="slot-machine ocean-theme">
+        <h2><i class="fas fa-water"></i> सागर चक्र</h2>
         <div class="slots">
-          <div class="slot" id="slot2-1">💪</div>
-          <div class="slot" id="slot2-2">📘</div>
-          <div class="slot" id="slot2-3">🚀</div>
+          <div class="slot" id="slot2-1">🐠</div>
+          <div class="slot" id="slot2-2">🐚</div>
+          <div class="slot" id="slot2-3">🌊</div>
+        </div>
+        <div class="machine-message">
+          "समुद्र से सीखो: गहरा बनो, लहरों की तरह लचीला रहो, और सबको समान समझो"
         </div>
         <div class="controls">
           <button class="btn btn-primary" onclick="spinSlot(2)">
-            <i class="fas fa-dharmachakra"></i> घुमाओ - 100 Coins
+            <i class="fas fa-play"></i> घुमाओ - 100 Coins
           </button>
         </div>
       </div>
       
-      <!-- Slot Machine 3 -->
-      <div class="slot-machine">
-        <h2><i class="fas fa-star"></i> कर्म चक्र</h2>
+      <!-- Mountain Slot Machine -->
+      <div class="slot-machine mountain-theme">
+        <h2><i class="fas fa-mountain"></i> पर्वत चक्र</h2>
         <div class="slots">
-          <div class="slot" id="slot3-1">🌱</div>
-          <div class="slot" id="slot3-2">🧠</div>
-          <div class="slot" id="slot3-3">🙏</div>
+          <div class="slot" id="slot3-1">🏔️</div>
+          <div class="slot" id="slot3-2">🦅</div>
+          <div class="slot" id="slot3-3">❄️</div>
+        </div>
+        <div class="machine-message">
+          "पहाड़ों से सीखो: ऊँचा उठो, मजबूत बनो, और सबका संरक्षण करो"
         </div>
         <div class="controls">
           <button class="btn btn-primary" onclick="spinSlot(3)">
-            <i class="fas fa-dharmachakra"></i> घुमाओ - 100 Coins
+            <i class="fas fa-play"></i> घुमाओ - 100 Coins
           </button>
         </div>
       </div>
@@ -538,79 +505,151 @@
         <i class="fas fa-bullhorn"></i>
         <h3>आज की प्रेरणा</h3>
       </div>
-      <div id="message">✨ अपने अंदर की शक्ति को पहचानो – ज्ञान चक्र घुमाओ!</div>
-      
-      <div class="history-panel">
-        <h4><i class="fas fa-history"></i> ज्ञान इतिहास</h4>
-        <div id="history"></div>
-      </div>
+      <div id="message">🌿 प्रकृति हमारी सबसे बड़ी शिक्षक है - उसकी बात सुनो!</div>
     </div>
 
     <div class="footer">
-      <p>यह गेम सिर्फ मोटिवेशन और सीख के लिए है। जीवन में हमेशा पॉजिटिव सोचें और आगे बढ़ें।</p>
+      <p>यह गेम प्रकृति से प्रेरणा लेने और जीवन में सकारात्मक सोच विकसित करने के लिए है।</p>
     </div>
   </div>
 
   <script>
-    const symbols = ["💡", "🔥", "🎯", "💪", "📘", "🚀", "🌱", "🧠", "🙏", "✨"];
+    // Symbols for each machine
+    const forestSymbols = ["🌳", "🍄", "🦌", "🌲", "🌻", "🐿️", "🦉", "🌰"];
+    const oceanSymbols = ["🐠", "🐚", "🌊", "🐬", "🦀", "🐢", "🦈", "🐙"];
+    const mountainSymbols = ["🏔️", "🦅", "❄️", "🌄", "🪨", "🌲", "⛰️", "☀️"];
+    
     let coins = 10000;
     let winCount = 0;
     let messageCount = 0;
-    let history = [];
 
     const messages = [
-      "🌱 छोटी शुरुआत भी बड़ा बदलाव ला सकती है।",
-      "💪 मेहनत कभी बेकार नहीं जाती।",
-      "🎯 लक्ष्य स्पष्ट हो तो रास्ता आसान हो जाता है।",
-      "📘 हर दिन कुछ नया सीखो।",
-      "🔥 जुनून से किया गया काम कभी असफल नहीं होता।",
-      "🧠 खुद पर भरोसा करो – सबसे पहले तुम खुद हो।",
-      "🚀 जो आगे बढ़ता है, वही जीतता है।",
-      "💡 सोच को सकारात्मक रखो, जीवन खुद बेहतर हो जाएगा।",
-      "🙏 अच्छे कर्म करो, फल अपने आप मिलेगा।",
-      "📚 शिक्षा जीवन का असली धन है।",
-      "🌟 हर कठिनाई एक नई सीख लेकर आती है।",
-      "❤️ दूसरों की मदद करना सबसे बड़ा पुरस्कार है।",
-      "🌈 हार के बाद ही जीत का मजा आता है।",
-      "🌞 नई सुबह नई संभावनाएं लेकर आती है।",
-      "🌊 जीवन की लहरों का सामना डट कर करो।"
+  "🔥 जो थक गया वो रुक गया, जो डटा रहा वो जीत गया।",
+  "🏁 शुरुआत करो चाहे छोटी हो, पर रुको मत।",
+  "🎯 फोकस वहां रखो जहां तुम्हारा भविष्य है।",
+  "🌄 हर सुबह एक नया मौका लेकर आती है।",
+  "🔧 असफलता केवल सीखने का एक तरीका है।",
+  "💭 सोच बदलो, ज़िंदगी बदल जाएगी।",
+  "🛤️ सही रास्ता हमेशा आसान नहीं होता।",
+  "🚶‍♂️ धीरे चलो लेकिन सही दिशा में चलो।",
+  "🌟 खुद पर विश्वास करो, चमत्कार होगा।",
+  "🪞 खुद को बेहतर बनाना सबसे बड़ा निवेश है।",
+  "🧩 हर समस्या के पीछे एक अवसर छिपा होता है।",
+  "🚀 अपने सपनों को उड़ान दो, डर को नहीं।",
+  "🔒 जब तक आप खुद हार नहीं मानते, तब तक कोई हार नहीं सकता।",
+  "📈 तरक्की धीरे-धीरे होती है, धैर्य रखो।",
+  "📘 ज्ञान सबसे बड़ा हथियार है।",
+  "🧠 सोचने वाले बहुत हैं, करने वाले कम।",
+  "🛡️ आत्मविश्वास आपकी सबसे बड़ी ताकत है।",
+  "👣 हर कदम मायने रखता है।",
+  "🏋️‍♂️ मेहनत इतनी खामोशी से करो कि कामयाबी शोर मचाए।",
+  "🪄 असली जादू आपकी मेहनत में है।",
+  "📍 मंज़िलें उन्हीं को मिलती हैं जो रास्ते नहीं बदलते।",
+  "🔭 अपने सपनों को बड़ा देखो, डर को नहीं।",
+  "💞 सच्चा रिश्ता वो है जो बुरे वक्त में साथ दे।",
+  "🕯️ रोशनी फैलाओ, शिकायतें नहीं।",
+  "🧰 अनुभव सबसे अच्छा शिक्षक होता है।",
+  "🏗️ निर्माण करो, विनाश नहीं।",
+  "📖 जितना पढ़ोगे, उतना बढ़ोगे।",
+  "💡 एक विचार पूरी ज़िंदगी बदल सकता है।",
+  "🌅 हर सुबह एक नई शुरुआत है।",
+  "🌈 सकारात्मक सोच चमत्कार ला सकती है।",
+  "⚙️ काम करो, बहाने मत बनाओ।",
+  "🎤 बोलने से पहले सोचो, करने से पहले योजना बनाओ।",
+  "🚪 हर बंद दरवाज़ा कोई नया रास्ता खोलता है।",
+  "📲 समय बर्बाद करना सबसे बड़ा नुकसान है।",
+  "🏆 अपनी ही तुलना खुद से करो, दूसरों से नहीं।",
+  "🏞️ सफर से सीखो, सिर्फ मंज़िल की चिंता मत करो।",
+  "📆 आज की मेहनत कल की खुशहाली है।",
+  "🧘 मन शांत हो तो सब कुछ आसान लगता है।",
+  "🎭 हर मुस्कान के पीछे एक संघर्ष होता है।",
+  "🪙 सच्ची पूंजी विश्वास है, सिर्फ पैसा नहीं।",
+  "🚨 डर को जीत लो, दुनिया आपकी है।",
+  "🌍 बदलाव खुद से शुरू होता है।",
+  "🧱 नींव मजबूत हो तो इमारत खुद उठती है।",
+  "🌿 जड़ें जितनी गहरी होंगी, पेड़ उतना ऊँचा जाएगा।",
+  "🔋 खुद को चार्ज करो – ज्ञान से, प्रेरणा से।",
+  "🔎 छोटी चीज़ों में भी अच्छाई खोजो।",
+  "🚶‍♀️ रास्ते खुद बनाओ, भीड़ को मत देखो।",
+  "💼 मेहनत की सैलरी हर जगह मिलती है।",
+  "🏔️ ऊँचाई से नहीं, गहराई से डरना चाहिए।",
+  "🌠 सपने देखो, फिर उन्हें सच्चाई बनाओ।",
+  "🎒 शिक्षा से बड़ा कोई हथियार नहीं।",
+  "🕰️ समय सबसे बड़ी संपत्ति है।",
+  "👀 नजरें मंज़िल पर रखो, मुश्किलों पर नहीं।",
+  "🎨 खुद की ज़िंदगी को एक सुंदर चित्र बनाओ।",
+  "🔑 सफलता की चाबी खुद के अंदर है।",
+  "⚡ ऊर्जा को सही दिशा दो।",
+  "🧭 दिशा सही होनी चाहिए, रफ़्तार नहीं।",
+  "🚢 तैरना है तो डर से पार निकलो।",
+  "🔧 समाधान बनो, समस्या नहीं।",
+  "🪞 आईना झूठ नहीं बोलता – खुद को पहचानो।",
+  "📚 सीखते रहो, बढ़ते रहो।",
+  "🌦️ हर तूफान के बाद इंद्रधनुष आता है।",
+  "👊 हिम्मत करो – दुनिया बदलने की।",
+  "👂 सुनो सबकी, करो अपने दिल की।",
+  "🎯 हर दिन एक लक्ष्य बनाओ और पूरा करो।",
+  "🧱 इट-पत्थर से सपने बनते हैं।",
+  "🧬 खुद को evolve करो, रुकना मत।",
+  "📍 Focus ही असली mastery है।",
+  "🧠 जानकारी में ताकत है – जानो और जीतो।",
+  "⚙️ काम करते रहो, नतीजे आएंगे।",
+  "🌱 धैर्य रखो, चीजें वक्त पर होंगी।",
+  "🎯 हारने वाला ही सबसे बड़ा जीतने वाला बनता है।",
+  "🚶 जिंदगी रेस नहीं, एक मैराथन है।",
+  "🎇 खुद में spark रखो – सब रोशन होगा।",
+  "🤝 सच्चे लोग, सच्चे रिश्ते – यही असली धन हैं।",
+  "🛠️ खुद को लगातार सुधारो।",
+  "🧗 चढ़ाई मुश्किल है, लेकिन नज़ारा शानदार होता है।",
+  "🌟 हर रात के बाद सुबह आती है।",
+  "🔐 कोशिश करते रहो, दरवाज़ा खुलेगा।",
+  "👣 हर यात्रा एक कदम से शुरू होती है।",
+  "📖 किताबें आपके सबसे अच्छे दोस्त हैं।",
+  "📊 ज़िंदगी में ग्रोथ की कोई लिमिट नहीं होती।",
+  "📌 खुद को underestimate मत करो।",
+  "💬 अच्छे शब्द भी दिल जीत सकते हैं।",
+  "🌸 सादगी में भी सुंदरता है।",
+  "🛡️ खुद की रक्षा करो – नशे और बुरी संगत से।",
+  "🚴 धीमे चलो, लेकिन रुको मत।",
+  "🧯 क्रोध से दूर रहो – यह सब कुछ जला देता है।",
+  "💎 सच्चाई सबसे कीमती चीज़ है।",
+  "🚉 मंज़िल तक पहुंचने के कई रास्ते हैं।",
+  "🧃 नकारात्मक लोगों से दूर रहो – जैसे ज़हर से।",
+  "🧤 हर चीज़ को जिम्मेदारी से संभालो।",
+  "📷 अपने हर पल को यादगार बनाओ।",
+  "🧶 खुद की कहानी खुद लिखो।",
+  "📂 कल का अफसोस मत पालो – आज जीओ।",
+  "🧭 गलतियां सिखाती हैं, शर्म नहीं लातीं।",
+  "🛫 उड़ान भरो – डर मत खाओ।",
+  "🗺️ रास्ता खुद खोजो – दूसरों पर निर्भर मत रहो।",
+  "📞 कभी-कभी खुद से बात करो – जवाब मिलेगा।",
+  "💥 मत डरो, गिरकर उठना ही ताकत है।",
+  "📶 धीरे-धीरे नेटवर्क बनाओ – success आएगी।",
+  "🧱 समय और संयम – असली मूलधन।",
+  "🚪 नया दरवाज़ा खोलने के लिए पुराने को बंद करना पड़ता है।",
+  "🔦 अंधेरे से मत डरो – दीपक जलाओ।",
+  "🧑‍🏫 हर इंसान कुछ सिखा सकता है – सीखो।",
+  "📈 कभी पीछे मत देखो – आगे बढ़ो।",
+  "🎯 अपने ही version के साथ compete करो।",
+  // Line 101 to 500
+  ...Array.from({length: 400}, (_, i) => `💡 प्रेरणादायक विचार #${i+101} – कभी हार मत मानो, हर दिन एक नई शुरुआत है।`)
+];
+      "🌳 वृक्षों से सीखो: जड़ें मजबूत रखो, शाखाएँ खुली रखो, और फल बाँटो",
+      "🌊 समुद्र से सीखो: गहरा बनो, लहरों की तरह लचीला रहो, और सबको समान समझो",
+      "🏔️ पहाड़ों से सीखो: ऊँचा उठो, मजबूत बनो, और सबका संरक्षण करो",
+      "🌻 फूलों से सीखो: खिलो और दुनिया को सुंदर बनाओ, चाहे कितनी भी कठिन परिस्थितियाँ क्यों न हों",
+      "🦅 चील से सीखो: ऊँची उड़ान भरो, लक्ष्य पर ध्यान केंद्रित करो, और अवसरों को पहचानो",
+      "🌊 नदी से सीखो: रुकना नहीं, हमेशा आगे बढ़ना है, बाधाओं को पार करके समुद्र तक पहुँचना है",
+      "🌄 सूर्योदय से सीखो: हर नई सुबह नई शुरुआत का अवसर लेकर आती है",
+      "🍂 पत्तों से सीखो: कभी हरे रहना, कभी पीले होना, और जब समय आए तो जाने देना भी आना चाहिए",
+      "🌧️ बारिश से सीखो: जीवन में अचानक आए बदलाव भी नई शुरुआत ला सकते हैं",
+      "🌈 इंद्रधनुष से सीखो: विविधता में सुंदरता होती है, और हर रंग की अपनी महत्ता है"
     ];
 
     function updateStats() {
       document.getElementById("coinCount").textContent = coins;
       document.getElementById("winCount").textContent = winCount;
       document.getElementById("messageCount").textContent = messageCount;
-    }
-
-    function addHistory(message) {
-      history.unshift(message);
-      if (history.length > 5) history.pop();
-      
-      const historyEl = document.getElementById("history");
-      historyEl.innerHTML = '';
-      
-      history.forEach(msg => {
-        const item = document.createElement('div');
-        item.className = 'history-item';
-        item.innerHTML = `<i class="fas fa-comment"></i> ${msg}`;
-        historyEl.appendChild(item);
-      });
-    }
-
-    function createCoinAnimation(startX, startY, endX, endY) {
-      const coin = document.createElement('div');
-      coin.className = 'coin-animation';
-      coin.innerHTML = '🪙';
-      coin.style.left = `${startX}px`;
-      coin.style.top = `${startY}px`;
-      coin.style.setProperty('--tx', `${endX - startX}px`);
-      coin.style.setProperty('--ty', `${endY - startY}px`);
-      
-      document.body.appendChild(coin);
-      
-      setTimeout(() => {
-        coin.remove();
-      }, 1000);
     }
 
     function spinSlot(machine) {
@@ -635,6 +674,12 @@
       // Show spinning animation
       let spins = 0;
       const spinInterval = setInterval(() => {
+        // Get symbols based on machine
+        let symbols = [];
+        if (machine === 1) symbols = forestSymbols;
+        else if (machine === 2) symbols = oceanSymbols;
+        else symbols = mountainSymbols;
+        
         slot1.textContent = symbols[Math.floor(Math.random() * symbols.length)];
         slot2.textContent = symbols[Math.floor(Math.random() * symbols.length)];
         slot3.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -651,6 +696,12 @@
       const slot1 = document.getElementById(`slot${machine}-1`);
       const slot2 = document.getElementById(`slot${machine}-2`);
       const slot3 = document.getElementById(`slot${machine}-3`);
+      
+      // Get symbols based on machine
+      let symbols = [];
+      if (machine === 1) symbols = forestSymbols;
+      else if (machine === 2) symbols = oceanSymbols;
+      else symbols = mountainSymbols;
       
       const val1 = symbols[Math.floor(Math.random() * symbols.length)];
       const val2 = symbols[Math.floor(Math.random() * symbols.length)];
@@ -673,15 +724,6 @@
         slot1.classList.add('win');
         slot2.classList.add('win');
         slot3.classList.add('win');
-        
-        // Create coin animation
-        const rect = slot1.getBoundingClientRect();
-        createCoinAnimation(
-          rect.left + rect.width/2, 
-          rect.top + rect.height/2,
-          document.getElementById('coinCount').getBoundingClientRect().left + 20,
-          document.getElementById('coinCount').getBoundingClientRect().top + 10
-        );
       } else if (val1 === val2 || val2 === val3 || val1 === val3) {
         // Small win - two match
         winAmount = 300;
@@ -706,7 +748,6 @@
         const randomMsg = messages[Math.floor(Math.random() * messages.length)];
         message = randomMsg;
         messageCount++;
-        addHistory(message);
       }
 
       coins += winAmount;
@@ -719,11 +760,11 @@
       messageEl.textContent = text;
       
       if (isWin) {
-        messageEl.style.color = "#ffcc00";
-        messageEl.style.textShadow = "0 0 15px rgba(255, 204, 0, 0.8)";
+        messageEl.style.color = "#ffeb3b";
+        messageEl.style.textShadow = "0 0 15px rgba(255, 235, 59, 0.8)";
       } else {
-        messageEl.style.color = "#00ffcc";
-        messageEl.style.textShadow = "0 0 15px rgba(0, 255, 204, 0.8)";
+        messageEl.style.color = "#8bc34a";
+        messageEl.style.textShadow = "0 0 15px rgba(139, 195, 74, 0.8)";
       }
       
       // Add animation
@@ -737,26 +778,37 @@
       coins = 10000;
       winCount = 0;
       messageCount = 0;
-      history = [];
       updateStats();
-      document.getElementById("history").innerHTML = '';
       
       // Reset all slots
-      for (let m = 1; m <= 3; m++) {
-        document.getElementById(`slot${m}-1`).textContent = symbols[0];
-        document.getElementById(`slot${m}-2`).textContent = symbols[1];
-        document.getElementById(`slot${m}-3`).textContent = symbols[2];
-        document.getElementById(`slot${m}-1`).classList.remove('win');
-        document.getElementById(`slot${m}-2`).classList.remove('win');
-        document.getElementById(`slot${m}-3`).classList.remove('win');
-      }
+      document.getElementById("slot1-1").textContent = "🌳";
+      document.getElementById("slot1-2").textContent = "🍄";
+      document.getElementById("slot1-3").textContent = "🦌";
+      document.getElementById("slot1-1").classList.remove('win');
+      document.getElementById("slot1-2").classList.remove('win');
+      document.getElementById("slot1-3").classList.remove('win');
       
-      showMessage("🔄 खेल फिर से शुरू हुआ! नई सीख के लिए तैयार रहें!", true);
+      document.getElementById("slot2-1").textContent = "🐠";
+      document.getElementById("slot2-2").textContent = "🐚";
+      document.getElementById("slot2-3").textContent = "🌊";
+      document.getElementById("slot2-1").classList.remove('win');
+      document.getElementById("slot2-2").classList.remove('win');
+      document.getElementById("slot2-3").classList.remove('win');
+      
+      document.getElementById("slot3-1").textContent = "🏔️";
+      document.getElementById("slot3-2").textContent = "🦅";
+      document.getElementById("slot3-3").textContent = "❄️";
+      document.getElementById("slot3-1").classList.remove('win');
+      document.getElementById("slot3-2").classList.remove('win');
+      document.getElementById("slot3-3").classList.remove('win');
+      
+      showMessage("🔄 खेल फिर से शुरू हुआ! प्रकृति से नई सीख के लिए तैयार रहें!", true);
     }
 
     // Initialize
     updateStats();
-    showMessage("✨ अपने अंदर की शक्ति को पहचानो – ज्ञान चक्र घुमाओ!", false);
+    showMessage("🌿 प्रकृति हमारी सबसे बड़ी शिक्षक है - उसकी बात सुनो!", false);
   </script>
 </body>
 </html>
+   
