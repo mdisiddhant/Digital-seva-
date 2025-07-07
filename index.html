@@ -2,436 +2,496 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Banda Ki Seva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎰 Sachet Casino - ज़िंदगी बदलने वाला गेम</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
     body {
-      background: linear-gradient(135deg, #0c0032, #190061, #240090);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
       min-height: 100vh;
-      overflow-x: hidden;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 15px;
-      touch-action: manipulation;
-      position: relative;
-    }
-    
-    .bg-elements {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-    
-    .bg-circle {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(40px);
-      opacity: 0.5;
-      animation: float 15s infinite linear;
-    }
-    
-    .bg-circle:nth-child(1) {
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 0, 0, 0.15);
-      top: 10%;
-      left: 10%;
-      animation-duration: 18s;
-    }
-    
-    .bg-circle:nth-child(2) {
-      width: 150px;
-      height: 150px;
-      background: rgba(0, 255, 0, 0.1);
-      top: 60%;
-      left: 70%;
-      animation-duration: 22s;
-      animation-delay: -5s;
-    }
-    
-    .bg-circle:nth-child(3) {
-      width: 250px;
-      height: 250px;
-      background: rgba(0, 0, 255, 0.15);
-      top: 30%;
-      left: 50%;
-      animation-duration: 25s;
-      animation-delay: -10s;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
     }
     
     .container {
+      max-width: 800px;
       width: 100%;
-      max-width: 500px;
-      text-align: center;
+      background: rgba(15, 15, 35, 0.85);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                  0 0 0 4px rgba(255, 215, 0, 0.3),
+                  0 0 30px rgba(0, 255, 204, 0.5);
       position: relative;
-      z-index: 10;
-      padding: 20px 0;
-      opacity: 0;
-      animation: fade-in 1.5s ease 0.5s forwards;
+      overflow: hidden;
     }
     
-    .premiere-tag {
-      color: #ffd700;
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 3px;
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+      z-index: -1;
+      animation: rotate 20s linear infinite;
+    }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .header {
       margin-bottom: 30px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-      opacity: 0;
-      animation: slide-down 0.8s ease 0.8s forwards;
-    }
-    
-    .logo-container {
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 25px;
       position: relative;
-      opacity: 0;
-      animation: fade-in 0.8s ease 1.2s forwards;
     }
     
-    .logo {
-      width: 100%;
-      height: 100%;
+    .header h1 {
+      color: #00ffcc;
+      font-size: 2.8rem;
+      text-shadow: 0 0 15px #00ffcc, 0 0 30px rgba(0, 255, 204, 0.5);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+    
+    .header p {
+      font-size: 1.2rem;
+      color: #ffcc00;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 15px 25px;
+      min-width: 160px;
+      border: 2px solid rgba(255, 215, 0, 0.5);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .stat-card i {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #00ffcc;
+    }
+    
+    .stat-card h3 {
+      font-size: 2.5rem;
+      color: gold;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
+    .stat-card p {
+      color: #ccc;
+      font-size: 1rem;
+    }
+    
+    .slot-machine {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      border-radius: 15px;
+      padding: 30px;
+      margin: 30px auto;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8),
+                  0 0 0 3px rgba(0, 255, 204, 0.3);
+      position: relative;
+      max-width: 600px;
+    }
+    
+    .slots {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+      perspective: 1000px;
+    }
+    
+    .slot {
+      width: 120px;
+      height: 120px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 70px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5),
+                  inset 0 0 10px rgba(255, 255, 255, 0.1);
+      border: 3px solid rgba(255, 215, 0, 0.7);
+      transform-style: preserve-3d;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slot::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 255, 204, 0.1), transparent);
+      animation: shine 3s infinite;
+      z-index: 1;
+    }
+    
+    @keyframes shine {
+      0% { transform: rotate(0deg) translate(-10px, -10px); }
+      100% { transform: rotate(360deg) translate(-10px, -10px); }
+    }
+    
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      padding: 16px 40px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(45deg, gold, #ffcc00);
+      color: #000;
+      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(45deg, #00ffcc, #00ccaa);
+      color: #000;
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 255, 204, 0.6);
+    }
+    
+    .messages {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 700px;
+      border-left: 5px solid #ffcc00;
+      position: relative;
+    }
+    
+    .messages::before {
+      content: """;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 4rem;
+      color: rgba(255, 204, 0, 0.2);
+      font-family: serif;
+    }
+    
+    #message {
+      font-size: 1.4rem;
+      color: #ffcc00;
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 100px;
-      font-weight: 800;
-      background: linear-gradient(45deg, #ff0000, #ff9900, #ffff00, #00ff00, #0099ff, #6633ff);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient-shift 8s ease infinite;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-      border-radius: 50%;
-      transform: scale(0);
-      animation: logo-appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards, 
-                 gradient-shift 8s ease infinite 1.2s;
+      padding: 10px;
+      text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
     }
     
-    .logo::before {
-      content: '';
+    .win-animation {
+      animation: win 1s ease-in-out;
+    }
+    
+    @keyframes win {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    
+    .jackpot {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(229,9,20,0.2) 0%, rgba(0,0,0,0) 70%);
-      animation: pulse 4s infinite 1.5s;
-      z-index: -1;
+      background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, transparent 70%);
+      z-index: 10;
+      display: none;
+      animation: jackpot 2s ease-out;
     }
     
-    .title-container {
-      position: relative;
-      margin-bottom: 25px;
-      overflow: hidden;
-      height: 80px;
+    @keyframes jackpot {
+      0% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(1.5); }
     }
     
-    .title {
-      font-size: 2.8rem;
-      font-weight: 800;
-      letter-spacing: 3px;
-      background: linear-gradient(45deg, #ff0000, #ff9900, #ffff00, #00ff00, #0099ff, #6633ff);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient-shift 8s ease infinite;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      margin: 15px 0;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: title-appear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.6s forwards, 
-                 gradient-shift 8s ease infinite 1.6s;
+    .win-amount {
+      position: absolute;
+      font-size: 3rem;
+      color: gold;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      animation: winText 1s ease-out;
+      display: none;
     }
     
-    .tagline {
-      color: white;
-      font-size: 1.2rem;
-      font-weight: 600;
-      line-height: 1.6;
-      margin: 20px 0;
-      text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
-      padding: 0 15px;
-      opacity: 0;
-      animation: fade-in 1s ease 2s forwards;
+    @keyframes winText {
+      0% { transform: translateY(0) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
     }
     
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-top: 20px;
-      opacity: 0;
-      animation: fade-in 1s ease 2.4s forwards;
-    }
-    
-    .service-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 15px;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 15px rgba(0, 150, 255, 0.3);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    
-    .service-card:nth-child(1) { animation: card-appear 0.6s ease 2.6s forwards; }
-    .service-card:nth-child(2) { animation: card-appear 0.6s ease 2.8s forwards; }
-    .service-card:nth-child(3) { animation: card-appear 0.6s ease 3.0s forwards; }
-    .service-card:nth-child(4) { animation: card-appear 0.6s ease 3.2s forwards; }
-    .service-card:nth-child(5) { animation: card-appear 0.6s ease 3.4s forwards; }
-    .service-card:nth-child(6) { animation: card-appear 0.6s ease 3.6s forwards; }
-    
-    .service-icon {
-      font-size: 1.8rem;
-      color: #ffd700;
-      margin-bottom: 10px;
-      text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
-    }
-    
-    .service-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 5px;
-      text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
-    }
-    
-    .service-desc {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.4;
-    }
-    
-    .mobile-footer {
+    .footer {
       margin-top: 30px;
-      color: rgba(255, 255, 255, 0.8);
+      color: #aaa;
       font-size: 1rem;
-      text-shadow: 0 0 6px rgba(0, 200, 255, 0.4);
-      padding: 0 15px;
-      opacity: 0;
-      animation: fade-in 1s ease 4s forwards;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .mobile-footer p {
-      margin: 8px 0;
-    }
-    
-    /* Animations */
-    @keyframes gradient-shift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.05); opacity: 0.4; }
-      100% { transform: scale(1); opacity: 0.7; }
-    }
-    
-    @keyframes fade-in {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    
-    @keyframes float {
-      0% { transform: translate(0, 0); }
-      25% { transform: translate(10px, 10px); }
-      50% { transform: translate(0, 20px); }
-      75% { transform: translate(-10px, 10px); }
-      100% { transform: translate(0, 0); }
-    }
-    
-    @keyframes slide-down {
-      0% { transform: translateY(-30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes logo-appear {
-      0% { transform: scale(0); opacity: 0; }
-      70% { opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    
-    @keyframes title-appear {
-      0% { transform: translateY(30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    
-    @keyframes card-appear {
-      0% { transform: translateY(20px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    
-    /* Mobile-specific adjustments */
-    @media (max-width: 380px) {
-      .logo-container {
-        width: 150px;
-        height: 150px;
-      }
-      
-      .logo {
-        font-size: 80px;
-      }
-      
-      .title {
-        font-size: 2.3rem;
-      }
-      
-      .tagline {
-        font-size: 1.1rem;
-      }
-      
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .service-card {
-        padding: 12px;
-      }
-    }
-    
-    @media (max-width: 280px) {
-      .logo-container {
-        width: 120px;
-        height: 120px;
-      }
-      
-      .logo {
-        font-size: 60px;
-      }
-      
-      .title {
-        font-size: 1.8rem;
-      }
-      
-      .tagline {
-        font-size: 1rem;
-      }
-    }
-    
-    /* Disable animations for very low-end devices */
-    @media (max-width: 360px) and (max-height: 640px) {
-      .bg-circle,
-      .logo::before,
-      .premiere-tag,
-      .title,
-      .tagline,
-      .service-card {
-        animation: none !important;
-      }
-      
-      .container,
-      .logo,
-      .service-card {
-        opacity: 1 !important;
-        transform: none !important;
-      }
+    @media (max-width: 600px) {
+      .header h1 { font-size: 2rem; }
+      .stat-card { min-width: 130px; padding: 12px; }
+      .stat-card h3 { font-size: 2rem; }
+      .slot { width: 80px; height: 80px; font-size: 50px; }
+      .btn { padding: 14px 30px; font-size: 1.1rem; }
+      #message { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
-  <!-- Background elements -->
-  <div class="bg-elements">
-    <div class="bg-circle"></div>
-    <div class="bg-circle"></div>
-    <div class="bg-circle"></div>
-  </div>
-  
   <div class="container">
-    <div class="premiere-tag">
-      <i class="fas fa-star"></i> PREMIERE <i class="fas fa-star"></i>
+    <div class="jackpot" id="jackpot"></div>
+    
+    <div class="header">
+      <h1><i class="fas fa-coins"></i> Sachet Casino</h1>
+      <p>ज़िंदगी बदलने वाला गेम - असली जीत ज्ञान और सीख में है</p>
     </div>
     
-    <div class="logo-container">
-      <div class="logo">
-        BKS
-      </div>
-    </div>
-    
-    <div class="title-container">
-      <div class="title">BANDA KI SEVA</div>
-    </div>
-    
-    <div class="tagline">बीता हुआ वक़्त कभी लौट कर नहीं आता, <br> इसीलिए समय पर सेवा सबसे बड़ी सेवा है!</div>
-    
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-truck-fast"></i>
-        </div>
-        <div class="service-title">1-Day Courier</div>
-        <div class="service-desc">Express delivery within 24 hours</div>
+    <div class="stats">
+      <div class="stat-card">
+        <i class="fas fa-coins"></i>
+        <h3 id="coinCount">10000</h3>
+        <p>🪙 Coins</p>
       </div>
       
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-store"></i>
-        </div>
-        <div class="service-title">Kirana Orders</div>
-        <div class="service-desc">Daily groceries delivered</div>
+      <div class="stat-card">
+        <i class="fas fa-trophy"></i>
+        <h3 id="winCount">0</h3>
+        <p>🏆 जीत</p>
       </div>
       
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-id-card"></i>
-        </div>
-        <div class="service-title">Digital Seva</div>
-        <div class="service-desc">Government services made easy</div>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <div class="service-title">VIP Benefits</div>
-        <div class="service-desc">Exclusive perks for members</div>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
-        <div class="service-title">Area Services</div>
-        <div class="service-desc">Tailored for your locality</div>
-      </div>
-      
-      <div class="service-card">
-        <div class="service-icon">
-          <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="service-title">Job Assistance</div>
-        <div class="service-desc">Career opportunities</div>
+      <div class="stat-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3 id="messageCount">0</h3>
+        <p>💡 ज्ञान बातें</p>
       </div>
     </div>
     
-    <div class="mobile-footer">
-      <p><i class="fas fa-phone"></i> संपर्क: +91 6351598832</p>
-      <p><i class="fas fa-map-marker-alt"></i> बांदा, उत्तर प्रदेश</p>
-      <p><i class="fas fa-clock"></i> खुलने का समय: सुबह 9 बजे से रात 09 बजे तक</p>
+    <div class="slot-machine">
+      <div class="slots">
+        <div class="slot" id="slot1">🍒</div>
+        <div class="slot" id="slot2">🍋</div>
+        <div class="slot" id="slot3">🍇</div>
+      </div>
+      
+      <div class="controls">
+        <button class="btn btn-primary" onclick="spinSlot()">
+          <i class="fas fa-dice"></i> Spin करो - 100 Coins
+        </button>
+        <button class="btn btn-secondary" onclick="resetGame()">
+          <i class="fas fa-sync-alt"></i> फिर से शुरू करो
+        </button>
+      </div>
+    </div>
+    
+    <div class="messages">
+      <div id="message">🎲 Spin बटन दबाकर शुरू करें और जीवन की महत्वपूर्ण सीख जानें!</div>
+    </div>
+    
+    <div class="footer">
+      <p>यह खेल मनोरंजन के लिए है। असली जीत ज्ञान प्राप्त करने में है। जुआ और नशे से दूर रहें!</p>
     </div>
   </div>
+
+  <script>
+    const symbols = ["🍒", "🍋", "🍇", "🍊", "⭐", "🍉", "💰", "🎯"];
+    let coins = 10000;
+    let winCount = 0;
+    let messageCount = 0;
+    
+    const messages = [
+      "🎯 पैसा ज़रूरी है, लेकिन ज़िंदगी उससे भी ज़्यादा।",
+      "💡 असली जीत वो है जब आप खुद को हारने न दो।",
+      "🧠 जो आप अभी कर रहे हो, वही आपका भविष्य बनाएगा।",
+      "📚 एक नई skill सीखो – कल को बदल डालो!",
+      "🤝 किसी की मदद करो – सच्चा jackpot वही है।",
+      "🚫 नशे और जुए से दूर रहो – ये सब धोखा है।",
+      "🙏 माँ-बाप की उम्मीद मत तोड़ो, वो तुम्हारा असली support हैं।",
+      "💪 मेहनत करो, सीखो और आगे बढ़ो – यही असली सफलता है।",
+      "🌱 छोटी शुरुआत करो, लेकिन बड़े सपने देखो।",
+      "❤️ पैसा कमाना ज़रूरी है, लेकिन इंसानियत उससे भी ज़्यादा।"
+    ];
+    
+    // Update stats display
+    function updateStats() {
+      document.getElementById("coinCount").textContent = coins;
+      document.getElementById("winCount").textContent = winCount;
+      document.getElementById("messageCount").textContent = messageCount;
+    }
+    
+    // Show win animation
+    function showWinAnimation(amount) {
+      const jackpot = document.getElementById("jackpot");
+      jackpot.style.display = "block";
+      
+      // Create win text element
+      const winText = document.createElement("div");
+      winText.className = "win-amount";
+      winText.textContent = `+${amount} Coins!`;
+      winText.style.left = `${Math.random() * 70 + 15}%`;
+      winText.style.top = `${Math.random() * 50 + 25}%`;
+      document.querySelector(".container").appendChild(winText);
+      
+      // Animate and remove
+      setTimeout(() => {
+        jackpot.style.display = "none";
+        winText.style.display = "block";
+        
+        setTimeout(() => {
+          winText.remove();
+        }, 1000);
+      }, 50);
+    }
+    
+    // Spin slot machine
+    function spinSlot() {
+      if (coins <= 0) {
+        document.getElementById("message").innerHTML = "😢 Coins खत्म हो गए। लेकिन हौसला मत खोओ!<br>फिर से शुरू करें बटन दबाएं और नई सीख जारी रखें!";
+        return;
+      }
+      
+      coins -= 100;
+      updateStats();
+      
+      // Reset slot classes
+      const slots = document.querySelectorAll(".slot");
+      slots.forEach(slot => slot.classList.remove("win-animation"));
+      
+      // Show spinning animation
+      let spins = 0;
+      const spinInterval = setInterval(() => {
+        slots[0].textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        slots[1].textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        slots[2].textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        spins++;
+        
+        if (spins > 10) {
+          clearInterval(spinInterval);
+          revealResult();
+        }
+      }, 100);
+    }
+    
+    // Reveal final result
+    function revealResult() {
+      const slot1 = symbols[Math.floor(Math.random() * symbols.length)];
+      const slot2 = symbols[Math.floor(Math.random() * symbols.length)];
+      const slot3 = symbols[Math.floor(Math.random() * symbols.length)];
+      
+      document.getElementById("slot1").textContent = slot1;
+      document.getElementById("slot2").textContent = slot2;
+      document.getElementById("slot3").textContent = slot3;
+      
+      // Check for win
+      let winAmount = 0;
+      if (slot1 === slot2 && slot2 === slot3) {
+        // Big win - all three match
+        winAmount = 1000;
+        document.getElementById("message").innerHTML = `🎉 जैकपॉट! आपने जीते ${winAmount} coins!<br>लेकिन याद रखें: असली जीत ज्ञान में है!`;
+        showWinAnimation(winAmount);
+      } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
+        // Small win - two match
+        winAmount = 300;
+        document.getElementById("message").innerHTML = `👍 अच्छा! आपने जीते ${winAmount} coins!<br>जीवन में छोटी जीत का आनंद लें!`;
+        showWinAnimation(winAmount);
+      } else {
+        // No win - show motivational message
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        document.getElementById("message").innerHTML = randomMessage;
+        messageCount++;
+        updateStats();
+      }
+      
+      // Add win animation to slots
+      const slots = document.querySelectorAll(".slot");
+      slots.forEach(slot => slot.classList.add("win-animation"));
+      
+      // Update coins and wins
+      coins += winAmount;
+      if (winAmount > 0) winCount++;
+      updateStats();
+    }
+    
+    // Reset game
+    function resetGame() {
+      coins = 10000;
+      winCount = 0;
+      messageCount = 0;
+      updateStats();
+      document.getElementById("message").innerHTML = "🔄 खेल फिर से शुरू हुआ!<br>अपने ज्ञान का खजाना बढ़ाते रहें!";
+      
+      // Reset slots
+      document.getElementById("slot1").textContent = "🍒";
+      document.getElementById("slot2").textContent = "🍋";
+      document.getElementById("slot3").textContent = "🍇";
+      
+      // Remove animations
+      const slots = document.querySelectorAll(".slot");
+      slots.forEach(slot => slot.classList.remove("win-animation"));
+    }
+    
+    // Initialize
+    updateStats();
+  </script>
 </body>
 </html>
