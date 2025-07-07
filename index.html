@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎰 Sachet Casino - ज़िंदगी बदलने वाला गेम</title>
+  <title>🌟 प्रेरणा चक्र - ज्ञान से जीतें</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
     body {
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background: linear-gradient(135deg, #0c0e1d, #161a3a);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -22,21 +24,37 @@
       align-items: center;
       padding: 20px;
       text-align: center;
+      overflow-x: hidden;
     }
-    
-    .container {
-      max-width: 800px;
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      background: rgba(15, 15, 35, 0.85);
-      border-radius: 20px;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 204, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 204, 0, 0.1) 0%, transparent 40%);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(20, 22, 40, 0.9);
+      border-radius: 25px;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                  0 0 0 4px rgba(255, 215, 0, 0.3),
-                  0 0 30px rgba(0, 255, 204, 0.5);
+      box-shadow: 
+        0 0 20px rgba(0, 255, 204, 0.3),
+        0 0 40px rgba(0, 255, 204, 0.1);
+      border: 1px solid rgba(0, 255, 204, 0.2);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
-    
+
     .container::before {
       content: "";
       position: absolute;
@@ -44,107 +62,169 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+      background: 
+        radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 255, 204, 0.05) 10px, rgba(0, 255, 204, 0.05) 20px);
       z-index: -1;
-      animation: rotate 20s linear infinite;
+      animation: rotate 30s linear infinite;
     }
-    
+
     @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
-    
+
     .header {
       margin-bottom: 30px;
       position: relative;
+      z-index: 2;
     }
-    
+
     .header h1 {
+      font-size: 3.5rem;
       color: #00ffcc;
-      font-size: 2.8rem;
-      text-shadow: 0 0 15px #00ffcc, 0 0 30px rgba(0, 255, 204, 0.5);
       margin-bottom: 15px;
+      text-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
       letter-spacing: 1px;
+      background: linear-gradient(to right, #00ffcc, #00b3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
     }
-    
+
     .header p {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: #ffcc00;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
     }
-    
+
     .stats {
       display: flex;
       justify-content: center;
       gap: 30px;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
     }
-    
+
     .stat-card {
       background: rgba(0, 0, 0, 0.3);
-      border-radius: 15px;
-      padding: 15px 25px;
-      min-width: 160px;
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      padding: 20px 30px;
+      border-radius: 20px;
+      border: 2px solid rgba(0, 255, 204, 0.4);
+      min-width: 180px;
+      backdrop-filter: blur(5px);
+      box-shadow: 
+        0 0 15px rgba(0, 255, 204, 0.2),
+        inset 0 0 10px rgba(0, 255, 204, 0.1);
+      transition: transform 0.3s ease;
     }
-    
-    .stat-card i {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #00ffcc;
+
+    .stat-card:hover {
+      transform: translateY(-5px);
     }
-    
+
     .stat-card h3 {
       font-size: 2.5rem;
       color: gold;
       text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      margin-bottom: 5px;
     }
-    
+
     .stat-card p {
-      color: #ccc;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
-    
-    .slot-machine {
-      background: linear-gradient(145deg, #1a1a2e, #16213e);
-      border-radius: 15px;
-      padding: 30px;
-      margin: 30px auto;
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8),
-                  0 0 0 3px rgba(0, 255, 204, 0.3);
+
+    .slot-machines {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
       position: relative;
-      max-width: 600px;
+      z-index: 2;
     }
-    
+
+    .slot-machine {
+      background: linear-gradient(145deg, #1a1c3a, #0f1130);
+      border-radius: 25px;
+      padding: 30px;
+      width: 320px;
+      box-shadow: 
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(0, 255, 204, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slot-machine::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, #00ffcc, #00b3ff);
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.7);
+    }
+
+    .slot-machine h2 {
+      font-size: 1.8rem;
+      color: #00ffcc;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
     .slots {
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin: 30px 0;
-      perspective: 1000px;
+      margin-bottom: 30px;
     }
-    
+
     .slot {
-      width: 120px;
-      height: 120px;
-      background: rgba(0, 0, 0, 0.6);
+      width: 100px;
+      height: 100px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(0, 255, 204, 0.5);
       border-radius: 15px;
+      font-size: 3.5rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 70px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5),
-                  inset 0 0 10px rgba(255, 255, 255, 0.1);
-      border: 3px solid rgba(255, 215, 0, 0.7);
-      transform-style: preserve-3d;
+      box-shadow: 
+        0 0 15px rgba(0, 255, 204, 0.3),
+        inset 0 0 10px rgba(0, 255, 204, 0.1);
+      transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    
+
+    .slot.win {
+      animation: winPulse 1s ease-in-out;
+    }
+
+    @keyframes winPulse {
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
+      50% { transform: scale(1.15); box-shadow: 0 0 30px rgba(0, 255, 204, 0.8); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
+    }
+
     .slot::before {
       content: "";
       position: absolute;
@@ -153,345 +233,530 @@
       width: 200%;
       height: 200%;
       background: linear-gradient(45deg, transparent, rgba(0, 255, 204, 0.1), transparent);
-      animation: shine 3s infinite;
+      animation: shine 4s infinite;
       z-index: 1;
     }
-    
+
     @keyframes shine {
       0% { transform: rotate(0deg) translate(-10px, -10px); }
       100% { transform: rotate(360deg) translate(-10px, -10px); }
     }
-    
+
     .controls {
       display: flex;
       justify-content: center;
       gap: 20px;
-      margin-top: 30px;
       flex-wrap: wrap;
+      margin-top: 20px;
     }
-    
+
     .btn {
-      padding: 16px 40px;
-      font-size: 1.3rem;
-      font-weight: bold;
+      padding: 16px 35px;
       border: none;
       border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    .btn-primary {
-      background: linear-gradient(45deg, gold, #ffcc00);
-      color: #000;
-      text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
-    }
-    
-    .btn-secondary {
-      background: linear-gradient(45deg, #00ffcc, #00ccaa);
-      color: #000;
-    }
-    
-    .btn-secondary:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 255, 204, 0.6);
-    }
-    
-    .messages {
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 15px;
-      padding: 20px;
-      margin: 30px auto;
-      max-width: 700px;
-      border-left: 5px solid #ffcc00;
-      position: relative;
-    }
-    
-    .messages::before {
-      content: """;
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      font-size: 4rem;
-      color: rgba(255, 204, 0, 0.2);
-      font-family: serif;
-    }
-    
-    #message {
-      font-size: 1.4rem;
-      color: #ffcc00;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 10px;
-      text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
-    
-    .win-animation {
-      animation: win 1s ease-in-out;
-    }
-    
-    @keyframes win {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
-    
-    .jackpot {
+
+    .btn::before {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, transparent 70%);
-      z-index: 10;
-      display: none;
-      animation: jackpot 2s ease-out;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      z-index: -1;
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
     }
-    
-    @keyframes jackpot {
-      0% { opacity: 0; transform: scale(0.5); }
-      50% { opacity: 1; transform: scale(1.2); }
-      100% { opacity: 0; transform: scale(1.5); }
+
+    .btn:hover::before {
+      transform: translateX(100%);
     }
-    
-    .win-amount {
+
+    .btn-primary {
+      background: linear-gradient(45deg, #00ffcc, #00b3ff);
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 25px rgba(0, 255, 204, 0.8);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, #ffd700, #ff9500);
+      color: #000;
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 25px rgba(255, 204, 0, 0.8);
+    }
+
+    .message-panel {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 40px;
+      border-left: 5px solid #00ffcc;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        inset 0 0 10px rgba(0, 255, 204, 0.2),
+        0 5px 20px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .message-panel::before {
+      content: "";
       position: absolute;
-      font-size: 3rem;
-      color: gold;
-      font-weight: bold;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-      animation: winText 1s ease-out;
-      display: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, transparent, rgba(0, 255, 204, 0.05), transparent);
+      z-index: -1;
     }
-    
-    @keyframes winText {
-      0% { transform: translateY(0) scale(0.5); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+
+    .message-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
     }
-    
+
+    .message-header h3 {
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+
+    #message {
+      font-size: 1.8rem;
+      color: #00ffcc;
+      min-height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(0, 255, 204, 0.5); }
+      to { text-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 30px rgba(0, 255, 204, 0.6); }
+    }
+
     .footer {
-      margin-top: 30px;
-      color: #aaa;
+      margin-top: 40px;
       font-size: 1rem;
-      padding-top: 20px;
+      color: #aaa;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 20px;
+      position: relative;
+      z-index: 2;
     }
-    
-    @media (max-width: 600px) {
-      .header h1 { font-size: 2rem; }
-      .stat-card { min-width: 130px; padding: 12px; }
-      .stat-card h3 { font-size: 2rem; }
-      .slot { width: 80px; height: 80px; font-size: 50px; }
-      .btn { padding: 14px 30px; font-size: 1.1rem; }
-      #message { font-size: 1.2rem; }
+
+    .history-panel {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+      text-align: left;
+      border: 1px solid rgba(0, 255, 204, 0.2);
+    }
+
+    .history-panel h4 {
+      color: #ffcc00;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .history-item {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ddd;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .coin-animation {
+      position: absolute;
+      font-size: 2rem;
+      animation: coinFly linear;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes coinFly {
+      0% { transform: translate(0, 0); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)); opacity: 0; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .slot-machines {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .header p {
+        font-size: 1.2rem;
+      }
+      
+      .stat-card {
+        padding: 15px 20px;
+        min-width: 150px;
+      }
+      
+      .slot {
+        width: 80px;
+        height: 80px;
+        font-size: 2.8rem;
+      }
+      
+      .btn {
+        padding: 14px 25px;
+        font-size: 1.1rem;
+      }
+      
+      #message {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="jackpot" id="jackpot"></div>
-    
     <div class="header">
-      <h1><i class="fas fa-coins"></i> Sachet Casino</h1>
-      <p>ज़िंदगी बदलने वाला गेम - असली जीत ज्ञान और सीख में है</p>
+      <h1><i class="fas fa-dharmachakra"></i> प्रेरणा चक्र गेम</h1>
+      <p>ज्ञान से जीतें – असली jackpot आपकी सोच में है!</p>
     </div>
-    
+
     <div class="stats">
       <div class="stat-card">
-        <i class="fas fa-coins"></i>
         <h3 id="coinCount">10000</h3>
-        <p>🪙 Coins</p>
+        <p><i class="fas fa-coins"></i> 🪙 Coins</p>
       </div>
-      
       <div class="stat-card">
-        <i class="fas fa-trophy"></i>
         <h3 id="winCount">0</h3>
-        <p>🏆 जीत</p>
+        <p><i class="fas fa-trophy"></i> 🏆 जीत</p>
       </div>
-      
       <div class="stat-card">
-        <i class="fas fa-lightbulb"></i>
         <h3 id="messageCount">0</h3>
-        <p>💡 ज्ञान बातें</p>
+        <p><i class="fas fa-lightbulb"></i> 💡 ज्ञान बातें</p>
       </div>
     </div>
-    
-    <div class="slot-machine">
-      <div class="slots">
-        <div class="slot" id="slot1">🍒</div>
-        <div class="slot" id="slot2">🍋</div>
-        <div class="slot" id="slot3">🍇</div>
+
+    <div class="slot-machines">
+      <!-- Slot Machine 1 -->
+      <div class="slot-machine">
+        <h2><i class="fas fa-star"></i> ज्ञान चक्र</h2>
+        <div class="slots">
+          <div class="slot" id="slot1-1">💡</div>
+          <div class="slot" id="slot1-2">🔥</div>
+          <div class="slot" id="slot1-3">🎯</div>
+        </div>
+        <div class="controls">
+          <button class="btn btn-primary" onclick="spinSlot(1)">
+            <i class="fas fa-dharmachakra"></i> घुमाओ - 100 Coins
+          </button>
+        </div>
       </div>
       
-      <div class="controls">
-        <button class="btn btn-primary" onclick="spinSlot()">
-          <i class="fas fa-dice"></i> Spin करो - 100 Coins
-        </button>
-        <button class="btn btn-secondary" onclick="resetGame()">
-          <i class="fas fa-sync-alt"></i> फिर से शुरू करो
-        </button>
+      <!-- Slot Machine 2 -->
+      <div class="slot-machine">
+        <h2><i class="fas fa-star"></i> प्रेरणा चक्र</h2>
+        <div class="slots">
+          <div class="slot" id="slot2-1">💪</div>
+          <div class="slot" id="slot2-2">📘</div>
+          <div class="slot" id="slot2-3">🚀</div>
+        </div>
+        <div class="controls">
+          <button class="btn btn-primary" onclick="spinSlot(2)">
+            <i class="fas fa-dharmachakra"></i> घुमाओ - 100 Coins
+          </button>
+        </div>
+      </div>
+      
+      <!-- Slot Machine 3 -->
+      <div class="slot-machine">
+        <h2><i class="fas fa-star"></i> कर्म चक्र</h2>
+        <div class="slots">
+          <div class="slot" id="slot3-1">🌱</div>
+          <div class="slot" id="slot3-2">🧠</div>
+          <div class="slot" id="slot3-3">🙏</div>
+        </div>
+        <div class="controls">
+          <button class="btn btn-primary" onclick="spinSlot(3)">
+            <i class="fas fa-dharmachakra"></i> घुमाओ - 100 Coins
+          </button>
+        </div>
       </div>
     </div>
-    
-    <div class="messages">
-      <div id="message">🎲 Spin बटन दबाकर शुरू करें और जीवन की महत्वपूर्ण सीख जानें!</div>
+
+    <div class="controls" style="margin-top: 30px;">
+      <button class="btn btn-secondary" onclick="resetGame()">
+        <i class="fas fa-sync-alt"></i> फिर से शुरू करो
+      </button>
     </div>
-    
+
+    <div class="message-panel">
+      <div class="message-header">
+        <i class="fas fa-bullhorn"></i>
+        <h3>आज की प्रेरणा</h3>
+      </div>
+      <div id="message">✨ अपने अंदर की शक्ति को पहचानो – ज्ञान चक्र घुमाओ!</div>
+      
+      <div class="history-panel">
+        <h4><i class="fas fa-history"></i> ज्ञान इतिहास</h4>
+        <div id="history"></div>
+      </div>
+    </div>
+
     <div class="footer">
-      <p>यह खेल मनोरंजन के लिए है। असली जीत ज्ञान प्राप्त करने में है। जुआ और नशे से दूर रहें!</p>
+      <p>यह गेम सिर्फ मोटिवेशन और सीख के लिए है। जीवन में हमेशा पॉजिटिव सोचें और आगे बढ़ें।</p>
     </div>
   </div>
 
   <script>
-    const symbols = ["🍒", "🍋", "🍇", "🍊", "⭐", "🍉", "💰", "🎯"];
+    const symbols = ["💡", "🔥", "🎯", "💪", "📘", "🚀", "🌱", "🧠", "🙏", "✨"];
     let coins = 10000;
     let winCount = 0;
     let messageCount = 0;
-    
+    let history = [];
+
     const messages = [
-      "🎯 पैसा ज़रूरी है, लेकिन ज़िंदगी उससे भी ज़्यादा।",
-      "💡 असली जीत वो है जब आप खुद को हारने न दो।",
-      "🧠 जो आप अभी कर रहे हो, वही आपका भविष्य बनाएगा।",
-      "📚 एक नई skill सीखो – कल को बदल डालो!",
-      "🤝 किसी की मदद करो – सच्चा jackpot वही है।",
-      "🚫 नशे और जुए से दूर रहो – ये सब धोखा है।",
-      "🙏 माँ-बाप की उम्मीद मत तोड़ो, वो तुम्हारा असली support हैं।",
-      "💪 मेहनत करो, सीखो और आगे बढ़ो – यही असली सफलता है।",
-      "🌱 छोटी शुरुआत करो, लेकिन बड़े सपने देखो।",
-      "❤️ पैसा कमाना ज़रूरी है, लेकिन इंसानियत उससे भी ज़्यादा।"
+      "🌱 छोटी शुरुआत भी बड़ा बदलाव ला सकती है।",
+      "💪 मेहनत कभी बेकार नहीं जाती।",
+      "🎯 लक्ष्य स्पष्ट हो तो रास्ता आसान हो जाता है।",
+      "📘 हर दिन कुछ नया सीखो।",
+      "🔥 जुनून से किया गया काम कभी असफल नहीं होता।",
+      "🧠 खुद पर भरोसा करो – सबसे पहले तुम खुद हो।",
+      "🚀 जो आगे बढ़ता है, वही जीतता है।",
+      "💡 सोच को सकारात्मक रखो, जीवन खुद बेहतर हो जाएगा।",
+      "🙏 अच्छे कर्म करो, फल अपने आप मिलेगा।",
+      "📚 शिक्षा जीवन का असली धन है।",
+      "🌟 हर कठिनाई एक नई सीख लेकर आती है।",
+      "❤️ दूसरों की मदद करना सबसे बड़ा पुरस्कार है।",
+      "🌈 हार के बाद ही जीत का मजा आता है।",
+      "🌞 नई सुबह नई संभावनाएं लेकर आती है।",
+      "🌊 जीवन की लहरों का सामना डट कर करो।"
     ];
-    
-    // Update stats display
+
     function updateStats() {
       document.getElementById("coinCount").textContent = coins;
       document.getElementById("winCount").textContent = winCount;
       document.getElementById("messageCount").textContent = messageCount;
     }
-    
-    // Show win animation
-    function showWinAnimation(amount) {
-      const jackpot = document.getElementById("jackpot");
-      jackpot.style.display = "block";
+
+    function addHistory(message) {
+      history.unshift(message);
+      if (history.length > 5) history.pop();
       
-      // Create win text element
-      const winText = document.createElement("div");
-      winText.className = "win-amount";
-      winText.textContent = `+${amount} Coins!`;
-      winText.style.left = `${Math.random() * 70 + 15}%`;
-      winText.style.top = `${Math.random() * 50 + 25}%`;
-      document.querySelector(".container").appendChild(winText);
+      const historyEl = document.getElementById("history");
+      historyEl.innerHTML = '';
       
-      // Animate and remove
-      setTimeout(() => {
-        jackpot.style.display = "none";
-        winText.style.display = "block";
-        
-        setTimeout(() => {
-          winText.remove();
-        }, 1000);
-      }, 50);
+      history.forEach(msg => {
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `<i class="fas fa-comment"></i> ${msg}`;
+        historyEl.appendChild(item);
+      });
     }
-    
-    // Spin slot machine
-    function spinSlot() {
-      if (coins <= 0) {
-        document.getElementById("message").innerHTML = "😢 Coins खत्म हो गए। लेकिन हौसला मत खोओ!<br>फिर से शुरू करें बटन दबाएं और नई सीख जारी रखें!";
+
+    function createCoinAnimation(startX, startY, endX, endY) {
+      const coin = document.createElement('div');
+      coin.className = 'coin-animation';
+      coin.innerHTML = '🪙';
+      coin.style.left = `${startX}px`;
+      coin.style.top = `${startY}px`;
+      coin.style.setProperty('--tx', `${endX - startX}px`);
+      coin.style.setProperty('--ty', `${endY - startY}px`);
+      
+      document.body.appendChild(coin);
+      
+      setTimeout(() => {
+        coin.remove();
+      }, 1000);
+    }
+
+    function spinSlot(machine) {
+      if (coins < 100) {
+        showMessage("🪙 Coins समाप्त हो गए। फिर से शुरू करें!", true);
         return;
       }
-      
+
       coins -= 100;
       updateStats();
+
+      // Get slots for this machine
+      const slot1 = document.getElementById(`slot${machine}-1`);
+      const slot2 = document.getElementById(`slot${machine}-2`);
+      const slot3 = document.getElementById(`slot${machine}-3`);
       
-      // Reset slot classes
-      const slots = document.querySelectorAll(".slot");
-      slots.forEach(slot => slot.classList.remove("win-animation"));
-      
+      // Reset classes
+      slot1.classList.remove('win');
+      slot2.classList.remove('win');
+      slot3.classList.remove('win');
+
       // Show spinning animation
       let spins = 0;
       const spinInterval = setInterval(() => {
-        slots[0].textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        slots[1].textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        slots[2].textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        slot1.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        slot2.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        slot3.textContent = symbols[Math.floor(Math.random() * symbols.length)];
         spins++;
         
         if (spins > 10) {
           clearInterval(spinInterval);
-          revealResult();
+          revealResult(machine);
         }
       }, 100);
     }
-    
-    // Reveal final result
-    function revealResult() {
-      const slot1 = symbols[Math.floor(Math.random() * symbols.length)];
-      const slot2 = symbols[Math.floor(Math.random() * symbols.length)];
-      const slot3 = symbols[Math.floor(Math.random() * symbols.length)];
+
+    function revealResult(machine) {
+      const slot1 = document.getElementById(`slot${machine}-1`);
+      const slot2 = document.getElementById(`slot${machine}-2`);
+      const slot3 = document.getElementById(`slot${machine}-3`);
       
-      document.getElementById("slot1").textContent = slot1;
-      document.getElementById("slot2").textContent = slot2;
-      document.getElementById("slot3").textContent = slot3;
+      const val1 = symbols[Math.floor(Math.random() * symbols.length)];
+      const val2 = symbols[Math.floor(Math.random() * symbols.length)];
+      const val3 = symbols[Math.floor(Math.random() * symbols.length)];
       
-      // Check for win
+      slot1.textContent = val1;
+      slot2.textContent = val2;
+      slot3.textContent = val3;
+
       let winAmount = 0;
-      if (slot1 === slot2 && slot2 === slot3) {
+      let message = "";
+
+      if (val1 === val2 && val2 === val3) {
         // Big win - all three match
         winAmount = 1000;
-        document.getElementById("message").innerHTML = `🎉 जैकपॉट! आपने जीते ${winAmount} coins!<br>लेकिन याद रखें: असली जीत ज्ञान में है!`;
-        showWinAnimation(winAmount);
-      } else if (slot1 === slot2 || slot2 === slot3 || slot1 === slot3) {
+        message = `🎉 जैकपॉट! आपने जीते ${winAmount} coins!`;
+        winCount++;
+        
+        // Add win animation
+        slot1.classList.add('win');
+        slot2.classList.add('win');
+        slot3.classList.add('win');
+        
+        // Create coin animation
+        const rect = slot1.getBoundingClientRect();
+        createCoinAnimation(
+          rect.left + rect.width/2, 
+          rect.top + rect.height/2,
+          document.getElementById('coinCount').getBoundingClientRect().left + 20,
+          document.getElementById('coinCount').getBoundingClientRect().top + 10
+        );
+      } else if (val1 === val2 || val2 === val3 || val1 === val3) {
         // Small win - two match
         winAmount = 300;
-        document.getElementById("message").innerHTML = `👍 अच्छा! आपने जीते ${winAmount} coins!<br>जीवन में छोटी जीत का आनंद लें!`;
-        showWinAnimation(winAmount);
+        message = `👍 बढ़िया! आपने जीते ${winAmount} Coins!`;
+        winCount++;
+        
+        // Add win animation to matching slots
+        if (val1 === val2) {
+          slot1.classList.add('win');
+          slot2.classList.add('win');
+        }
+        if (val2 === val3) {
+          slot2.classList.add('win');
+          slot3.classList.add('win');
+        }
+        if (val1 === val3) {
+          slot1.classList.add('win');
+          slot3.classList.add('win');
+        }
       } else {
         // No win - show motivational message
-        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-        document.getElementById("message").innerHTML = randomMessage;
+        const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+        message = randomMsg;
         messageCount++;
-        updateStats();
+        addHistory(message);
+      }
+
+      coins += winAmount;
+      updateStats();
+      showMessage(message, winAmount > 0);
+    }
+
+    function showMessage(text, isWin) {
+      const messageEl = document.getElementById("message");
+      messageEl.textContent = text;
+      
+      if (isWin) {
+        messageEl.style.color = "#ffcc00";
+        messageEl.style.textShadow = "0 0 15px rgba(255, 204, 0, 0.8)";
+      } else {
+        messageEl.style.color = "#00ffcc";
+        messageEl.style.textShadow = "0 0 15px rgba(0, 255, 204, 0.8)";
       }
       
-      // Add win animation to slots
-      const slots = document.querySelectorAll(".slot");
-      slots.forEach(slot => slot.classList.add("win-animation"));
-      
-      // Update coins and wins
-      coins += winAmount;
-      if (winAmount > 0) winCount++;
-      updateStats();
+      // Add animation
+      messageEl.style.animation = 'none';
+      setTimeout(() => {
+        messageEl.style.animation = 'glow 2s infinite alternate';
+      }, 10);
     }
-    
-    // Reset game
+
     function resetGame() {
       coins = 10000;
       winCount = 0;
       messageCount = 0;
+      history = [];
       updateStats();
-      document.getElementById("message").innerHTML = "🔄 खेल फिर से शुरू हुआ!<br>अपने ज्ञान का खजाना बढ़ाते रहें!";
+      document.getElementById("history").innerHTML = '';
       
-      // Reset slots
-      document.getElementById("slot1").textContent = "🍒";
-      document.getElementById("slot2").textContent = "🍋";
-      document.getElementById("slot3").textContent = "🍇";
+      // Reset all slots
+      for (let m = 1; m <= 3; m++) {
+        document.getElementById(`slot${m}-1`).textContent = symbols[0];
+        document.getElementById(`slot${m}-2`).textContent = symbols[1];
+        document.getElementById(`slot${m}-3`).textContent = symbols[2];
+        document.getElementById(`slot${m}-1`).classList.remove('win');
+        document.getElementById(`slot${m}-2`).classList.remove('win');
+        document.getElementById(`slot${m}-3`).classList.remove('win');
+      }
       
-      // Remove animations
-      const slots = document.querySelectorAll(".slot");
-      slots.forEach(slot => slot.classList.remove("win-animation"));
+      showMessage("🔄 खेल फिर से शुरू हुआ! नई सीख के लिए तैयार रहें!", true);
     }
-    
+
     // Initialize
     updateStats();
+    showMessage("✨ अपने अंदर की शक्ति को पहचानो – ज्ञान चक्र घुमाओ!", false);
   </script>
 </body>
 </html>
