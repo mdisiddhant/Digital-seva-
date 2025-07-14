@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>तेल</title>
+  <style>
+    body {font-family: 'Segoe UI', sans-serif; margin: 0; background: #f7f7f7; padding-bottom: 150px}
+    h2 {padding: 16px}
+    .grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; padding: 16px}
+    .card {background: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,.08); text-align: center; padding-bottom: 10px}
+    .card img {width: 100%; height: 100px; object-fit: cover; border-top-left-radius: 10px; border-top-right-radius: 10px}
+    .card h4 {margin: 8px 0 4px; font-size: 15px}
+    .price-select, .qty-input {width: 70px; padding: 4px; margin-top: 4px; border: 1px solid #ccc; border-radius: 4px; text-align: center}
+    .btn {margin: 6px; padding: 5px 10px; border-radius: 20px; border: 1px solid #f8225e; background: #fff; color: #f8225e; cursor: pointer}
+    .btn:hover {background: #f8225e; color: #fff}
+  </style>
+</head>
+<body>
+
+<h2>🛢️ तेल</h2>
+<div class="grid">
+  <div class="card">
+    <img src="https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg" alt="Refined Oil">
+    <h4>Refined Oil</h4>
+    <select class="price-select">
+      <option value="10">₹10</option>
+      <option value="20">₹20</option>
+      <option value="50">₹50</option>
+      <option value="100">₹100</option>
+    </select>
+    <input class="qty-input" placeholder="Qty">
+    <button class="btn">➕ जोड़ें</button>
+  </div>
+
+  <div class="card">
+    <img src="https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg" alt="Mustard Oil">
+    <h4>Mustard Oil</h4>
+    <select class="price-select">
+      <option value="10">₹10</option>
+      <option value="20">₹20</option>
+      <option value="50">₹50</option>
+      <option value="100">₹100</option>
+    </select>
+    <input class="qty-input" placeholder="Qty">
+    <button class="btn">➕ जोड़ें</button>
+  </div>
+
+  <div class="card">
+    <img src="https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg" alt="Groundnut Oil">
+    <h4>Groundnut Oil</h4>
+    <select class="price-select">
+      <option value="10">₹10</option>
+      <option value="20">₹20</option>
+      <option value="50">₹50</option>
+      <option value="100">₹100</option>
+    </select>
+    <input class="qty-input" placeholder="Qty">
+    <button class="btn">➕ जोड़ें</button>
+  </div>
+
+  <div class="card">
+    <img src="https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg" alt="Soyabean Oil">
+    <h4>Soyabean Oil</h4>
+    <select class="price-select">
+      <option value="10">₹10</option>
+      <option value="20">₹20</option>
+      <option value="50">₹50</option>
+      <option value="100">₹100</option>
+    </select>
+    <input class="qty-input" placeholder="Qty">
+    <button class="btn">➕ जोड़ें</button>
+  </div>
+</div>
+
+</body>
+</html>
