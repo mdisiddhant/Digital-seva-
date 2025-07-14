@@ -1,164 +1,121 @@
-<!DOCTYPE html>
-<html lang="hi">
+<!DOCTYPE html><html lang="hi">
 <head>
-<meta charset="UTF-8">
-<title>किराना स्टोर</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-:root{--brand:#f8225e;--radius:14px;--shadow:0 4px 8px rgba(0,0,0,.08);}
-html{scroll-behavior:smooth;}
-body{margin:0;font-family:'Segoe UI',sans-serif;background:#f7f7f7;padding-bottom:110px;}
-/* ===== NAVBAR ===== */
-.navbar{position:fixed;top:0;left:0;right:0;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.1);z-index:100;overflow-x:auto;white-space:nowrap;}
-.navbar a{display:inline-block;padding:12px 18px;font-weight:600;color:#333;text-decoration:none;transition:.2s;}
-.navbar a:hover,.navbar a.active{background:var(--brand);color:#fff;}
-/* ===== SECTIONS ===== */
-section{margin:80px 14px 26px;border-radius:var(--radius);box-shadow:var(--shadow);background:#fff;padding:18px;}
-section h2{margin:0 0 14px;font-size:20px;color:#333;font-weight:700;}
-/* ===== GRID & CARDS ===== */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px;}
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;position:relative;text-align:center;}
-.card img{width:100%;height:110px;object-fit:cover;}
-.discount{position:absolute;top:8px;left:8px;background:red;color:#fff;font-size:12px;padding:2px 6px;border-radius:4px;}
-.card h4{margin:6px 0 4px;font-size:15px;}
-.price{color:green;font-weight:700;}
-.old{margin-left:6px;font-size:13px;text-decoration:line-through;color:gray;}
-.btn{margin:6px auto 10px;padding:5px 16px;border:1px solid var(--brand);border-radius:20px;background:#fff;color:var(--brand);font-weight:600;cursor:pointer;transition:.2s;}
-.btn:hover{background:var(--brand);color:#fff;}
-/* ===== CART BAR ===== */
-.cart-bar{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #ccc;box-shadow:0 -2px 8px rgba(0,0,0,.1);padding:14px 16px;z-index:90;display:flex;flex-direction:column;gap:10px;}
-.cart-bar ul{list-style:none;padding-left:16px;margin:0;font-size:15px;max-height:120px;overflow-y:auto;}
-.cart-buttons{display:flex;flex-wrap:wrap;gap:10px;}
-.cart-buttons button{border:none;border-radius:8px;padding:10px 20px;font-size:15px;color:#fff;cursor:pointer;}
-.buy{background:green;}
-.wabtn{background:#25D366;}
-.tgbtn{background:#0088cc;}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>किराना ऑर्डर</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 120px; background: #f2f2f2; }
+    .navbar { position: fixed; top: 0; width: 100%; background: #fff; display: flex; overflow-x: auto; box-shadow: 0 2px 6px rgba(0,0,0,0.1); z-index: 999; }
+    .navbar a { padding: 14px 20px; text-decoration: none; color: #333; font-weight: 600; white-space: nowrap; }
+    .navbar a:hover, .navbar a.active { background: #f8225e; color: #fff; }
+    section { padding: 80px 16px 20px; }
+    h2 { margin-top: 40px; color: #333; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+    .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); overflow: hidden; text-align: center; }
+    .card img { width: 100%; height: 100px; object-fit: cover; }
+    .card h4 { margin: 8px 0 4px; font-size: 15px; }
+    .price { color: green; font-weight: bold; }
+    .btn { padding: 5px 10px; margin: 6px; border-radius: 20px; border: 1px solid #f8225e; color: #f8225e; background: #fff; cursor: pointer; }
+    .btn:hover { background: #f8225e; color: #fff; }
+    .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 16px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+    .cart-bar ul { list-style: none; padding-left: 20px; max-height: 100px; overflow-y: auto; margin: 10px 0; }
+    .cart-bar li { margin-bottom: 4px; }
+    .submit-btn { background: #f8225e; color: #fff; border: none; padding: 12px 20px; border-radius: 10px; font-size: 16px; font-weight: 600; cursor: pointer; }
+    .remove-btn { margin-left: 8px; background: red; color: #fff; border: none; padding: 2px 8px; border-radius: 6px; cursor: pointer; }
+  </style>
 </head>
-<body>
+<body>  <div class="navbar">
+    <a href="#pan" class="active">पान मसाला</a>
+    <a href="#oil">तेल</a>
+    <a href="#grain">चावल</a>
+    <!-- aur bhi links -->
+  </div>  <section id="pan">
+    <h2>पान मसाला</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="images/rajnigandha.jpg">
+        <h4>राजनीगंधा</h4>
+        <div class="price">₹10</div>
+        <button class="btn" onclick="add('राजनिगंधा', 10)">जोडें</button>
+      </div>
+      <div class="card">
+        <img src="images/vimal.jpg">
+        <h4>विमल</h4>
+        <div class="price">₹5</div>
+        <button class="btn" onclick="add('विमल', 5)">जोडें</button>
+      </div>
+    </div>
+  </section>  <!-- aur bhi sections -->  <div class="cart-bar">
+    <div id="cartInfo">🛒 आपका कार्ट खाली है</div>
+    <ul id="cartList"></ul>
+    <button class="submit-btn" onclick="submitOrder()">📤 Submit Order</button>
+  </div>  <script>
+    let cart = [];
+    const minOrder = 100;
+    const whatsappNumber = '916351598832';
+    const telegramToken = '7729928604:AAEINikbhwHTMSK1pgV3nROUfSGEVb-z2r4';
+    const telegramChatId = '6798434092';
 
-<!-- ===== NAVIGATION ===== -->
-<nav class="navbar" id="nav">
-  <a href="#pan"  class="active">पान मसाला</a>
-  <a href="#oil">तेल &amp; घी</a>
-  <a href="#grain">आटा/चावल/दाल</a>
-  <a href="#snacks">स्नैक्स</a>
-  <a href="#biscuits">बिस्कुट</a>
-  <a href="#daily">डेली</a>
-  <a href="#clean">सफ़ाई</a>
-  <a href="#tea">ड्रिंक्स</a>
-  <a href="#baby">बेबी</a>
-  <a href="#offers">ऑफ़र</a>
-</nav>
+    function add(name, price) {
+      cart.push({ name, price });
+      update();
+    }
 
-<!-- ===== CATEGORY SECTIONS (demo 2-3 items each) ===== -->
-<section id="pan"><h2>🧂 पान मसाला</h2><div class="grid">
-  <div class="card"><div class="discount">33%</div><img src="images/rajnigandha.jpg"><h4>राजनिगंधा</h4><span class="price">₹10</span><span class="old">₹15</span><br><button class="btn" onclick="add('राजनिगंधा',10)">जोड़ें</button></div>
-  <div class="card"><div class="discount">50%</div><img src="images/vimal.jpg"><h4>विमल</h4><span class="price">₹5</span><span class="old">₹10</span><br><button class="btn" onclick="add('विमल',5)">जोड़ें</button></div>
-</div></section>
+    function remove(index) {
+      cart.splice(index, 1);
+      update();
+    }
 
-<section id="oil"><h2>🛢️ तेल &amp; घी</h2><div class="grid">
-  <div class="card"><div class="discount">20%</div><img src="images/sarsotail.jpg"><h4>सरसों तेल 1 L</h4><span class="price">₹120</span><span class="old">₹150</span><br><button class="btn" onclick="add('सरसों तेल',120)">जोड़ें</button></div>
-  <div class="card"><div class="discount">15%</div><img src="images/ghee.jpg"><h4>देसी घी 500 ml</h4><span class="price">₹220</span><span class="old">₹260</span><br><button class="btn" onclick="add('घी',220)">जोड़ें</button></div>
-</div></section>
+    function update() {
+      const total = cart.reduce((s, i) => s + i.price, 0);
+      document.getElementById('cartInfo').textContent = `${cart.length} चीज़ें | ₹${total}`;
 
-<section id="grain"><h2>🌾 आटा • चावल • दालें</h2><div class="grid">
-  <div class="card"><div class="discount">10%</div><img src="images/aata.jpg"><h4>गेहूं आटा 1 kg</h4><span class="price">₹40</span><span class="old">₹45</span><br><button class="btn" onclick="add('आटा',40)">जोड़ें</button></div>
-  <div class="card"><div class="discount">12%</div><img src="images/chawal.jpg"><h4>बासमती चावल 1 kg</h4><span class="price">₹80</span><span class="old">₹90</span><br><button class="btn" onclick="add('चावल',80)">जोड़ें</button></div>
-</div></section>
+      const list = document.getElementById('cartList');
+      list.innerHTML = '';
+      cart.forEach((item, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `✔️ ${item.name} - ₹${item.price} <button class="remove-btn" onclick="remove(${index})">❌</button>`;
+        list.appendChild(li);
+      });
+    }
 
-<section id="snacks"><h2>🍬 स्नैक्स &amp; नमकीन</h2><div class="grid">
-  <div class="card"><div class="discount">30%</div><img src="images/kurkure.jpg"><h4>कुरकुरे</h4><span class="price">₹10</span><span class="old">₹15</span><br><button class="btn" onclick="add('कुरकुरे',10)">जोड़ें</button></div>
-  <div class="card"><div class="discount">15%</div><img src="images/bhujiya.jpg"><h4>भुजिया</h4><span class="price">₹20</span><span class="old">₹25</span><br><button class="btn" onclick="add('भुजिया',20)">जोड़ें</button></div>
-</div></section>
+    function submitOrder() {
+      if (!cart.length) {
+        alert('🛒 कृपया पहले कोई आइटम जोड़ें।');
+        return;
+      }
 
-<section id="biscuits"><h2>🍪 बिस्कुट &amp; टोस्ट</h2><div class="grid">
-  <div class="card"><div class="discount">25%</div><img src="images/parleg.jpg"><h4>पारले-G</h4><span class="price">₹5</span><span class="old">₹7</span><br><button class="btn" onclick="add('पारले-G',5)">जोड़ें</button></div>
-  <div class="card"><div class="discount">10%</div><img src="images/bourbon.jpg"><h4>बर्बन</h4><span class="price">₹15</span><span class="old">₹17</span><br><button class="btn" onclick="add('बर्बन',15)">जोड़ें</button></div>
-</div></section>
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      if (total < minOrder) {
+        alert(`❌ न्यूनतम ऑर्डर ₹${minOrder} होना चाहिए।`);
+        return;
+      }
 
-<section id="daily"><h2>🧴 डेली एसेंशियल्स</h2><div class="grid">
-  <div class="card"><div class="discount">18%</div><img src="images/matchbox.jpg"><h4>माचिस (10 pkt)</h4><span class="price">₹9</span><span class="old">₹11</span><br><button class="btn" onclick="add('माचिस',9)">जोड़ें</button></div>
-  <div class="card"><div class="discount">14%</div><img src="images/toothbrush.jpg"><h4>टूथब्रश</h4><span class="price">₹17</span><span class="old">₹20</span><br><button class="btn" onclick="add('टूथब्रश',17)">जोड़ें</button></div>
-</div></section>
+      let message = '🛍️ *किराना ऑर्डर:*\n';
+      cart.forEach(item => {
+        message += `• ${item.name} - ₹${item.price}\n`;
+      });
+      message += `\n💰 *कुल: ₹${total}*\n🙏 धन्यवाद!`;
 
-<section id="clean"><h2>🧼 साफ़-सफ़ाई उत्पाद</h2><div class="grid">
-  <div class="card"><div class="discount">20%</div><img src="images/vim.jpg"><h4>विम बार</h4><span class="price">₹10</span><span class="old">₹12</span><br><button class="btn" onclick="add('विम बार',10)">जोड़ें</button></div>
-  <div class="card"><div class="discount">15%</div><img src="images/phenyl.jpg"><h4>फ़िनायल 500 ml</h4><span class="price">₹40</span><span class="old">₹47</span><br><button class="btn" onclick="add('फ़िनायल',40)">जोड़ें</button></div>
-</div></section>
+      const encodedMsg = encodeURIComponent(message);
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMsg}`, '_blank');
 
-<section id="tea"><h2>☕ चाय &amp; ड्रिंक्स</h2><div class="grid">
-  <div class="card"><div class="discount">10%</div><img src="images/tata-tea.jpg"><h4>टाटा चाय 250 g</h4><span class="price">₹100</span><span class="old">₹110</span><br><button class="btn" onclick="add('टाटा चाय',100)">जोड़ें</button></div>
-  <div class="card"><div class="discount">12%</div><img src="images/pepsi.jpg"><h4>पेप्सी 500 ml</h4><span class="price">₹40</span><span class="old">₹45</span><br><button class="btn" onclick="add('पेप्सी',40)">जोड़ें</button></div>
-</div></section>
-
-<section id="baby"><h2>🍼 बेबी केयर</h2><div class="grid">
-  <div class="card"><div class="discount">22%</div><img src="images/babypowder.jpg"><h4>बेबी पाउडर</h4><span class="price">₹78</span><span class="old">₹100</span><br><button class="btn" onclick="add('बेबी पाउडर',78)">जोड़ें</button></div>
-  <div class="card"><div class="discount">18%</div><img src="images/babysoap.jpg"><h4>बेबी साबुन</h4><span class="price">₹45</span><span class="old">₹55</span><br><button class="btn" onclick="add('बेबी साबुन',45)">जोड़ें</button></div>
-</div></section>
-
-<section id="offers"><h2>🏷️ ऑफ़र ज़ोन</h2><div class="grid">
-  <div class="card"><div class="discount">40%</div><img src="images/combo.jpg"><h4>Combo Pack A</h4><span class="price">₹150</span><span class="old">₹250</span><br><button class="btn" onclick="add('Combo A',150)">जोड़ें</button></div>
-  <div class="card"><div class="discount">35%</div><img src="images/value.jpg"><h4>Value Pack B</h4><span class="price">₹199</span><span class="old">₹299</span><br><button class="btn" onclick="add('Value B',199)">जोड़ें</button></div>
-</div></section>
-
-<!-- ===== CART SECTION ===== -->
-<div class="cart-bar">
-  <div id="cartInfo" style="font-weight:700;">🛒 आपका कार्ट खाली है</div>
-  <ul id="cartList"></ul>
-  <div class="cart-buttons">
-    <button class="buy" onclick="checkout()">✅ खरीदें</button>
-    <a href="https://wa.me/916351598832?text=मुझे%20किराना%20ऑर्डर%20देना%20है!" target="_blank"><button class="wabtn">📞 WhatsApp</button></a>
-    <button class="tgbtn" onclick="sendTelegram()">🤖 Telegram</button>
-  </div>
-</div>
-
-<!-- ===== SCRIPT ===== -->
-<script>
-let cart=[];
-const minOrder=100; // न्यूनतम ऑर्डर ₹100
-
-function add(name,price){cart.push({name,price});update();}
-function update(){
-  const total=cart.reduce((s,i)=>s+i.price,0);
-  document.getElementById('cartInfo').textContent=`${cart.length} चीज़ें | ₹${total}`;
-  const list=document.getElementById('cartList');list.innerHTML='';
-  cart.forEach(i=>{const li=document.createElement('li');li.textContent=`✔️ ${i.name} - ₹${i.price}`;list.appendChild(li);});
-}
-/* ====== CHECKOUT ALERT ONLY ====== */
-function checkout(){
-  if(!cart.length){alert('🛒 कृपया कोई आइटम जोड़ें।');return;}
-  const total=cart.reduce((s,i)=>s+i.price,0);
-  if(total<minOrder){alert(`🔴 न्यूनतम ऑर्डर ₹${minOrder} होना चाहिए।`);return;}
-  let msg='🛍️ आपका ऑर्डर:\n';cart.forEach(i=>msg+=`• ${i.name} - ₹${i.price}\n`);
-  msg+=`\n💰 कुल: ₹${total}\n🙏 धन्यवाद!`;alert(msg);
-}
-/* ====== TELEGRAM SENDER ====== */
-function sendTelegram(){
-  if(!cart.length){alert('🛒 कृपया कोई आइटम जोड़ें।');return;}
-  const total=cart.reduce((s,i)=>s+i.price,0);
-  if(total<minOrder){alert(`🔴 Telegram पर भेजने के लिए कम-से-कम ₹${minOrder} का ऑर्डर ज़रूरी है।`);return;}
-  let message='🛍️ *किराना ऑर्डर:*\n';cart.forEach(i=>message+=`• ${i.name} - ₹${i.price}\n`);
-  message+=`\n💰 *कुल: ₹${total}*`;
-  const token='7729928604:AAEINikbhwHTMSK1pgV3nROUfSGEVb-z2r4',chatId='6798434092';
-  fetch(`https://api.telegram.org/bot${token}/sendMessage`,{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({chat_id:chatId,text:message,parse_mode:'Markdown'})
-  }).then(r=>r.json()).then(d=>{
-    if(d.ok){alert('✅ Telegram पर ऑर्डर भेज दिया गया!');}
-    else{alert('❌ Telegram भेजने में समस्या!');console.log(d);}
-  });
-}
-/* ===== Navbar active link highlight ===== */
-const navLinks=document.querySelectorAll('#nav a');
-window.addEventListener('scroll',()=>{
-  let y=window.scrollY+85;
-  navLinks.forEach(l=>{
-    const sec=document.querySelector(l.hash);
-    if(sec.offsetTop<=y && sec.offsetTop+sec.offsetHeight>y){l.classList.add('active');}
-    else l.classList.remove('active');
-  });
-});
-</script>
-</body>
+      fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: telegramChatId,
+          text: message,
+          parse_mode: 'Markdown'
+        })
+      }).then(res => res.json()).then(data => {
+        if (data.ok) {
+          alert('✅ Telegram पर भी ऑर्डर भेज दिया गया!');
+        } else {
+          alert('❌ Telegram भेजने में दिक्कत है!');
+          console.log(data);
+        }
+      });
+    }
+  </script></body>
 </html>
