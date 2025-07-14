@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>🍪 Modern किराना ऑर्डर</title>
+<title>🍪 किराना ऑर्डर सिस्टम</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 /* Modern Color Scheme */
@@ -17,9 +17,8 @@
   --card-bg: #ffffff;
   --text: #333333;
   --text-light: #666666;
-  --text-glow: #ffffff;
   --discount: #e53935;
-  --navbar-bg: linear-gradient(135deg, #2c3e50, #1a1f2c);
+  --sidebar-bg: linear-gradient(135deg, #2c3e50, #1a1f2c);
 }
 
 /* Modern Styles */
@@ -33,301 +32,237 @@
 body {
   background: var(--background);
   color: var(--text);
-  padding-bottom: 180px;
+  padding-bottom: 30px;
   line-height: 1.6;
+  display: flex;
+  min-height: 100vh;
+  margin-left: 250px;
+  transition: margin-left 0.3s;
 }
 
-/* Modern Top Navbar */
-.top-navbar {
+/* Modern Sidebar Navigation */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  background: var(--navbar-bg);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  bottom: 0;
+  width: 250px;
+  background: var(--sidebar-bg);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
   z-index: 1000;
-  padding: 0 20px;
-  height: 70px;
-}
-
-.logo {
+  overflow-y: auto;
+  padding: 20px 0;
   display: flex;
-  align-items: center;
-  margin-right: 30px;
+  flex-direction: column;
 }
 
-.logo h1 {
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 15px;
+}
+
+.sidebar-header h1 {
   color: white;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   text-shadow: 0 0 10px rgba(255,255,255,0.5);
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
 }
 
-.logo i {
+.sidebar-header h1 i {
   color: var(--accent);
-  font-size: 1.8rem;
 }
 
-.nav-links {
+.sidebar-nav {
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  overflow-x: auto;
 }
 
-.nav-links a {
-  padding: 24px 20px;
+.sidebar-nav a {
+  padding: 15px 25px;
   font-weight: 600;
   color: rgba(255,255,255,0.8);
   text-decoration: none;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 15px;
   transition: all 0.3s ease;
-  position: relative;
+  border-left: 4px solid transparent;
+  margin: 5px 0;
   font-size: 1.1rem;
 }
 
-.nav-links a:hover {
+.sidebar-nav a:hover {
   background: rgba(255,255,255,0.1);
   color: white;
+  border-left: 4px solid var(--accent);
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 4px;
-  background: var(--accent);
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
+.sidebar-nav a.active {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border-left: 4px solid var(--accent);
 }
 
-.nav-links a:hover::after {
-  width: 70%;
+.cart-summary-sidebar {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  margin: 15px;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cart-summary-sidebar:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.cart-summary-sidebar i {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+#cartCount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  display: block;
+  margin: 5px 0;
+  color: var(--accent);
+}
+
+#cartTotalSide {
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: block;
+}
+
+.sidebar-footer {
+  padding: 15px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  body {
+    margin-left: 0;
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    position: relative;
+  }
+  
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+  
+  .sidebar-nav a {
+    padding: 10px 15px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  
+  .sidebar-nav a:hover, 
+  .sidebar-nav a.active {
+    border-left: none;
+    border-bottom: 3px solid var(--accent);
+  }
+  
+  .cart-summary-sidebar {
+    margin: 10px;
+  }
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  padding: 15px 25px;
+  margin-bottom: 25px;
+}
+
+.top-bar h2 {
+  margin: 0;
+  color: var(--primary-dark);
+  font-size: 1.8rem;
 }
 
 .search-container {
   display: flex;
   align-items: center;
-  background: rgba(255,255,255,0.15);
+  background: #f5f5f5;
   border-radius: 30px;
-  padding: 8px 15px;
-  margin-left: 20px;
-  min-width: 250px;
-  transition: all 0.3s ease;
-}
-
-.search-container:focus-within {
-  background: rgba(255,255,255,0.25);
-  box-shadow: 0 0 0 2px var(--accent);
+  padding: 8px 20px;
+  width: 300px;
 }
 
 .search-container input {
   background: transparent;
   border: none;
-  color: white;
-  padding: 6px 10px;
+  color: var(--text);
+  padding: 8px 12px;
   font-size: 1rem;
   width: 100%;
   outline: none;
 }
 
-.search-container input::placeholder {
-  color: rgba(255,255,255,0.7);
-}
-
 .search-container button {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--primary);
   font-size: 1.2rem;
   cursor: pointer;
-  padding: 5px;
-}
-
-section {
-  padding: 100px 30px 30px;
-}
-
-h2 {
-  margin-top: 20px;
-  margin-bottom: 30px;
-  font-size: 2rem;
-  color: var(--primary-dark);
-  text-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
-  position: relative;
-  padding-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--accent);
-  border-radius: 3px;
-}
-
-h3 {
-  font-size: 1.4rem;
-  color: var(--primary-dark);
-  margin-bottom: 20px;
-  text-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
-}
-
-/* Modern Grid Layout */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-}
-
-/* Modern Card Design with Hover Effect */
-.card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  text-align: center;
-  padding-bottom: 15px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid rgba(0,0,0,0.05);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.card img {
-  width: 100%;
-  height: 130px;
-  object-fit: cover;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
-
-.card h4 {
-  margin: 12px 0 6px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  padding: 0 8px;
-  text-shadow: 0 0 2px rgba(0,0,0,0.1);
-}
-
-.card .price-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin: 8px 0;
-}
-
-.card .original-price {
-  color: var(--text-light);
-  text-decoration: line-through;
-  font-size: 13px;
-}
-
-.card .discount-badge {
-  background: var(--discount);
-  color: white;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 10px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.price-select, .qty-input, .discount-select {
-  width: 80px;
-  padding: 8px;
-  margin: 6px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: center;
-  background: #fafafa;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.price-select:focus, .qty-input:focus, .discount-select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-  outline: none;
-}
-
-.discount-select {
-  width: 70px;
-  background: #fff8e1;
-  border-color: #ffecb3;
-}
-
-.discount-label {
-  display: block;
-  font-size: 12px;
-  color: var(--accent-dark);
-  margin-top: 4px;
-  font-weight: 500;
-}
-
-.btn {
-  margin: 10px 8px 5px;
-  padding: 8px 16px;
-  border-radius: 30px;
-  border: none;
-  background: linear-gradient(to right, var(--primary), var(--primary-dark));
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4);
-}
-
-.btn:active {
-  transform: translateY(0);
-}
-
-.btn i {
-  font-size: 14px;
 }
 
 /* Form Styles */
 .form-box {
   padding: 25px;
   background: var(--card-bg);
-  margin: 100px 30px 30px;
+  margin: 20px 0;
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
+.form-box h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+}
+
 .form-box input {
   width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
+  padding: 14px 20px;
+  margin: 12px 0;
   border: 1px solid #ddd;
   border-radius: 10px;
   font-size: 16px;
@@ -340,241 +275,372 @@ h3 {
   outline: none;
 }
 
-/* Cart Bar */
-.cart-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+/* Modern Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+/* Modern Card Design with Hover Effect */
+.card {
   background: var(--card-bg);
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.12);
-  padding: 18px 20px;
-  z-index: 1000;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  padding-bottom: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card .image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card h4 {
+  margin: 15px 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0 15px;
+}
+
+.card .price-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.card .original-price {
+  color: var(--text-light);
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+.card .discount-badge {
+  background: var(--discount);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.price-select, .qty-input, .discount-select {
+  width: 100px;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  background: #fafafa;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.price-select:focus, .qty-input:focus, .discount-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
+
+.discount-select {
+  width: 80px;
+  background: #fff8e1;
+  border-color: #ffecb3;
+}
+
+.discount-label {
+  display: block;
+  font-size: 13px;
+  color: var(--accent-dark);
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.qty-requirement {
+  font-size: 12px;
+  color: #f57c00;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.btn {
+  margin: 12px 10px 8px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(to right, var(--primary), var(--primary-dark));
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 12px rgba(76, 175, 80, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(76, 175, 80, 0.4);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn i {
+  font-size: 16px;
+}
+
+/* Cart Panel */
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  bottom: 0;
+  width: 380px;
+  background: white;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+  z-index: 2000;
+  transition: right 0.4s ease;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-.cart-bar ul {
-  list-style: none;
-  padding: 0 20px;
-  margin: 10px 0;
-  max-height: 110px;
-  overflow-y: auto;
+.cart-panel.open {
+  right: 0;
 }
 
-.cart-bar li {
-  padding: 8px 0;
-  border-bottom: 1px dashed #eee;
+.cart-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.cart-bar li:last-child {
-  border-bottom: none;
-}
-
-.cart-bar .item-info {
+.cart-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
-.cart-bar .discount-info {
-  font-size: 12px;
+.close-cart {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-cart:hover {
+  background: rgba(255,255,255,0.3);
+  transform: rotate(90deg);
+}
+
+.cart-items {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.cart-item {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.cart-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.cart-item-price {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.cart-item-discount {
   color: var(--discount);
-  font-weight: 500;
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 .remove-btn {
-  margin-left: 8px;
   background: #f44336;
   color: white;
   border: none;
   padding: 5px 10px;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
+  align-self: flex-start;
 }
 
 .remove-btn:hover {
   background: #d32f2f;
 }
 
-.cart-summary {
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #eee;
+  background: white;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
+}
+
+.cart-total-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
+  padding: 8px 0;
+  font-size: 17px;
+}
+
+.cart-total-row.total {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
+  margin-top: 10px;
+  padding-top: 15px;
+  border-top: 2px dashed #eee;
 }
 
-.cart-total {
+.cart-total-label {
+  color: var(--text-light);
+}
+
+.cart-total-value {
   color: var(--primary-dark);
-  text-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-}
-
-.discount-total {
-  color: var(--discount);
-  font-size: 16px;
+  font-weight: 600;
 }
 
 .submit-btn {
   background: linear-gradient(to right, var(--accent), var(--accent-dark));
   color: white;
   border: none;
-  padding: 14px 25px;
+  padding: 16px;
   font-weight: 700;
   border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
   transition: all 0.3s ease;
-  margin-top: 10px;
-  box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
+  margin-top: 15px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(255, 152, 0, 0.5);
-}
-
-.submit-btn:active {
-  transform: translateY(0);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
 }
 
 /* Responsive Adjustments */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .card .image-container {
+    height: 180px;
+  }
+}
+
 @media (max-width: 768px) {
-  .top-navbar {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 10px;
+  .main-content {
+    padding: 15px;
   }
   
-  .logo {
-    margin-right: 15px;
-    margin-bottom: 10px;
-  }
-  
-  .logo h1 {
-    font-size: 1.4rem;
-  }
-  
-  .nav-links {
-    order: 3;
-    margin-top: 10px;
-    width: 100%;
+  .top-bar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
   }
   
   .search-container {
-    min-width: 180px;
-    margin-left: 0;
-    margin-right: 10px;
+    width: 100%;
   }
   
   .grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
   }
   
-  .card img {
-    height: 100px;
-  }
-  
-  section {
-    padding-top: 150px;
-  }
-  
-  .form-box {
-    margin: 150px 20px 20px;
-    padding: 20px;
+  .card .image-container {
+    height: 150px;
   }
 }
 
 @media (max-width: 480px) {
-  .top-navbar {
-    padding: 8px;
-  }
-  
-  .logo h1 {
-    font-size: 1.2rem;
-  }
-  
-  .nav-links a {
-    padding: 18px 12px;
-    font-size: 0.9rem;
-  }
-  
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns: 1fr;
   }
   
-  .form-box {
-    margin: 130px 15px 15px;
+  .cart-panel {
+    width: 100%;
+    right: -100%;
   }
   
-  .cart-bar {
-    padding: 15px;
+  .card .image-container {
+    height: 200px;
   }
-  
-  .submit-btn {
-    padding: 12px 20px;
-  }
-}
-
-/* Floating Action Button */
-.fab {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-  cursor: pointer;
-  z-index: 999;
-  font-size: 24px;
-  transition: all 0.3s ease;
-}
-
-.fab:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-
-/* Animation for adding to cart */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.pulse {
-  animation: pulse 0.5s ease;
-}
-
-/* Discount ribbon */
-.ribbon {
-  position: absolute;
-  top: 10px;
-  left: -10px;
-  padding: 5px 15px;
-  background: var(--discount);
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  transform: rotate(-45deg);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1;
 }
 
 /* Category emojis */
@@ -583,70 +649,118 @@ h3 {
   vertical-align: middle;
 }
 
-/* Search highlight */
-.highlight {
-  background-color: #ffeb3b;
-  font-weight: bold;
-  padding: 0 2px;
-  border-radius: 3px;
-}
-
 /* Item limit badge */
 .item-limit-badge {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 15px;
+  left: 15px;
   background: #ff5722;
   color: white;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  z-index: 1;
+  padding: 3px 10px;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  z-index: 2;
 }
+
+/* Overlay for cart panel */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Quantity Requirement Colors */
+.qty-requirement.low { color: #f57c00; }
+.qty-requirement.medium { color: #ff9800; }
+.qty-requirement.high { color: #f44336; }
 </style>
 </head>
 <body>
 
-<!-- Top Navigation Bar -->
-<header class="top-navbar">
-  <div class="logo">
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+  <div class="sidebar-header">
     <h1><i class="fas fa-store"></i> किराना स्टोर</h1>
   </div>
   
-  <nav class="nav-links" id="navBar">
+  <div class="cart-summary-sidebar" onclick="toggleCartPanel()">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cartCount">0</span>
+    <span id="cartTotalSide">₹0</span>
+  </div>
+  
+  <nav class="sidebar-nav" id="navBar">
     <!-- Navigation will be added by JS -->
   </nav>
   
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="🔍 आइटम खोजें...">
-    <button onclick="searchItems()"><i class="fas fa-search"></i></button>
+  <div class="sidebar-footer">
+    <p>© 2023 किराना ऑर्डर सिस्टम</p>
   </div>
-</header>
-
-<div class="form-box">
-  <h3><i class="fas fa-user"></i> कस्टमर डिटेल</h3>
-  <input id="custName" placeholder="नाम">
-  <input id="custMobile" placeholder="मोबाइल नंबर" type="tel">
-  <input id="custAddr" placeholder="पूरा पता">
 </div>
 
-<div id="itemsWrap"></div>
-
-<div class="cart-bar">
-  <div class="cart-summary">
-    <div id="cartInfo">🛒 <span class="text-glow">0 आइटम</span></div>
-    <div id="cartTotal" class="cart-total">💰 कुल: ₹0</div>
+<div class="main-content">
+  <div class="top-bar">
+    <h2><i class="fas fa-shopping-basket"></i> किराना ऑर्डर</h2>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="🔍 आइटम खोजें...">
+      <button onclick="searchItems()"><i class="fas fa-search"></i></button>
+    </div>
   </div>
-  <ul id="cartList"></ul>
-  <button class="submit-btn" onclick="submitOrder()">
-    <i class="fas fa-paper-plane"></i> 📤 ऑर्डर सबमिट करें
-  </button>
+
+  <div class="form-box">
+    <h3><i class="fas fa-user"></i> कस्टमर डिटेल</h3>
+    <input id="custName" placeholder="नाम">
+    <input id="custMobile" placeholder="मोबाइल नंबर" type="tel">
+    <input id="custAddr" placeholder="पूरा पता">
+  </div>
+
+  <div id="itemsWrap"></div>
 </div>
 
-<div class="fab" onclick="scrollToTop()">
-  <i class="fas fa-arrow-up"></i>
+<!-- Cart Panel -->
+<div class="overlay" id="cartOverlay" onclick="toggleCartPanel()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-cart"></i> आपका कार्ट</h3>
+    <button class="close-cart" onclick="toggleCartPanel()">×</button>
+  </div>
+  
+  <div class="cart-items" id="cartItems">
+    <!-- Cart items will be added by JS -->
+  </div>
+  
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span class="cart-total-label">उप-योग:</span>
+      <span class="cart-total-value" id="cartSubtotal">₹0</span>
+    </div>
+    <div class="cart-total-row">
+      <span class="cart-total-label">छूट:</span>
+      <span class="cart-total-value" id="cartDiscount">-₹0</span>
+    </div>
+    <div class="cart-total-row total">
+      <span class="cart-total-label">कुल राशि:</span>
+      <span class="cart-total-value" id="cartTotal">₹0</span>
+    </div>
+    
+    <button class="submit-btn" onclick="submitOrder()">
+      <i class="fas fa-paper-plane"></i> ऑर्डर सबमिट करें
+    </button>
+  </div>
 </div>
 
 <script>
@@ -655,7 +769,6 @@ const waNumber='916351598832';
 const tgToken ='7729928604:AAEINikbhwHTMSK1pgV3nROUfSGEVb-z2r4';
 const tgChatId='6798434092';
 const minOrder=100;
-const maxCheapItems = 10; // Maximum 10 items for products <= ₹100
 
 /* Emoji map for categories */
 const categoryEmojis = {
@@ -676,64 +789,64 @@ const categoryEmojis = {
 
 /* ===== IMAGE MAP ===== */
 const imgMap={
-  'Parle-G':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Good Day':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Hide & Seek':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Refined Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Lifebuoy':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Lux':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Clinic Plus':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Head & Shoulders':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Mustard Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Groundnut Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Soyabean Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Marie':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Basmati Rice':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Wheat Flour':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Sona Masoori':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Moong Dal':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Masoor Dal':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Chana Dal':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Turmeric Powder':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Coriander Powder':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Red Chilli Powder':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg'
+  'Parle-G (₹1-₹2)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Good Day (₹2-₹3)':'https://images.unsplash.com/photo-1586854275429-efec225e1dc0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Hide & Seek (₹3-₹4)':'https://images.unsplash.com/photo-1608190003443-86b2636f1b0a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Marie (₹4-₹5)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Refined Oil (₹5+)':'https://images.unsplash.com/photo-1612927601601-6638404737ce?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Lifebuoy (₹1-₹2)':'https://images.unsplash.com/photo-1608571425051-7c3c29d0e26d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Lux (₹2-₹3)':'https://images.unsplash.com/photo-1595425970375-0df41da6d0c5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Clinic Plus (₹3-₹4)':'https://images.unsplash.com/photo-1590155989070-022e8fca8d8b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Head & Shoulders (₹4-₹5)':'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Mustard Oil (₹5+)':'https://images.unsplash.com/photo-1612927601601-6638404737ce?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Groundnut Oil (₹5+)':'https://images.unsplash.com/photo-1612927601601-6638404737ce?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Soyabean Oil (₹5+)':'https://images.unsplash.com/photo-1612927601601-6638404737ce?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Basmati Rice (₹5+)':'https://images.unsplash.com/photo-1543253687-c931c8e01820?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Wheat Flour (₹5+)':'https://images.unsplash.com/photo-1602922960040-2f8a5a4d0b3d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Sona Masoori (₹5+)':'https://images.unsplash.com/photo-1543253687-c931c8e01820?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Moong Dal (₹5+)':'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Masoor Dal (₹5+)':'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Chana Dal (₹5+)':'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Turmeric Powder (₹5+)':'https://images.unsplash.com/photo-1575939238474-c8ada13b2724?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Coriander Powder (₹5+)':'https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Red Chilli Powder (₹5+)':'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400'
 };
-const defaultImg='https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg';
+const defaultImg='https://images.unsplash.com/photo-1556905055-8f358a7a4b2c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400';
 
 /* ===== DATA (प्राइस वैरिएंट और डिस्काउंट के साथ) ===== */
 const data={
 'बिस्किट':[
-  {name:'Parle-G',         prices:[5,10,20], discount: 10},
-  {name:'Good Day',        prices:[10,20,50], discount: 15},
-  {name:'Hide & Seek',     prices:[10,20,50], discount: 5},
-  {name:'Marie',           prices:[5,10,20], discount: 20}
+  {name:'Parle-G (₹1-₹2)', prices:[1,2], discount: 10, minQty: 10},
+  {name:'Good Day (₹2-₹3)', prices:[2,3], discount: 15, minQty: 5},
+  {name:'Hide & Seek (₹3-₹4)', prices:[3,4], discount: 5, minQty: 3},
+  {name:'Marie (₹4-₹5)', prices:[4,5], discount: 20, minQty: 2}
 ],
 'तेल':[
-  {name:'Refined Oil',     prices:[50,100], discount: 7},
-  {name:'Mustard Oil',     prices:[50,120], discount: 12},
-  {name:'Groundnut Oil',   prices:[60,120], discount: 8},
-  {name:'Soyabean Oil',    prices:[50,110], discount: 5}
+  {name:'Refined Oil (₹5+)', prices:[50,100], discount: 7, minQty: 1},
+  {name:'Mustard Oil (₹5+)', prices:[50,120], discount: 12, minQty: 1},
+  {name:'Groundnut Oil (₹5+)', prices:[60,120], discount: 8, minQty: 1},
+  {name:'Soyabean Oil (₹5+)', prices:[50,110], discount: 5, minQty: 1}
 ],
 'साबुन / शैंपू':[
-  {name:'Lifebuoy',        prices:[10,20], discount: 10},
-  {name:'Lux',             prices:[10,20], discount: 15},
-  {name:'Clinic Plus',     prices:[1,2,5], discount: 20},
-  {name:'Head & Shoulders',prices:[5,10,20], discount: 25}
+  {name:'Lifebuoy (₹1-₹2)', prices:[1,2], discount: 10, minQty: 10},
+  {name:'Lux (₹2-₹3)', prices:[2,3], discount: 15, minQty: 5},
+  {name:'Clinic Plus (₹3-₹4)', prices:[3,4], discount: 20, minQty: 3},
+  {name:'Head & Shoulders (₹4-₹5)', prices:[4,5], discount: 25, minQty: 2}
 ],
 'चावल और आटा':[
-  {name:'Basmati Rice',    prices:[80,160], discount: 8},
-  {name:'Wheat Flour',     prices:[40,80], discount: 10},
-  {name:'Sona Masoori',    prices:[70,140], discount: 5}
+  {name:'Basmati Rice (₹5+)', prices:[80,160], discount: 8, minQty: 1},
+  {name:'Wheat Flour (₹5+)', prices:[40,80], discount: 10, minQty: 1},
+  {name:'Sona Masoori (₹5+)', prices:[70,140], discount: 5, minQty: 1}
 ],
 'दालें':[
-  {name:'Moong Dal',       prices:[90,180], discount: 7},
-  {name:'Masoor Dal',      prices:[80,160], discount: 10},
-  {name:'Chana Dal',       prices:[85,170], discount: 5}
+  {name:'Moong Dal (₹5+)', prices:[90,180], discount: 7, minQty: 1},
+  {name:'Masoor Dal (₹5+)', prices:[80,160], discount: 10, minQty: 1},
+  {name:'Chana Dal (₹5+)', prices:[85,170], discount: 5, minQty: 1}
 ],
 'मसाले':[
-  {name:'Turmeric Powder', prices:[20,40,100], discount: 10},
-  {name:'Coriander Powder',prices:[25,50,120], discount: 15},
-  {name:'Red Chilli Powder',prices:[30,60,150], discount: 12}
+  {name:'Turmeric Powder (₹5+)', prices:[20,40,100], discount: 10, minQty: 1},
+  {name:'Coriander Powder (₹5+)', prices:[25,50,120], discount: 15, minQty: 1},
+  {name:'Red Chilli Powder (₹5+)', prices:[30,60,150], discount: 12, minQty: 1}
 ]
 };
 
@@ -746,7 +859,7 @@ let id=1;
 Object.keys(data).forEach((cat, idx) => {
   const emoji = categoryEmojis[cat] || '🛒';
   nav.innerHTML += `
-    <a href="#sec${idx+1}">
+    <a href="#sec${idx+1}" class="${idx === 0 ? 'active' : ''}">
       <span class="emoji">${emoji}</span> ${cat}
     </a>`;
 });
@@ -759,12 +872,19 @@ Object.entries(data).forEach(([cat, items], idx) => {
   items.forEach(it => {
     const img = imgMap[it.name] || defaultImg;
     const discount = it.discount || 0;
-    const isCheap = Math.min(...it.prices) <= 100;
+    const minQty = it.minQty || 1;
+    
+    // Determine requirement class based on minQty
+    let qtyClass = '';
+    if (minQty >= 10) qtyClass = 'high';
+    else if (minQty >= 5) qtyClass = 'medium';
+    else if (minQty >= 3) qtyClass = 'low';
     
     sec += `<div class="card">
-      ${discount > 0 ? `<div class="ribbon">${discount}% OFF</div>` : ''}
-      ${isCheap ? `<div class="item-limit-badge">MAX 10</div>` : ''}
-      <img src="${img}" alt="${it.name}">
+      ${discount > 0 ? `<div class="discount-badge">${discount}% OFF</div>` : ''}
+      <div class="image-container">
+        <img src="${img}" alt="${it.name}">
+      </div>
       <h4>${it.name}</h4>`;
     
     if (discount > 0) {
@@ -781,11 +901,13 @@ Object.entries(data).forEach(([cat, items], idx) => {
     sec += `<select id="p${id}" class="price-select">
         ${it.prices.map(v => `<option value="${v}">₹${v}</option>`).join('')}
       </select>
-      <input id="q${id}" type="number" class="qty-input" placeholder="मात्रा" min="1" value="1">
+      <input id="q${id}" type="number" class="qty-input" placeholder="मात्रा" min="${minQty}" value="${minQty}">
+      
+      <div class="qty-requirement ${qtyClass}">न्यूनतम मात्रा: ${minQty}</div>
       
       ${discount > 0 ? `<div class="discount-label">${discount}% छूट लागू</div>` : ''}
       
-      <button class="btn" onclick="add('${it.name}',parseInt(p${id}.value),'unit',q${id}.value, ${discount}, ${isCheap})">
+      <button class="btn" onclick="add('${it.name}',parseInt(p${id}.value),'unit',q${id}.value, ${discount}, ${minQty}, '${img}')">
         <i class="fas fa-cart-plus"></i> जोड़ें
       </button>
     </div>`;
@@ -798,31 +920,27 @@ Object.entries(data).forEach(([cat, items], idx) => {
 
 /* ===== CART LOGIC ===== */
 let cart = [];
-let totalDiscount = 0;
 
-function add(name, price, unit, qty, discount=0, isCheap=false) {
+function toggleCartPanel() {
+  const panel = document.getElementById('cartPanel');
+  const overlay = document.getElementById('cartOverlay');
+  panel.classList.toggle('open');
+  overlay.classList.toggle('active');
+}
+
+function add(name, price, unit, qty, discount=0, minQty=1, image) {
   qty = parseFloat(qty);
-  if(!qty || qty <= 0) {
-    alert('कृपया मात्रा दर्ज करें!');
-    return;
-  }
   
-  // Check for cheap item limit
-  if(isCheap && price <= 100) {
-    const existingCheapItems = cart.filter(item => item.isCheap).reduce((sum, item) => sum + item.qty, 0);
-    const newTotalCheap = existingCheapItems + qty;
-    
-    if(newTotalCheap > maxCheapItems) {
-      alert(`❌ ₹100 से कम की वस्तुओं के लिए अधिकतम ${maxCheapItems} आइटम ही ऑर्डर कर सकते हैं। आपने ${existingCheapItems} आइटम पहले से जोड़े हैं।`);
-      return;
-    }
+  // Validate minimum quantity
+  if(qty < minQty) {
+    alert(`❌ ${name} की न्यूनतम मात्रा ${minQty} है। कृपया ${minQty} या अधिक मात्रा में जोड़ें।`);
+    return;
   }
   
   // Calculate discount
   let discountedPrice = price;
   if(discount > 0) {
     discountedPrice = price * (1 - discount/100);
-    totalDiscount += (price - discountedPrice) * qty;
   }
   
   const totalPrice = discountedPrice * qty;
@@ -842,86 +960,68 @@ function add(name, price, unit, qty, discount=0, isCheap=false) {
       discountedPrice: discountedPrice,
       totalPrice: totalPrice,
       discountApplied: (price - discountedPrice) * qty,
-      isCheap: isCheap
+      minQty: minQty,
+      image: image
     });
   }
   
-  update();
+  updateCart();
   
-  // Add pulse animation to cart
-  document.getElementById('cartInfo').classList.add('pulse');
-  setTimeout(() => {
-    document.getElementById('cartInfo').classList.remove('pulse');
-  }, 500);
+  // Show the cart panel
+  toggleCartPanel();
 }
 
-function update() {
+function updateCart() {
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
   const discountTotal = cart.reduce((sum, item) => sum + item.discountApplied, 0);
   
-  document.getElementById('cartInfo').innerHTML = `🛒 <span class="text-glow">${totalItems} आइटम</span>`;
-  document.getElementById('cartTotal').innerHTML = `💰 कुल: ₹${total.toFixed(2)}`;
+  // Update sidebar cart summary
+  document.getElementById('cartCount').textContent = totalItems;
+  document.getElementById('cartTotalSide').textContent = `₹${total.toFixed(2)}`;
   
-  const ul = document.getElementById('cartList'); 
-  ul.innerHTML = '';
+  // Update cart panel
+  const cartItems = document.getElementById('cartItems');
+  cartItems.innerHTML = '';
   
   if(cart.length === 0) {
-    ul.innerHTML = '<li style="text-align:center; padding:15px 0;">आपका कार्ट खाली है</li>';
+    cartItems.innerHTML = '<div style="text-align:center; padding:40px 20px; color:#888;">आपका कार्ट खाली है</div>';
+    document.getElementById('cartSubtotal').textContent = '₹0';
+    document.getElementById('cartDiscount').textContent = '-₹0';
+    document.getElementById('cartTotal').textContent = '₹0';
     return;
   }
   
-  // Show cheap items count
-  const cheapItemsCount = cart.filter(item => item.isCheap).reduce((sum, item) => sum + item.qty, 0);
-  if(cheapItemsCount > 0) {
-    const cheapLi = document.createElement('li');
-    cheapLi.innerHTML = `
-      <div>₹100 से कम के आइटम:</div>
-      <div>${cheapItemsCount} / ${maxCheapItems}</div>
-    `;
-    ul.appendChild(cheapLi);
-  }
-  
   cart.forEach((item, index) => {
-    const li = document.createElement('li');
-    
-    li.innerHTML = `
-      <div class="item-info">
-        <span>${item.name} (${item.qty})</span>
-        ${item.discount > 0 ? `<span class="discount-info">${item.discount}% छूट</span>` : ''}
-        ${item.isCheap ? `<span class="discount-info">₹100 से कम</span>` : ''}
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+      <div class="cart-item-image">
+        <img src="${item.image}" alt="${item.name}">
       </div>
-      <div>
-        <span>₹${item.totalPrice.toFixed(2)}</span>
-        <button class="remove-btn" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+      <div class="cart-item-details">
+        <div class="cart-item-name">${item.name} (${item.qty})</div>
+        <div class="cart-item-price">₹${item.totalPrice.toFixed(2)}</div>
+        ${item.discount > 0 ? `<div class="cart-item-discount">${item.discount}% छूट</div>` : ''}
+        <div class="cart-item-discount">न्यूनतम: ${item.minQty}</div>
       </div>
+      <button class="remove-btn" onclick="removeItem(${index})">
+        <i class="fas fa-trash"></i>
+      </button>
     `;
-    
-    ul.appendChild(li);
+    cartItems.appendChild(cartItem);
   });
   
-  // Add discount info
-  if(discountTotal > 0) {
-    const discountLi = document.createElement('li');
-    discountLi.innerHTML = `
-      <div>कुल छूट:</div>
-      <div class="discount-total discount-glow">-₹${discountTotal.toFixed(2)}</div>
-    `;
-    ul.appendChild(discountLi);
-  }
-  
-  const totalLi = document.createElement('li');
-  totalLi.innerHTML = `
-    <div>अंतिम राशि:</div>
-    <div class="cart-total">₹${total.toFixed(2)}</div>
-  `;
-  ul.appendChild(totalLi);
+  // Update cart totals
+  document.getElementById('cartSubtotal').textContent = `₹${subtotal.toFixed(2)}`;
+  document.getElementById('cartDiscount').textContent = `-₹${discountTotal.toFixed(2)}`;
+  document.getElementById('cartTotal').textContent = `₹${total.toFixed(2)}`;
 }
 
 function removeItem(index) {
   cart.splice(index, 1);
-  update();
+  updateCart();
 }
 
 function submitOrder() {
@@ -933,13 +1033,6 @@ function submitOrder() {
   const total = cart.reduce((sum, item) => sum + item.totalPrice, 0);
   if(total < minOrder) {
     alert(`❌ न्यूनतम ऑर्डर राशि ₹${minOrder} है। आपका कुल: ₹${total.toFixed(2)}`);
-    return;
-  }
-  
-  // Check cheap items limit
-  const cheapItemsCount = cart.filter(item => item.isCheap).reduce((sum, item) => sum + item.qty, 0);
-  if(cheapItemsCount > maxCheapItems) {
-    alert(`❌ ₹100 से कम की वस्तुओं के लिए अधिकतम ${maxCheapItems} आइटम ही ऑर्डर कर सकते हैं। आपने ${cheapItemsCount} आइटम जोड़े हैं।`);
     return;
   }
   
@@ -966,9 +1059,6 @@ function sendOrder(nm, mb, ad, lat, lon, total) {
     msg += `• ${item.name} (${item.qty}) - ₹${item.totalPrice.toFixed(2)}`;
     if(item.discount > 0) {
       msg += ` (${item.discount}% छूट)`;
-    }
-    if(item.isCheap) {
-      msg += ' [₹100 से कम]';
     }
     msg += '\n';
   });
@@ -1003,7 +1093,8 @@ function sendOrder(nm, mb, ad, lat, lon, total) {
     if(d.ok) {
       alert('✅ ऑर्डर सफलतापूर्वक सबमिट हो गया!');
       cart = [];
-      update();
+      updateCart();
+      toggleCartPanel();
     } else {
       alert('❌ टेलीग्राम पर ऑर्डर भेजने में त्रुटि। कृपया व्हाट्सएप से ऑर्डर करें।');
     }
@@ -1014,13 +1105,6 @@ function sendOrder(nm, mb, ad, lat, lon, total) {
   });
 }
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
-}
-
 // Search functionality
 function searchItems() {
   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
@@ -1028,6 +1112,8 @@ function searchItems() {
   
   // Highlight all matching items
   const items = document.querySelectorAll('.card');
+  let found = false;
+  
   items.forEach(item => {
     const itemName = item.querySelector('h4').textContent.toLowerCase();
     if(itemName.includes(searchTerm)) {
@@ -1037,9 +1123,16 @@ function searchItems() {
       }, 3000);
       
       // Scroll to the item
-      item.scrollIntoView({behavior: 'smooth', block: 'center'});
+      if(!found) {
+        item.scrollIntoView({behavior: 'smooth', block: 'center'});
+        found = true;
+      }
     }
   });
+  
+  if(!found) {
+    alert('कोई मिलता-जुलता आइटम नहीं मिला');
+  }
 }
 
 // Search on enter key
@@ -1050,12 +1143,20 @@ document.getElementById('searchInput').addEventListener('keyup', function(e) {
 });
 
 // Initialize page
-update();
+updateCart();
 
 // Add smooth scrolling for navigation links
-document.querySelectorAll('.nav-links a').forEach(anchor => {
+document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
+    
+    // Remove active class from all links
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Add active class to clicked link
+    this.classList.add('active');
     
     const target = document.querySelector(this.getAttribute('href'));
     if(target) {
