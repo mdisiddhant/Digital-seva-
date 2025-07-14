@@ -818,11 +818,33 @@ body {
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
+  /* === Scroll-to-Top Button === */
+#scrollTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  z-index: 999;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  font-size: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.4s, transform 0.3s;
+}
+#scrollTopBtn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+}
 </style>
 </head>
 <body>
 
 <!-- Sidebar Navigation -->
+  <button id="scrollTopBtn" onclick="scrollToTop()">⬆️</button>
 <div class="sidebar">
   <div class="sidebar-header floating">
     <h1><i class="fas fa-store"></i> किराना स्टोर</h1>
@@ -1304,6 +1326,14 @@ document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
       });
     }
   });
+  // ===== Scroll-to-Top Logic =====
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTopBtn');
+  btn.style.display = (document.documentElement.scrollTop > 120) ? 'block' : 'none';
+});
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 });
 </script>
 </body>
