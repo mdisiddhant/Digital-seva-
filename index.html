@@ -6,123 +6,100 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      margin: 0;
       background-color: #f7f7f7;
+      margin: 0;
+      padding-bottom: 80px;
     }
-
-    .header {
-      background-color: #f8225e;
+    h2 {
+      background: #f8225e;
       color: white;
+      margin: 0;
+      padding: 12px 20px;
+    }
+    .category {
       padding: 15px;
-      text-align: center;
-      font-size: 22px;
     }
-
-    .search-bar {
-      padding: 10px;
-      display: flex;
-      justify-content: center;
+    .category-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: bold;
     }
-
-    .search-bar input {
-      width: 90%;
-      padding: 8px;
-      border-radius: 10px;
-      border: none;
-      font-size: 16px;
-    }
-
     .item-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 15px;
-      padding: 15px;
     }
-
     .card {
       background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       overflow: hidden;
       position: relative;
+      text-align: center;
     }
-
     .discount {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 8px;
+      left: 8px;
       background: red;
       color: white;
       font-size: 12px;
       padding: 2px 6px;
       border-radius: 4px;
     }
-
     .card img {
       width: 100%;
-      height: 120px;
+      height: 110px;
       object-fit: cover;
     }
-
     .card-content {
-      padding: 10px;
-      text-align: center;
+      padding: 8px;
     }
-
     .card-content h4 {
       margin: 5px 0;
-      font-size: 16px;
+      font-size: 15px;
     }
-
-    .card-content .price {
+    .price {
       color: green;
       font-weight: bold;
     }
-
-    .card-content .old-price {
+    .old-price {
       text-decoration: line-through;
       color: gray;
-      margin-left: 5px;
       font-size: 13px;
+      margin-left: 5px;
     }
-
     .card-content button {
-      margin-top: 8px;
-      padding: 6px 15px;
+      margin-top: 6px;
+      padding: 5px 14px;
       border: 1px solid #f8225e;
       background: white;
       color: #f8225e;
-      font-weight: bold;
       border-radius: 20px;
+      font-weight: bold;
       cursor: pointer;
     }
-
     .card-content button:hover {
       background: #f8225e;
       color: white;
     }
-
     .bottom-bar {
       position: fixed;
       bottom: 0;
       width: 100%;
       background: white;
-      border-top: 1px solid #ccc;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 15px;
-      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      padding: 12px 16px;
+      border-top: 1px solid #ccc;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
     }
-
-    .bottom-bar .left {
-      font-weight: bold;
-    }
-
     .bottom-bar button {
       background: green;
       color: white;
-      padding: 8px 20px;
+      padding: 10px 20px;
       border: none;
       border-radius: 8px;
       font-size: 16px;
@@ -132,97 +109,120 @@
 </head>
 <body>
 
-<div class="header">🛒 किराना स्टोर</div>
-
-<div class="search-bar">
-  <input type="text" placeholder="खोजें...">
+<!-- CATEGORY 1 -->
+<div class="category">
+  <h2>🧂 पान मसाला</h2>
+  <div class="item-grid">
+    <div class="card">
+      <div class="discount">33% छूट</div>
+      <img src="images/rajnigandha.jpg" alt="राजनिगंधा">
+      <div class="card-content">
+        <h4>राजनिगंधा</h4>
+        <span class="price">₹10</span><span class="old-price">₹15</span><br>
+        <button onclick="addToCart('राजनिगंधा', 10)">जोड़ें</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="discount">50% छूट</div>
+      <img src="images/vimal.jpg" alt="विमल">
+      <div class="card-content">
+        <h4>विमल</h4>
+        <span class="price">₹5</span><span class="old-price">₹10</span><br>
+        <button onclick="addToCart('विमल', 5)">जोड़ें</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="item-grid">
-
-  <!-- Item 1 -->
-  <div class="card">
-    <div class="discount">38% छूट</div>
-    <img src="images/aloo.jpg" alt="Potato">
-    <div class="card-content">
-      <h4>Potato (Aloo) 1kg</h4>
-      <div>
-        <span class="price">₹25</span>
-        <span class="old-price">₹40</span>
+<!-- CATEGORY 2 -->
+<div class="category">
+  <h2>🛢️ तेल & घी</h2>
+  <div class="item-grid">
+    <div class="card">
+      <div class="discount">20% छूट</div>
+      <img src="images/sarsotail.jpg" alt="सरसों तेल">
+      <div class="card-content">
+        <h4>सरसों तेल 1L</h4>
+        <span class="price">₹120</span><span class="old-price">₹150</span><br>
+        <button onclick="addToCart('सरसों तेल', 120)">जोड़ें</button>
       </div>
-      <button onclick="addToCart('Potato', 25)">जोड़ें</button>
+    </div>
+    <div class="card">
+      <div class="discount">15% छूट</div>
+      <img src="images/ghee.jpg" alt="घी">
+      <div class="card-content">
+        <h4>घी 500ml</h4>
+        <span class="price">₹220</span><span class="old-price">₹260</span><br>
+        <button onclick="addToCart('घी', 220)">जोड़ें</button>
+      </div>
     </div>
   </div>
-
-  <!-- Item 2 -->
-  <div class="card">
-    <div class="discount">16% छूट</div>
-    <img src="images/lauki.jpg" alt="Lauki">
-    <div class="card-content">
-      <h4>लौकी 1 किलो</h4>
-      <div>
-        <span class="price">₹38</span>
-        <span class="old-price">₹45</span>
-      </div>
-      <button onclick="addToCart('Lauki', 38)">जोड़ें</button>
-    </div>
-  </div>
-
-  <!-- Item 3 -->
-  <div class="card">
-    <div class="discount">44% छूट</div>
-    <img src="images/chukandar.jpg" alt="Beetroot">
-    <div class="card-content">
-      <h4>चुकंदर 250 ग्राम</h4>
-      <div>
-        <span class="price">₹28</span>
-        <span class="old-price">₹50</span>
-      </div>
-      <button onclick="addToCart('Chukandar', 28)">जोड़ें</button>
-    </div>
-  </div>
-
-  <!-- Item 4 -->
-  <div class="card">
-    <div class="discount">60% छूट</div>
-    <img src="images/neebu.jpg" alt="Lemon">
-    <div class="card-content">
-      <h4>नींबू (1)</h4>
-      <div>
-        <span class="price">₹10</span>
-        <span class="old-price">₹25</span>
-      </div>
-      <button onclick="addToCart('Neebu', 10)">जोड़ें</button>
-    </div>
-  </div>
-
 </div>
 
+<!-- CATEGORY 3 to 10 (Random demo items) -->
+<div class="category">
+  <h2>🌾 आटा, चावल & दालें</h2>
+  <div class="item-grid">
+    <div class="card"><div class="discount">10%</div><img src="images/aata.jpg" alt=""><div class="card-content"><h4>गेहूं आटा</h4><span class="price">₹40</span><span class="old-price">₹45</span><br><button onclick="addToCart('गेहूं आटा', 40)">जोड़ें</button></div></div>
+    <div class="card"><div class="discount">12%</div><img src="images/chawal.jpg" alt=""><div class="card-content"><h4>बासमती चावल</h4><span class="price">₹80</span><span class="old-price">₹90</span><br><button onclick="addToCart('चावल', 80)">जोड़ें</button></div></div>
+  </div>
+</div>
+
+<div class="category">
+  <h2>🍬 नमकीन & स्नैक्स</h2>
+  <div class="item-grid">
+    <div class="card"><div class="discount">30%</div><img src="images/kurkure.jpg" alt=""><div class="card-content"><h4>कुरकुरे</h4><span class="price">₹10</span><span class="old-price">₹15</span><br><button onclick="addToCart('कुरकुरे', 10)">जोड़ें</button></div></div>
+    <div class="card"><div class="discount">15%</div><img src="images/bhujiya.jpg" alt=""><div class="card-content"><h4>भुजिया</h4><span class="price">₹20</span><span class="old-price">₹25</span><br><button onclick="addToCart('भुजिया', 20)">जोड़ें</button></div></div>
+  </div>
+</div>
+
+<div class="category">
+  <h2>🍪 बिस्कुट & टोस्ट</h2>
+  <div class="item-grid">
+    <div class="card"><div class="discount">25%</div><img src="images/parleg.jpg" alt=""><div class="card-content"><h4>पारले-जी</h4><span class="price">₹5</span><span class="old-price">₹7</span><br><button onclick="addToCart('पारले-जी', 5)">जोड़ें</button></div></div>
+    <div class="card"><div class="discount">10%</div><img src="images/bourbon.jpg" alt=""><div class="card-content"><h4>बर्बन</h4><span class="price">₹15</span><span class="old-price">₹17</span><br><button onclick="addToCart('बर्बन', 15)">जोड़ें</button></div></div>
+  </div>
+</div>
+
+<div class="category">
+  <h2>🧼 साफ-सफ़ाई उत्पाद</h2>
+  <div class="item-grid">
+    <div class="card"><div class="discount">20%</div><img src="images/vim.jpg" alt=""><div class="card-content"><h4>विम बार</h4><span class="price">₹10</span><span class="old-price">₹12</span><br><button onclick="addToCart('विम बार', 10)">जोड़ें</button></div></div>
+    <div class="card"><div class="discount">15%</div><img src="images/phenyl.jpg" alt=""><div class="card-content"><h4>फिनायल</h4><span class="price">₹40</span><span class="old-price">₹47</span><br><button onclick="addToCart('फिनायल', 40)">जोड़ें</button></div></div>
+  </div>
+</div>
+
+<div class="category">
+  <h2>☕ चाय & ड्रिंक्स</h2>
+  <div class="item-grid">
+    <div class="card"><div class="discount">10%</div><img src="images/tata-tea.jpg" alt=""><div class="card-content"><h4>टाटा चाय</h4><span class="price">₹100</span><span class="old-price">₹110</span><br><button onclick="addToCart('टाटा चाय', 100)">जोड़ें</button></div></div>
+    <div class="card"><div class="discount">12%</div><img src="images/pepsi.jpg" alt=""><div class="card-content"><h4>पेप्सी</h4><span class="price">₹40</span><span class="old-price">₹45</span><br><button onclick="addToCart('पेप्सी', 40)">जोड़ें</button></div></div>
+  </div>
+</div>
+
+<!-- Bottom Bar -->
 <div class="bottom-bar">
-  <div class="left" id="cartSummary">0 चीज़ें | ₹0</div>
+  <div id="cartSummary">0 चीज़ें | ₹0</div>
   <button onclick="placeOrder()">खरीदें</button>
 </div>
 
 <script>
   let cart = [];
-
   function addToCart(name, price) {
-    cart.push({name, price});
+    cart.push({ name, price });
     updateCart();
   }
-
   function updateCart() {
     const totalItems = cart.length;
     const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
     document.getElementById("cartSummary").innerText = `${totalItems} चीज़ें | ₹${totalPrice}`;
   }
-
   function placeOrder() {
     if (cart.length === 0) {
-      alert("कृपया कम से कम एक आइटम जोड़ें।");
+      alert("कृपया कोई आइटम जोड़ें।");
     } else {
-      let order = cart.map(item => `${item.name} - ₹${item.price}`).join("\n");
-      alert("आपका ऑर्डर:\n" + order);
+      let summary = cart.map(item => `${item.name} - ₹${item.price}`).join("\n");
+      alert("आपका ऑर्डर:\n" + summary);
     }
   }
 </script>
