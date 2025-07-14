@@ -1326,15 +1326,19 @@ document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
       });
     }
   });
-  // ===== Scroll-to-Top Logic =====
-window.addEventListener('scroll', () => {
-  const btn = document.getElementById('scrollTopBtn');
-  btn.style.display = (document.documentElement.scrollTop > 120) ? 'block' : 'none';
-});
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-});
+<!-- ========= Scroll-to-Top Script ========= -->
+<script>
+  // बटन कब दिखे / छिपे
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTopBtn');
+    btn.style.display =
+      (document.documentElement.scrollTop > 120) ? 'block' : 'none';
+  });
+
+  // बटन क्लिक → स्मूथ-स्क्रॉल सबसे ऊपर
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 </script>
 </body>
 </html>
