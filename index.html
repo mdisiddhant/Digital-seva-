@@ -36,39 +36,7 @@
     <a href="#detergent">डिटर्जेंट</a>
     <a href="#coldrink">कोल्ड्रिंक</a>
     <a href="#others">अन्य</a>
-  </div>  <section id="pan">
-    <h2>पान मसाला</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="images/rajnigandha.jpg">
-        <h4>राजनिगंधा</h4>
-        <div class="price">₹10</div>
-        <input class="qty-input" id="qty1" type="text" placeholder="पाउच">
-        <button class="btn" onclick="add('राजनिगंधा', 10, document.getElementById('qty1').value)">➕ जोड़ें</button>
-      </div>
-      <div class="card">
-        <img src="images/vimal.jpg">
-        <h4>विमल</h4>
-        <div class="price">₹5</div>
-        <input class="qty-input" id="qty2" type="text" placeholder="पाउच">
-        <button class="btn" onclick="add('विमल', 5, document.getElementById('qty2').value)">➕ जोड़ें</button>
-      </div>
-      <div class="card">
-        <img src="images/baba.jpg">
-        <h4>बाबा</h4>
-        <div class="price">₹10</div>
-        <input class="qty-input" id="qty3" type="text" placeholder="पाउच">
-        <button class="btn" onclick="add('बाबा', 10, document.getElementById('qty3').value)">➕ जोड़ें</button>
-      </div>
-      <div class="card">
-        <img src="images/manikchand.jpg">
-        <h4>माणिकचंद</h4>
-        <div class="price">₹15</div>
-        <input class="qty-input" id="qty4" type="text" placeholder="पाउच">
-        <button class="btn" onclick="add('माणिकचंद', 15, document.getElementById('qty4').value)">➕ जोड़ें</button>
-      </div>
-    </div>
-  </section>  <div class="cart-bar">
+  </div>  <div id="categories"></div>  <div class="cart-bar">
     <div id="cartInfo">🛒 आपका कार्ट खाली है</div>
     <ul id="cartList"></ul>
     <button class="submit-btn" onclick="submitOrder()">📤 Submit Order</button>
@@ -78,6 +46,90 @@
     const whatsappNumber = '916351598832';
     const telegramToken = '7729928604:AAEINikbhwHTMSK1pgV3nROUfSGEVb-z2r4';
     const telegramChatId = '6798434092';
+
+    const categories = [
+      { id: 'pan', title: 'पान मसाला', unit: 'पाउच', items: [
+        ['राजनिगंधा', 10, 'rajnigandha.jpg'],
+        ['विमल', 5, 'vimal.jpg'],
+        ['बाबा', 10, 'baba.jpg'],
+        ['माणिकचंद', 15, 'manikchand.jpg']
+      ]},
+      { id: 'oil', title: 'तेल', unit: 'लीटर', items: [
+        ['सरसों तेल', 120, 'mustard_oil.jpg'],
+        ['रिफाइंड तेल', 130, 'refined.jpg'],
+        ['सोयाबीन तेल', 110, 'soyabean.jpg'],
+        ['नारियल तेल', 90, 'coconut_oil.jpg']
+      ]},
+      { id: 'grain', title: 'चावल', unit: 'किलो', items: [
+        ['बासमती चावल', 90, 'rice1.jpg'],
+        ['सादा चावल', 60, 'rice2.jpg'],
+        ['चना दाल', 80, 'dal1.jpg'],
+        ['अरहर दाल', 100, 'dal2.jpg']
+      ]},
+      { id: 'snacks', title: 'टीटिंग', unit: 'पैकेट', items: [
+        ['कुरकुरे', 10, 'kurkure.jpg'],
+        ['भुजिया', 20, 'bhujia.jpg'],
+        ['नमकीन', 15, 'namkeen.jpg'],
+        ['अलू भुजिया', 25, 'alubhujia.jpg']
+      ]},
+      { id: 'spices', title: 'मसाले', unit: 'पैक', items: [
+        ['हल्दी पाउडर', 20, 'haldi.jpg'],
+        ['धनिया पाउडर', 25, 'dhaniya.jpg'],
+        ['मिर्च पाउडर', 30, 'mirch.jpg'],
+        ['गरम मसाला', 40, 'garam.jpg']
+      ]},
+      { id: 'biscuits', title: 'बिस्किट', unit: 'पैकेट', items: [
+        ['पारले जी', 5, 'parle.jpg'],
+        ['बॉर्बन', 10, 'bourbon.jpg'],
+        ['ग्लूको', 5, 'gluco.jpg'],
+        ['हाइड न सीक', 15, 'hide.jpg']
+      ]},
+      { id: 'soap', title: 'साबुन', unit: 'पीस', items: [
+        ['लाइफबॉय', 25, 'lifebuoy.jpg'],
+        ['लक्स', 30, 'lux.jpg'],
+        ['डेटॉल', 35, 'detol.jpg'],
+        ['संतूर', 20, 'santoor.jpg']
+      ]},
+      { id: 'detergent', title: 'डिटर्जेंट', unit: 'पैकेट', items: [
+        ['सर्फ एक्सेल', 50, 'surf.jpg'],
+        ['टाइड', 45, 'tide.jpg'],
+        ['घड़ी', 25, 'ghadi.jpg'],
+        ['एरियल', 60, 'ariel.jpg']
+      ]},
+      { id: 'coldrink', title: 'कोल्ड्रिंक', unit: 'बोतल', items: [
+        ['कोका कोला', 40, 'coke.jpg'],
+        ['पेप्सी', 40, 'pepsi.jpg'],
+        ['स्प्राइट', 35, 'sprite.jpg'],
+        ['फ्रूटी', 20, 'frooti.jpg']
+      ]},
+      { id: 'others', title: 'अन्य', unit: 'पीस', items: [
+        ['मोमबत्ती', 10, 'mombatti.jpg'],
+        ['माचिस', 2, 'match.jpg'],
+        ['ब्रश', 15, 'brush.jpg'],
+        ['कंघी', 20, 'kanghi.jpg']
+      ]}
+    ];
+
+    function renderCategories() {
+      const container = document.getElementById('categories');
+      let count = 1;
+      categories.forEach(cat => {
+        let html = `<section id="${cat.id}"><h2>${cat.title}</h2><div class="grid">`;
+        cat.items.forEach(([name, price, img]) => {
+          html += `
+            <div class="card">
+              <img src="images/${img}" alt="${name}">
+              <h4>${name}</h4>
+              <div class="price">₹${price}</div>
+              <input class="qty-input" id="qty${count}" placeholder="${cat.unit}">
+              <button class="btn" onclick="add('${name}', ${price}, document.getElementById('qty${count}').value)">➕ जोड़ें</button>
+            </div>`;
+          count++;
+        });
+        html += '</div></section>';
+        container.innerHTML += html;
+      });
+    }
 
     function add(name, price, qty) {
       if (!qty || qty.trim() === '') {
@@ -110,38 +162,28 @@
         alert('🛒 कृपया पहले कोई आइटम जोड़ें।');
         return;
       }
-
       const total = cart.reduce((sum, item) => sum + item.price, 0);
       if (total < minOrder) {
         alert(`❌ न्यूनतम ऑर्डर ₹${minOrder} होना चाहिए।`);
         return;
       }
-
       let message = '🛍️ *किराना ऑर्डर:*\n';
       cart.forEach(item => {
         message += `• ${item.name} - ₹${item.price}\n`;
       });
       message += `\n💰 *कुल: ₹${total}*\n🙏 धन्यवाद!`;
-
       const encodedMsg = encodeURIComponent(message);
       window.open(`https://wa.me/${whatsappNumber}?text=${encodedMsg}`, '_blank');
-
       fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: telegramChatId,
-          text: message,
-          parse_mode: 'Markdown'
-        })
+        body: JSON.stringify({ chat_id: telegramChatId, text: message, parse_mode: 'Markdown' })
       }).then(res => res.json()).then(data => {
-        if (data.ok) {
-          alert('✅ Telegram पर भी ऑर्डर भेज दिया गया!');
-        } else {
-          alert('❌ Telegram भेजने में दिक्कत है!');
-          console.log(data);
-        }
+        if (data.ok) alert('✅ Telegram पर भी ऑर्डर भेज दिया गया!');
+        else alert('❌ Telegram भेजने में दिक्कत है!');
       });
     }
+
+    renderCategories();
   </script></body>
 </html>
