@@ -903,6 +903,7 @@ const minOrder=100;
 
 /* Emoji map for categories */
 const categoryEmojis = {
+  'पान मसाला': '🗣️',
   'बिस्किट': '🍪',
   'तेल': '🛢️',
   'साबुन / शैंपू': '🧴',
@@ -920,7 +921,9 @@ const categoryEmojis = {
 
 /* ===== IMAGE MAP ===== */
 const imgMap={
-  'Parle-G (₹1-₹2)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'rajshari (₹5-₹10-₹15-₹20)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'vimal(₹5)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
+  'Parle-G (₹5-₹10)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
   'Good Day (₹2-₹3)':'https://images.unsplash.com/photo-1586854275429-efec225e1dc0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
   'Hide & Seek (₹3-₹4)':'https://images.unsplash.com/photo-1608190003443-86b2636f1b0a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
   'Marie (₹4-₹5)':'https://images.unsplash.com/photo-1599490659213-e2b2087a39f8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&w=400',
@@ -946,8 +949,11 @@ const defaultImg='https://images.unsplash.com/photo-1556905055-8f358a7a4b2c?crop
 
 /* ===== DATA (प्राइस वैरिएंट और डिस्काउंट के साथ) ===== */
 const data={
+'पान मसाला':[
+  {name:'rajshari (₹5-₹10-₹15-₹20)', prices:[5,10,15,20], discount: 0, minQty: 1},
+  {name:'viaml (₹5-₹10)', prices:[5,10], discount: 15, minQty: 1},
 'बिस्किट':[
-  {name:'Parle-G (₹1-₹2)', prices:[1,2], discount: 10, minQty: 10},
+  {name:'Parle-G (₹5-₹10)', prices:[10,20], discount: 0, minQty: 1},
   {name:'Good Day (₹2-₹3)', prices:[2,3], discount: 15, minQty: 5},
   {name:'Hide & Seek (₹3-₹4)', prices:[3,4], discount: 5, minQty: 3},
   {name:'Marie (₹4-₹5)', prices:[4,5], discount: 20, minQty: 2}
