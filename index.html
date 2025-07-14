@@ -11,10 +11,11 @@
     section { padding: 80px 16px 20px; }
     h2 { margin-top: 40px; color: #333; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
-    .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); overflow: hidden; text-align: center; }
+    .card { background: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); overflow: hidden; text-align: center; padding-bottom: 10px; }
     .card img { width: 100%; height: 100px; object-fit: cover; }
     .card h4 { margin: 8px 0 4px; font-size: 15px; }
     .price { color: green; font-weight: bold; }
+    .qty-input { width: 60px; padding: 4px; margin-top: 4px; font-size: 14px; text-align: center; border: 1px solid #ccc; border-radius: 4px; }
     .btn { padding: 5px 10px; margin: 6px; border-radius: 20px; border: 1px solid #f8225e; color: #f8225e; background: #fff; cursor: pointer; }
     .btn:hover { background: #f8225e; color: #fff; }
     .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 16px; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; }
@@ -30,28 +31,44 @@
     <a href="#grain">चावल</a>
     <a href="#snacks">टीटिंग</a>
     <a href="#spices">मसाले</a>
-    <a href="#biscuits">बिस्कीट</a>
+    <a href="#biscuits">बिस्किट</a>
     <a href="#soap">साबुन</a>
-    <a href="#detergent">डिटरजेंट</a>
+    <a href="#detergent">डिटर्जेंट</a>
     <a href="#coldrink">कोल्ड्रिंक</a>
     <a href="#others">अन्य</a>
-  </div>  <!-- Repeatable Category Sections (Sample for Pan Masala) -->  <section id="pan">
+  </div>  <section id="pan">
     <h2>पान मसाला</h2>
     <div class="grid">
       <div class="card">
         <img src="images/rajnigandha.jpg">
-        <h4>राजनीगंधा</h4>
+        <h4>राजनिगंधा</h4>
         <div class="price">₹10</div>
-        <button class="btn" onclick="add('राजनिगंधा', 10)">जोडें</button>
+        <input class="qty-input" id="qty1" type="text" placeholder="पाउच">
+        <button class="btn" onclick="add('राजनिगंधा', 10, document.getElementById('qty1').value)">➕ जोड़ें</button>
       </div>
       <div class="card">
         <img src="images/vimal.jpg">
         <h4>विमल</h4>
         <div class="price">₹5</div>
-        <button class="btn" onclick="add('विमल', 5)">जोडें</button>
+        <input class="qty-input" id="qty2" type="text" placeholder="पाउच">
+        <button class="btn" onclick="add('विमल', 5, document.getElementById('qty2').value)">➕ जोड़ें</button>
+      </div>
+      <div class="card">
+        <img src="images/baba.jpg">
+        <h4>बाबा</h4>
+        <div class="price">₹10</div>
+        <input class="qty-input" id="qty3" type="text" placeholder="पाउच">
+        <button class="btn" onclick="add('बाबा', 10, document.getElementById('qty3').value)">➕ जोड़ें</button>
+      </div>
+      <div class="card">
+        <img src="images/manikchand.jpg">
+        <h4>माणिकचंद</h4>
+        <div class="price">₹15</div>
+        <input class="qty-input" id="qty4" type="text" placeholder="पाउच">
+        <button class="btn" onclick="add('माणिकचंद', 15, document.getElementById('qty4').value)">➕ जोड़ें</button>
       </div>
     </div>
-  </section>  <!-- 9 More Category Sections can go here with similar structure -->  <!-- oil, grain, snacks, spices, biscuits, soap, detergent, coldrink, others -->  <div class="cart-bar">
+  </section>  <div class="cart-bar">
     <div id="cartInfo">🛒 आपका कार्ट खाली है</div>
     <ul id="cartList"></ul>
     <button class="submit-btn" onclick="submitOrder()">📤 Submit Order</button>
@@ -62,8 +79,12 @@
     const telegramToken = '7729928604:AAEINikbhwHTMSK1pgV3nROUfSGEVb-z2r4';
     const telegramChatId = '6798434092';
 
-    function add(name, price) {
-      cart.push({ name, price });
+    function add(name, price, qty) {
+      if (!qty || qty.trim() === '') {
+        alert('कृपया मात्रा दर्ज करें');
+        return;
+      }
+      cart.push({ name: `${name} (${qty})`, price });
       update();
     }
 
@@ -75,7 +96,6 @@
     function update() {
       const total = cart.reduce((s, i) => s + i.price, 0);
       document.getElementById('cartInfo').textContent = `${cart.length} चीज़ें | ₹${total}`;
-
       const list = document.getElementById('cartList');
       list.innerHTML = '';
       cart.forEach((item, index) => {
