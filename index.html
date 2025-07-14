@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Modern किराना ऑर्डर</title>
+<title>🍪 Modern किराना ऑर्डर</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 /* Modern Color Scheme */
@@ -19,6 +19,7 @@
   --text-light: #666666;
   --text-glow: #ffffff;
   --discount: #e53935;
+  --sidebar-bg: linear-gradient(135deg, #2c3e50, #1a1f2c);
 }
 
 /* Modern Styles */
@@ -34,65 +35,144 @@ body {
   color: var(--text);
   padding-bottom: 180px;
   line-height: 1.6;
+  margin-left: 250px;
+  transition: margin-left 0.3s;
 }
 
-/* Modern Navbar with Gradient */
-.navbar {
+/* Modern Sidebar Navigation */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  display: flex;
-  overflow-x: auto;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  bottom: 0;
+  width: 250px;
+  background: var(--sidebar-bg);
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
   z-index: 1000;
-  padding: 0 16px;
+  overflow-y: auto;
+  padding: 20px 0;
 }
 
-.navbar a {
-  padding: 18px 24px;
-  font-weight: 600;
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 15px;
+}
+
+.sidebar-header h1 {
   color: white;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sidebar-header h1 i {
+  color: var(--accent);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav a {
+  padding: 15px 25px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
   text-decoration: none;
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 15px;
   transition: all 0.3s ease;
-  position: relative;
-  text-shadow: 0 0 5px rgba(255,255,255,0.3);
+  border-left: 4px solid transparent;
+  margin: 5px 0;
+  font-size: 1.1rem;
 }
 
-.navbar a:hover {
+.sidebar-nav a:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-left: 4px solid var(--accent);
+}
+
+.sidebar-nav a.active {
   background: rgba(255,255,255,0.15);
+  color: white;
+  border-left: 4px solid var(--accent);
 }
 
-.navbar a::after {
-  content: '';
+.sidebar-footer {
   position: absolute;
   bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: white;
-  transform: translateX(-50%);
-  transition: width 0.3s ease;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  text-align: center;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-.navbar a:hover::after {
-  width: 70%;
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  body {
+    margin-left: 0;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: 70px;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  .sidebar-header {
+    display: none;
+  }
+  
+  .sidebar-nav {
+    flex-direction: row;
+    padding: 0 10px;
+  }
+  
+  .sidebar-nav a {
+    padding: 10px 15px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  
+  .sidebar-nav a:hover, 
+  .sidebar-nav a.active {
+    border-left: none;
+    border-bottom: 3px solid var(--accent);
+  }
+  
+  .sidebar-footer {
+    display: none;
+  }
 }
 
 section {
-  padding: 100px 16px 30px;
+  padding: 100px 30px 30px;
 }
 
 h2 {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 2rem;
   color: var(--primary-dark);
   text-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
   position: relative;
   padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 h2::after {
@@ -116,8 +196,8 @@ h3 {
 /* Modern Grid Layout */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
 }
 
 /* Modern Card Design with Hover Effect */
@@ -140,7 +220,7 @@ h3 {
 
 .card img {
   width: 100%;
-  height: 110px;
+  height: 130px;
   object-fit: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -248,7 +328,7 @@ h3 {
 .form-box {
   padding: 25px;
   background: var(--card-bg);
-  margin: 90px 16px 20px;
+  margin: 30px;
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
@@ -273,7 +353,7 @@ h3 {
 .cart-bar {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 250px;
   right: 0;
   background: var(--card-bg);
   box-shadow: 0 -4px 15px rgba(0,0,0,0.12);
@@ -281,6 +361,7 @@ h3 {
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  transition: left 0.3s;
 }
 
 .cart-bar ul {
@@ -376,17 +457,12 @@ h3 {
   transform: translateY(0);
 }
 
-/* Glowing Text Effects */
-.text-glow {
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
-}
-
-.discount-glow {
-  text-shadow: 0 0 8px rgba(229, 57, 53, 0.3);
-}
-
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+  .cart-bar {
+    left: 0;
+  }
+  
   .grid {
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
@@ -395,17 +471,12 @@ h3 {
     height: 100px;
   }
   
-  .navbar a {
-    padding: 16px 18px;
-    font-size: 14px;
-  }
-  
   section {
     padding-top: 90px;
   }
   
   .form-box {
-    margin-top: 80px;
+    margin: 20px;
     padding: 20px;
   }
 }
@@ -416,13 +487,8 @@ h3 {
     gap: 12px;
   }
   
-  .navbar a {
-    padding: 14px 12px;
-    font-size: 13px;
-  }
-  
   .form-box {
-    margin-top: 70px;
+    margin: 15px;
   }
   
   .cart-bar {
@@ -484,13 +550,30 @@ h3 {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 1;
 }
+
+/* Category emojis */
+.emoji {
+  font-size: 1.4em;
+  vertical-align: middle;
+}
 </style>
 </head>
 <body>
 
-<nav class="navbar" id="navBar">
-  <!-- Navigation will be added by JS -->
-</nav>
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h1><i class="fas fa-store"></i> किराना स्टोर</h1>
+  </div>
+  
+  <div class="sidebar-nav" id="navBar">
+    <!-- Navigation will be added by JS -->
+  </div>
+  
+  <div class="sidebar-footer">
+    <p>© 2023 किराना ऑर्डर सिस्टम</p>
+  </div>
+</div>
 
 <div class="form-box">
   <h3><i class="fas fa-user"></i> कस्टमर डिटेल</h3>
@@ -523,6 +606,23 @@ const tgToken ='7729928604:AAEINikbhwHTMSK1pgV3nROUfSGEVb-z2r4';
 const tgChatId='6798434092';
 const minOrder=100;
 
+/* Emoji map for categories */
+const categoryEmojis = {
+  'बिस्किट': '🍪',
+  'तेल': '🛢️',
+  'साबुन / शैंपू': '🧴',
+  'चावल और आटा': '🍚',
+  'दालें': '🥣',
+  'मसाले': '🌶️',
+  'डेयरी': '🥛',
+  'चाय / कॉफी': '☕',
+  'पेय': '🥤',
+  'स्नैक्स': '🍿',
+  'फल': '🍎',
+  'सब्जियां': '🥦',
+  'बेकरी': '🍞'
+};
+
 /* ===== IMAGE MAP ===== */
 const imgMap={
   'Parle-G':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
@@ -536,7 +636,16 @@ const imgMap={
   'Mustard Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
   'Groundnut Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
   'Soyabean Oil':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
-  'Marie':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg'
+  'Marie':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Basmati Rice':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Wheat Flour':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Sona Masoori':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Moong Dal':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Masoor Dal':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Chana Dal':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Turmeric Powder':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Coriander Powder':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg',
+  'Red Chilli Powder':'https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg'
 };
 const defaultImg='https://i.postimg.cc/3wycqY2R/17525009998764074664621859523129.jpg';
 
@@ -584,12 +693,17 @@ let id=1;
 
 // Add categories to navbar
 Object.keys(data).forEach((cat, idx) => {
-  nav.innerHTML += `<a href="#sec${idx+1}">${cat}</a>`;
+  const emoji = categoryEmojis[cat] || '🛒';
+  nav.innerHTML += `
+    <a href="#sec${idx+1}" class="${idx === 0 ? 'active' : ''}">
+      <span class="emoji">${emoji}</span> ${cat}
+    </a>`;
 });
 
 // Add sections for each category
 Object.entries(data).forEach(([cat, items], idx) => {
-  let sec = `<section id="sec${idx+1}"><h2>${cat}</h2><div class="grid">`;
+  const emoji = categoryEmojis[cat] || '🛒';
+  let sec = `<section id="sec${idx+1}"><h2><span class="emoji">${emoji}</span> ${cat}</h2><div class="grid">`;
   
   items.forEach(it => {
     const img = imgMap[it.name] || defaultImg;
@@ -823,13 +937,28 @@ function scrollToTop() {
 // Initialize page
 update();
 
-// Add glow effect to important elements periodically
-setInterval(() => {
-  const elements = document.querySelectorAll('.cart-total, h2, h3, .discount-total');
-  elements.forEach(el => {
-    el.classList.toggle('text-glow');
+// Add smooth scrolling for navigation links
+document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Remove active class from all links
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Add active class to clicked link
+    this.classList.add('active');
+    
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) {
+      window.scrollTo({
+        top: target.offsetTop - 80,
+        behavior: 'smooth'
+      });
+    }
   });
-}, 2000);
+});
 </script>
 </body>
 </html>
